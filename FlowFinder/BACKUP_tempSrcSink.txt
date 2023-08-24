@@ -1,0 +1,7 @@
+%<com.frost.SensorEvent: float[] getSensorData()> -> _SOURCE_
+<android.location.Location: double getLatitude()> -> _SOURCE_
+<v3.l: void u(java.lang.String,java.lang.String)> -> _SINK_
+%<android.location.Location: double getLongitude()> -> _SOURCE_
+%<android.util.Log: int d(java.lang.String,java.lang.String)> -> _SINK_
+%<android.telephony.TelephonyManager: java.lang.String getImei()> -> _SOURCE_
+%<android.telephony.TelephonyManager: long getMaximumCallComposerPictureSize()> -> _SOURCE_

@@ -1,0 +1,279 @@
+public class com.callapp.contacts.wearable.GoogleApiClientHandler$2 extends com.callapp.contacts.manager.task.Task
+{
+    final android.graphics.Bitmap a;
+    final java.lang.String b;
+    final java.lang.String c;
+    final com.google.android.gms.common.api.ResolvingResultCallbacks d;
+    final com.callapp.contacts.wearable.GoogleApiClientHandler e;
+
+    public void <init>(com.callapp.contacts.wearable.GoogleApiClientHandler, android.graphics.Bitmap, java.lang.String, java.lang.String, com.google.android.gms.common.api.ResolvingResultCallbacks)
+    {
+        com.callapp.contacts.wearable.GoogleApiClientHandler$2 $r0;
+        com.callapp.contacts.wearable.GoogleApiClientHandler $r1;
+        android.graphics.Bitmap $r2;
+        java.lang.String $r3, $r4;
+        com.google.android.gms.common.api.ResolvingResultCallbacks $r5;
+
+        $r0 := @this: com.callapp.contacts.wearable.GoogleApiClientHandler$2;
+
+        $r1 := @parameter0: com.callapp.contacts.wearable.GoogleApiClientHandler;
+
+        $r2 := @parameter1: android.graphics.Bitmap;
+
+        $r3 := @parameter2: java.lang.String;
+
+        $r4 := @parameter3: java.lang.String;
+
+        $r5 := @parameter4: com.google.android.gms.common.api.ResolvingResultCallbacks;
+
+        $r0.<com.callapp.contacts.wearable.GoogleApiClientHandler$2: com.callapp.contacts.wearable.GoogleApiClientHandler e> = $r1;
+
+        $r0.<com.callapp.contacts.wearable.GoogleApiClientHandler$2: android.graphics.Bitmap a> = $r2;
+
+        $r0.<com.callapp.contacts.wearable.GoogleApiClientHandler$2: java.lang.String b> = $r3;
+
+        $r0.<com.callapp.contacts.wearable.GoogleApiClientHandler$2: java.lang.String c> = $r4;
+
+        $r0.<com.callapp.contacts.wearable.GoogleApiClientHandler$2: com.google.android.gms.common.api.ResolvingResultCallbacks d> = $r5;
+
+        specialinvoke $r0.<com.callapp.contacts.manager.task.Task: void <init>()>();
+
+        return;
+    }
+
+    public void doTask()
+    {
+        com.callapp.contacts.wearable.GoogleApiClientHandler$2 $r0;
+        com.callapp.contacts.wearable.GoogleApiClientHandler $r1;
+        java.util.List $r2;
+        boolean $z0;
+        com.callapp.contacts.manager.preferences.prefs.BooleanPref $r3;
+        java.lang.Object $r4;
+        java.lang.Boolean $r5;
+        com.callapp.contacts.manager.analytics.AnalyticsManager $r6;
+        com.callapp.contacts.manager.analytics.AnalyticsManager$TrackerType[] $r7;
+        com.callapp.contacts.manager.analytics.AnalyticsManager$TrackerType $r8;
+        android.graphics.Bitmap $r9;
+        com.google.android.gms.wearable.Asset $r10;
+        com.google.android.gms.wearable.PutDataMapRequest $r11;
+        com.google.android.gms.wearable.DataMap $r12;
+        long $l0;
+        java.lang.String $r13, $r22, $r23;
+        com.google.android.gms.wearable.DataApi $r14;
+        com.google.android.gms.common.api.GoogleApiClient $r15;
+        com.google.android.gms.internal.zzbig$zza $r16;
+        com.google.android.gms.wearable.PutDataRequest $r17;
+        com.google.android.gms.internal.zzbih $r18;
+        byte[] $r19;
+        int $i1, $i2, $i3, $i4;
+        java.lang.IllegalStateException $r20;
+        java.lang.StringBuilder $r21;
+        com.google.android.gms.common.api.PendingResult $r24;
+        com.google.android.gms.common.api.ResolvingResultCallbacks $r25;
+
+        $r0 := @this: com.callapp.contacts.wearable.GoogleApiClientHandler$2;
+
+        $r1 = $r0.<com.callapp.contacts.wearable.GoogleApiClientHandler$2: com.callapp.contacts.wearable.GoogleApiClientHandler e>;
+
+        $r2 = virtualinvoke $r1.<com.callapp.contacts.wearable.GoogleApiClientHandler: java.util.List getConnectedNodes()>();
+
+        $z0 = staticinvoke <com.callapp.framework.util.CollectionUtils: boolean b(java.util.Collection)>($r2);
+
+        if $z0 == 0 goto label9;
+
+        $r3 = <com.callapp.contacts.manager.preferences.Prefs: com.callapp.contacts.manager.preferences.prefs.BooleanPref cS>;
+
+        $r4 = virtualinvoke $r3.<com.callapp.contacts.manager.preferences.prefs.BooleanPref: java.lang.Object get()>();
+
+        $r5 = (java.lang.Boolean) $r4;
+
+        $z0 = virtualinvoke $r5.<java.lang.Boolean: boolean booleanValue()>();
+
+        if $z0 != 0 goto label1;
+
+        $r6 = staticinvoke <com.callapp.contacts.manager.analytics.AnalyticsManager: com.callapp.contacts.manager.analytics.AnalyticsManager get()>();
+
+        $r7 = newarray (com.callapp.contacts.manager.analytics.AnalyticsManager$TrackerType)[1];
+
+        $r8 = <com.callapp.contacts.manager.analytics.AnalyticsManager$TrackerType: com.callapp.contacts.manager.analytics.AnalyticsManager$TrackerType d>;
+
+        $r7[0] = $r8;
+
+        virtualinvoke $r6.<com.callapp.contacts.manager.analytics.AnalyticsManager: void a(java.lang.String,java.lang.String,java.lang.String,long,com.callapp.contacts.manager.analytics.AnalyticsManager$TrackerType[])>("Wearable", "Showing wearable notification", null, 0L, $r7);
+
+        $r3 = <com.callapp.contacts.manager.preferences.Prefs: com.callapp.contacts.manager.preferences.prefs.BooleanPref cS>;
+
+        $r5 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(1);
+
+        virtualinvoke $r3.<com.callapp.contacts.manager.preferences.prefs.BooleanPref: void set(java.lang.Object)>($r5);
+
+     label1:
+        $r9 = $r0.<com.callapp.contacts.wearable.GoogleApiClientHandler$2: android.graphics.Bitmap a>;
+
+        $r9 = staticinvoke <com.callapp.contacts.util.ImageUtils: android.graphics.Bitmap f(android.graphics.Bitmap)>($r9);
+
+        $r10 = staticinvoke <com.callapp.contacts.wearable.GoogleApiClientHandler: com.google.android.gms.wearable.Asset a(android.graphics.Bitmap)>($r9);
+
+        $r11 = staticinvoke <com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataMapRequest create(java.lang.String)>("/in_call_data_item");
+
+        $r12 = $r11.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap b>;
+
+        virtualinvoke $r12.<com.google.android.gms.wearable.DataMap: void putAsset(java.lang.String,com.google.android.gms.wearable.Asset)>("large_icon", $r10);
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        virtualinvoke $r12.<com.google.android.gms.wearable.DataMap: void putLong(java.lang.String,long)>("Time", $l0);
+
+        $r13 = $r0.<com.callapp.contacts.wearable.GoogleApiClientHandler$2: java.lang.String b>;
+
+        virtualinvoke $r12.<com.google.android.gms.wearable.DataMap: void putString(java.lang.String,java.lang.String)>("contentTitle", $r13);
+
+        $r13 = $r0.<com.callapp.contacts.wearable.GoogleApiClientHandler$2: java.lang.String c>;
+
+        virtualinvoke $r12.<com.google.android.gms.wearable.DataMap: void putString(java.lang.String,java.lang.String)>("contentText", $r13);
+
+        $r14 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.DataApi a>;
+
+        $r1 = $r0.<com.callapp.contacts.wearable.GoogleApiClientHandler$2: com.callapp.contacts.wearable.GoogleApiClientHandler e>;
+
+        $r15 = staticinvoke <com.callapp.contacts.wearable.GoogleApiClientHandler: com.google.android.gms.common.api.GoogleApiClient a(com.callapp.contacts.wearable.GoogleApiClientHandler)>($r1);
+
+        $r12 = $r11.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap b>;
+
+        $r16 = staticinvoke <com.google.android.gms.internal.zzbig: com.google.android.gms.internal.zzbig$zza a(com.google.android.gms.wearable.DataMap)>($r12);
+
+        $r17 = $r11.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest a>;
+
+        $r18 = $r16.<com.google.android.gms.internal.zzbig$zza: com.google.android.gms.internal.zzbih a>;
+
+        $r19 = staticinvoke <com.google.android.gms.internal.zzbut: byte[] a(com.google.android.gms.internal.zzbut)>($r18);
+
+        virtualinvoke $r17.<com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest setData(byte[])>($r19);
+
+        $r2 = $r16.<com.google.android.gms.internal.zzbig$zza: java.util.List b>;
+
+        $i1 = interfaceinvoke $r2.<java.util.List: int size()>();
+
+        $i2 = 0;
+
+     label2:
+        if $i2 >= $i1 goto label8;
+
+        $r13 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>($i2);
+
+        $r2 = $r16.<com.google.android.gms.internal.zzbig$zza: java.util.List b>;
+
+        $r4 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>($i2);
+
+        $r10 = (com.google.android.gms.wearable.Asset) $r4;
+
+        if $r13 != null goto label3;
+
+        $r20 = new java.lang.IllegalStateException;
+
+        $r13 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r10);
+
+        $r21 = new java.lang.StringBuilder;
+
+        $r22 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r13);
+
+        $i1 = virtualinvoke $r22.<java.lang.String: int length()>();
+
+        $i1 = $i1 + 26;
+
+        specialinvoke $r21.<java.lang.StringBuilder: void <init>(int)>($i1);
+
+        $r21 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("asset key cannot be null: ");
+
+        $r21 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+
+        $r13 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r20.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r13);
+
+        throw $r20;
+
+     label3:
+        if $r10 != null goto label6;
+
+        $r20 = new java.lang.IllegalStateException;
+
+        $r22 = "asset cannot be null: key=";
+
+        $r13 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r13);
+
+        $i1 = virtualinvoke $r13.<java.lang.String: int length()>();
+
+        if $i1 == 0 goto label5;
+
+        $r13 = virtualinvoke $r22.<java.lang.String: java.lang.String concat(java.lang.String)>($r13);
+
+     label4:
+        specialinvoke $r20.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r13);
+
+        throw $r20;
+
+     label5:
+        $r13 = new java.lang.String;
+
+        specialinvoke $r13.<java.lang.String: void <init>(java.lang.String)>("asset cannot be null: key=");
+
+        goto label4;
+
+     label6:
+        $z0 = staticinvoke <android.util.Log: boolean isLoggable(java.lang.String,int)>("DataMap", 3);
+
+        if $z0 == 0 goto label7;
+
+        $r22 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r10);
+
+        $r21 = new java.lang.StringBuilder;
+
+        $r23 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r13);
+
+        $i3 = virtualinvoke $r23.<java.lang.String: int length()>();
+
+        $i3 = $i3 + 33;
+
+        $r23 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r22);
+
+        $i4 = virtualinvoke $r23.<java.lang.String: int length()>();
+
+        $i3 = $i3 + $i4;
+
+        specialinvoke $r21.<java.lang.StringBuilder: void <init>(int)>($i3);
+
+        $r21 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("asPutDataRequest: adding asset: ");
+
+        $r21 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r13);
+
+        $r21 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        $r21 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r22);
+
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>("DataMap", $r22);
+
+     label7:
+        $r17 = $r11.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest a>;
+
+        virtualinvoke $r17.<com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest putAsset(java.lang.String,com.google.android.gms.wearable.Asset)>($r13, $r10);
+
+        $i2 = $i2 + 1;
+
+        goto label2;
+
+     label8:
+        $r17 = $r11.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest a>;
+
+        $r24 = interfaceinvoke $r14.<com.google.android.gms.wearable.DataApi: com.google.android.gms.common.api.PendingResult putDataItem(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.wearable.PutDataRequest)>($r15, $r17);
+
+        $r25 = $r0.<com.callapp.contacts.wearable.GoogleApiClientHandler$2: com.google.android.gms.common.api.ResolvingResultCallbacks d>;
+
+        virtualinvoke $r24.<com.google.android.gms.common.api.PendingResult: void a(com.google.android.gms.common.api.ResultCallback)>($r25);
+
+     label9:
+        return;
+    }
+}

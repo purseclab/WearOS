@@ -1,0 +1,78 @@
+public class com.rhul.messages.MessageService extends com.google.android.gms.wearable.WearableListenerService
+{
+    public android.content.Intent ipcIntent;
+    public android.os.IBinder ipcBinder_0;
+
+    public void <init>()
+    {
+        com.rhul.messages.MessageService $r0;
+
+        $r0 := @this: com.rhul.messages.MessageService;
+
+        specialinvoke $r0.<com.google.android.gms.wearable.WearableListenerService: void <init>()>();
+
+        return;
+    }
+
+    public void onMessageReceived(com.google.android.gms.wearable.MessageEvent)
+    {
+        com.rhul.messages.MessageService $r0;
+        com.google.android.gms.wearable.MessageEvent $r1;
+        java.lang.String $r2;
+        boolean $z0;
+        byte[] $r3;
+        android.content.Intent $r4;
+        android.support.v4.content.LocalBroadcastManager $r5;
+
+        $r0 := @this: com.rhul.messages.MessageService;
+
+        $r1 := @parameter0: com.google.android.gms.wearable.MessageEvent;
+
+        $r2 = interfaceinvoke $r1.<com.google.android.gms.wearable.MessageEvent: java.lang.String getPath()>();
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>("/my_path");
+
+        if $z0 == 0 goto label1;
+
+        $r2 = new java.lang.String;
+
+        $r3 = interfaceinvoke $r1.<com.google.android.gms.wearable.MessageEvent: byte[] getData()>();
+
+        specialinvoke $r2.<java.lang.String: void <init>(byte[])>($r3);
+
+        $r4 = new android.content.Intent;
+
+        specialinvoke $r4.<android.content.Intent: void <init>()>();
+
+        virtualinvoke $r4.<android.content.Intent: android.content.Intent setAction(java.lang.String)>("android.intent.action.SEND");
+
+        virtualinvoke $r4.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)>("reply", $r2);
+
+        $r5 = staticinvoke <android.support.v4.content.LocalBroadcastManager: android.support.v4.content.LocalBroadcastManager getInstance(android.content.Context)>($r0);
+
+        virtualinvoke $r5.<android.support.v4.content.LocalBroadcastManager: boolean sendBroadcast(android.content.Intent)>($r4);
+
+        return;
+
+     label1:
+        specialinvoke $r0.<com.google.android.gms.wearable.WearableListenerService: void onMessageReceived(com.google.android.gms.wearable.MessageEvent)>($r1);
+
+        return;
+    }
+
+    public android.os.IBinder onBind(android.content.Intent)
+    {
+        com.rhul.messages.MessageService this;
+        android.content.Intent parameter0;
+
+        this := @this: com.rhul.messages.MessageService;
+
+        parameter0 := @parameter0: android.content.Intent;
+
+        this.<com.rhul.messages.MessageService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        this.<com.rhul.messages.MessageService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        return parameter0;
+    }
+}

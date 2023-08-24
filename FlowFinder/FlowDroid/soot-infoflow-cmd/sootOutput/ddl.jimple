@@ -1,0 +1,546 @@
+public class ddl extends cov
+{
+    private static ddl b;
+
+    private void <init>(android.content.Context)
+    {
+        ddl $r0;
+        android.content.Context $r1;
+
+        $r0 := @this: ddl;
+
+        $r1 := @parameter0: android.content.Context;
+
+        specialinvoke $r0.<cov: void <init>(android.content.Context)>($r1);
+
+        return;
+    }
+
+    private static java.lang.String a(com.google.android.gms.wearable.DataMap)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        int $i0, $i1;
+        java.lang.StringBuilder $r1;
+        java.lang.String $r2, $r4;
+        java.lang.String[] $r3;
+        boolean $z0;
+
+        $r0 := @parameter0: com.google.android.gms.wearable.DataMap;
+
+        $r2 = "";
+
+        if $r0 == null goto label2;
+
+        $r3 = virtualinvoke $r0.<com.google.android.gms.wearable.DataMap: java.lang.String[] getStringArraySource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        if $r3 == null goto label2;
+
+        $i0 = lengthof $r3;
+
+        if $i0 <= 0 goto label2;
+
+        $i0 = lengthof $r3;
+
+        $i1 = 0;
+
+     label1:
+        if $i1 >= $i0 goto label2;
+
+        $r4 = $r3[$i1];
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>()>();
+
+        $r1 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r1 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        $r1 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", ");
+
+        $i1 = $i1 + 1;
+
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        goto label1;
+
+     label2:
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>("");
+
+        if $z0 == 0 goto label3;
+
+        return "none";
+
+     label3:
+        return $r2;
+    }
+
+    public static ddl b(android.content.Context)
+    {
+        android.content.Context $r0;
+        ddl $r1;
+        java.lang.Throwable $r2;
+
+        $r0 := @parameter0: android.content.Context;
+
+        entermonitor class "Lddl;";
+
+     label1:
+        $r1 = <ddl: ddl b>;
+
+        if $r1 != null goto label2;
+
+        if $r0 == null goto label2;
+
+        $r1 = new ddl;
+
+        $r0 = virtualinvoke $r0.<android.content.Context: android.content.Context getApplicationContext()>();
+
+        specialinvoke $r1.<ddl: void <init>(android.content.Context)>($r0);
+
+        <ddl: ddl b> = $r1;
+
+     label2:
+        $r1 = <ddl: ddl b>;
+
+     label3:
+        exitmonitor class "Lddl;";
+
+        return $r1;
+
+     label4:
+        $r2 := @caughtexception;
+
+        exitmonitor class "Lddl;";
+
+        throw $r2;
+
+        catch java.lang.Throwable from label1 to label3 with label4;
+    }
+
+    public final void a(byte[])
+    {
+        ddl $r0;
+        byte[] $r1;
+        cpl $r2;
+        android.content.Context $r3;
+        ckl$a $r4;
+
+        $r0 := @this: ddl;
+
+        $r1 := @parameter0: byte[];
+
+        specialinvoke $r0.<cov: void a(byte[])>($r1);
+
+        $r3 = $r0.<ddl: android.content.Context a>;
+
+        $r4 = <ckl$a: ckl$a PHONE>;
+
+        $r2 = staticinvoke <cpl: cpl a(android.content.Context,ckl$a)>($r3, $r4);
+
+        if $r2 == null goto label1;
+
+        virtualinvoke $r2.<cpl: void c(boolean)>(1);
+
+     label1:
+        return;
+    }
+
+    public final void b(byte[])
+    {
+        ddl $r0;
+        byte[] $r1;
+
+        $r0 := @this: ddl;
+
+        $r1 := @parameter0: byte[];
+
+        specialinvoke $r0.<cov: void b(byte[])>($r1);
+
+        return;
+    }
+
+    public final void c(byte[])
+    {
+        ddl $r0;
+        byte[] $r1;
+        afs $r2;
+        int $i0;
+        com.google.android.gms.wearable.DataMap $r3;
+        java.lang.Throwable $r4;
+        java.lang.Class $r5;
+        java.lang.String $r6;
+        android.content.Context $r7;
+        dws[] $r8;
+        org.json.JSONObject $r9;
+        org.json.JSONException $r10;
+
+        $r0 := @this: ddl;
+
+        $r1 := @parameter0: byte[];
+
+        specialinvoke $r0.<cov: void c(byte[])>($r1);
+
+        if $r1 == null goto label10;
+
+        $i0 = lengthof $r1;
+
+        if $i0 > 0 goto label01;
+
+        return;
+
+     label01:
+        $r3 = staticinvoke <com.google.android.gms.wearable.DataMap: com.google.android.gms.wearable.DataMap a(byte[])>($r1);
+
+        if $r3 == null goto label10;
+
+     label02:
+        $r4 = staticinvoke <crt: java.lang.Throwable a(com.google.android.gms.wearable.DataMap)>($r3);
+
+     label03:
+        if $r4 != null goto label05;
+
+        $r5 = virtualinvoke $r0.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>($r6, "Received an Uncaught Exception from the wearable, but couldn\'t unpack it; aborting.");
+
+        return;
+
+     label04:
+        $r4 := @caughtexception;
+
+        $r5 = virtualinvoke $r0.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String,java.lang.Throwable)>($r6, "Received an Uncaught Exception from the wearable, but couldn\'t unpack it; aborting.", $r4);
+
+        $r4 = null;
+
+        goto label03;
+
+     label05:
+        $r7 = $r0.<ddl: android.content.Context a>;
+
+        $r8 = newarray (dws)[1];
+
+        $r2 = new afs;
+
+        specialinvoke $r2.<afs: void <init>()>();
+
+        $r8[0] = $r2;
+
+        staticinvoke <dwm: dwm a(android.content.Context,dws[])>($r7, $r8);
+
+        staticinvoke <afs: void a(java.lang.String)>("wearableException");
+
+        $r6 = virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        staticinvoke <afs: void a(java.lang.String,java.lang.String)>("board", $r6);
+
+        $r6 = virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        staticinvoke <afs: void a(java.lang.String,java.lang.String)>("fingerprint", $r6);
+
+        $r6 = virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        staticinvoke <afs: void a(java.lang.String,java.lang.String)>("product", $r6);
+
+        $r6 = virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        staticinvoke <afs: void a(java.lang.String,java.lang.String)>("manufacturer", $r6);
+
+        $r6 = virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        staticinvoke <afs: void a(java.lang.String,java.lang.String)>("model", $r6);
+
+        $r6 = virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        staticinvoke <afs: void a(java.lang.String,java.lang.String)>("lastSyncedFace", $r6);
+
+        $r6 = virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        staticinvoke <afs: void a(java.lang.String,java.lang.String)>("lastViewedFace", $r6);
+
+        $r6 = staticinvoke <ddl: java.lang.String a(com.google.android.gms.wearable.DataMap)>($r3);
+
+        staticinvoke <afs: void a(java.lang.String,java.lang.String)>("currentWatchfacesOnDevice", $r6);
+
+        staticinvoke <afs: void a(java.lang.Throwable)>($r4);
+
+        $r9 = new org.json.JSONObject;
+
+        specialinvoke $r9.<org.json.JSONObject: void <init>()>();
+
+     label06:
+        $r6 = virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        virtualinvoke $r9.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>("board", $r6);
+
+        $r6 = virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        virtualinvoke $r9.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>("fingerprint", $r6);
+
+        $r6 = virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        virtualinvoke $r9.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>("product", $r6);
+
+        $r6 = virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        virtualinvoke $r9.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>("manufacturer", $r6);
+
+        $r6 = virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        virtualinvoke $r9.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>("model", $r6);
+
+        $r6 = virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        virtualinvoke $r9.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>("lastSyncedFace", $r6);
+
+        $r6 = virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: java.lang.String getString(java.lang.String)>("lastViewedFace");
+
+        virtualinvoke $r9.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>("lastViewedFace", $r6);
+
+        $r6 = staticinvoke <ddl: java.lang.String a(com.google.android.gms.wearable.DataMap)>($r3);
+
+        virtualinvoke $r9.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>("currentWatchfacesOnDevice", $r6);
+
+        $r6 = virtualinvoke $r4.<java.lang.Throwable: java.lang.String getMessage()>();
+
+        virtualinvoke $r9.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>("exceptionMessage", $r6);
+
+     label07:
+        if $r9 == null goto label08;
+
+        $r7 = $r0.<ddl: android.content.Context a>;
+
+        staticinvoke <cab: cab a(android.content.Context)>($r7);
+
+        staticinvoke <cab: void a()>();
+
+     label08:
+        $r5 = virtualinvoke $r0.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String,java.lang.Throwable)>($r6, "An Uncaught Exception was reported successfully from the Wearable device.", $r4);
+
+        return;
+
+     label09:
+        $r10 := @caughtexception;
+
+        staticinvoke <bdi: void a(java.lang.Throwable)>($r10);
+
+        $r9 = null;
+
+        goto label07;
+
+     label10:
+        return;
+
+        catch java.io.IOException from label02 to label03 with label04;
+        catch org.json.JSONException from label06 to label07 with label09;
+    }
+
+    public final void d(byte[])
+    {
+        ddl $r0;
+        byte[] $r1;
+        java.lang.String $r2;
+        org.json.JSONObject $r3;
+        android.content.Context $r4;
+        cab $r5;
+        org.json.JSONException $r6;
+        java.lang.Class $r7;
+
+        $r0 := @this: ddl;
+
+        $r1 := @parameter0: byte[];
+
+        $r2 = new java.lang.String;
+
+     label01:
+        specialinvoke $r2.<java.lang.String: void <init>(byte[])>($r1);
+
+     label02:
+        $r3 = new org.json.JSONObject;
+
+     label03:
+        specialinvoke $r3.<org.json.JSONObject: void <init>(java.lang.String)>($r2);
+
+        $r2 = virtualinvoke $r3.<org.json.JSONObject: java.lang.String getString(java.lang.String)>("AnalyticsEvent");
+
+     label04:
+        $r4 = $r0.<ddl: android.content.Context a>;
+
+     label05:
+        $r5 = staticinvoke <cab: cab a(android.content.Context)>($r4);
+
+     label06:
+        if $r5 == null goto label10;
+
+     label07:
+        virtualinvoke $r5.<cab: void a(java.lang.String,org.json.JSONObject)>($r2, $r3);
+
+     label08:
+        return;
+
+     label09:
+        $r6 := @caughtexception;
+
+        $r7 = class "Lddl;";
+
+        $r2 = virtualinvoke $r7.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        staticinvoke <android.util.Log: int w(java.lang.String,java.lang.String,java.lang.Throwable)>($r2, "Unable to track remote analytics event due to Exception; aborting.", $r6);
+
+     label10:
+        return;
+
+        catch org.json.JSONException from label01 to label02 with label09;
+        catch org.json.JSONException from label03 to label04 with label09;
+        catch org.json.JSONException from label05 to label06 with label09;
+        catch org.json.JSONException from label07 to label08 with label09;
+    }
+
+    public final void e(byte[])
+    {
+        ddl $r0;
+        byte[] $r1;
+        java.lang.String $r2;
+        org.json.JSONObject $r3;
+        android.content.Context $r4;
+        cab $r5;
+        org.json.JSONException $r6;
+        java.lang.Class $r7;
+
+        $r0 := @this: ddl;
+
+        $r1 := @parameter0: byte[];
+
+        $r2 = new java.lang.String;
+
+     label1:
+        specialinvoke $r2.<java.lang.String: void <init>(byte[])>($r1);
+
+     label2:
+        $r3 = new org.json.JSONObject;
+
+     label3:
+        specialinvoke $r3.<org.json.JSONObject: void <init>(java.lang.String)>($r2);
+
+     label4:
+        $r4 = $r0.<ddl: android.content.Context a>;
+
+     label5:
+        $r5 = staticinvoke <cab: cab a(android.content.Context)>($r4);
+
+        virtualinvoke $r5.<cab: void a(org.json.JSONObject)>($r3);
+
+     label6:
+        return;
+
+     label7:
+        $r6 := @caughtexception;
+
+        $r7 = class "Lddl;";
+
+        $r2 = virtualinvoke $r7.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        staticinvoke <android.util.Log: int w(java.lang.String,java.lang.String,java.lang.Throwable)>($r2, "Unable to update super property due to Exception; aborting.", $r6);
+
+        return;
+
+        catch org.json.JSONException from label1 to label2 with label7;
+        catch org.json.JSONException from label3 to label4 with label7;
+        catch org.json.JSONException from label5 to label6 with label7;
+    }
+
+    public final void i(byte[])
+    {
+        ddl $r0;
+        byte[] $r1;
+        android.content.Intent $r2;
+        android.content.Context $r3;
+
+        $r0 := @this: ddl;
+
+        $r1 := @parameter0: byte[];
+
+        specialinvoke $r0.<cov: void i(byte[])>($r1);
+
+        $r2 = new android.content.Intent;
+
+        $r3 = $r0.<ddl: android.content.Context a>;
+
+        specialinvoke $r2.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r3, class "Lcom/jeremysteckling/facerrel/sync/local/cycler/CyclerService;");
+
+        virtualinvoke $r2.<android.content.Intent: android.content.Intent setAction(java.lang.String)>("CyclerService.ActionStopCycling");
+
+        $r3 = $r0.<ddl: android.content.Context a>;
+
+        staticinvoke <com.jeremysteckling.facerrel.lib.utils.KotlinUtil: void safeStartService(android.content.Context,android.content.Intent)>($r3, $r2);
+
+        return;
+    }
+
+    public final void l(byte[])
+    {
+        ddl $r0;
+        byte[] $r1;
+        java.lang.String $r2, $r4;
+        org.json.JSONObject $r3;
+        boolean $z0;
+        crr $r5;
+        android.content.Context $r6;
+        org.json.JSONException $r7;
+
+        $r0 := @this: ddl;
+
+        $r1 := @parameter0: byte[];
+
+        $r2 = new java.lang.String;
+
+        specialinvoke $r2.<java.lang.String: void <init>(byte[])>($r1);
+
+        $r3 = new org.json.JSONObject;
+
+     label1:
+        specialinvoke $r3.<org.json.JSONObject: void <init>(java.lang.String)>($r2);
+
+        $r2 = staticinvoke <crr: java.lang.String b()>();
+
+        $r2 = virtualinvoke $r3.<org.json.JSONObject: java.lang.String getString(java.lang.String)>($r2);
+
+        $r4 = staticinvoke <crr: java.lang.String c()>();
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>($r4);
+
+     label2:
+        if $z0 == 0 goto label6;
+
+        $r5 = <crr: crr a>;
+
+        $r6 = $r0.<ddl: android.content.Context a>;
+
+     label3:
+        staticinvoke <crr: void a(android.content.Context,boolean)>($r6, 1);
+
+     label4:
+        return;
+
+     label5:
+        $r7 := @caughtexception;
+
+        staticinvoke <bdi: void a(java.lang.Throwable)>($r7);
+
+     label6:
+        return;
+
+        catch org.json.JSONException from label1 to label2 with label5;
+        catch org.json.JSONException from label3 to label4 with label5;
+    }
+}

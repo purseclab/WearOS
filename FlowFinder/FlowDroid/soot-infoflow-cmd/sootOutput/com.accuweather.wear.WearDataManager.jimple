@@ -1,0 +1,330 @@
+public final class com.accuweather.wear.WearDataManager extends com.google.android.gms.wearable.WearableListenerService implements com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks, com.google.android.gms.common.api.GoogleApiClient$OnConnectionFailedListener
+{
+    public static final com.accuweather.wear.WearDataManager$Companion Companion;
+    private static final java.lang.String TAG;
+    private com.google.android.gms.common.api.GoogleApiClient mGoogleApiClient;
+    public android.content.Intent ipcIntent;
+    public android.os.IBinder ipcBinder_0;
+
+    static void <clinit>()
+    {
+        java.lang.String $r0;
+        com.accuweather.wear.WearDataManager$Companion $r1;
+        java.lang.Class $r2;
+
+        $r1 = new com.accuweather.wear.WearDataManager$Companion;
+
+        specialinvoke $r1.<com.accuweather.wear.WearDataManager$Companion: void <init>(kotlin.b.b.g)>(null);
+
+        <com.accuweather.wear.WearDataManager: com.accuweather.wear.WearDataManager$Companion Companion> = $r1;
+
+        $r2 = class "Lcom/accuweather/wear/WearDataManager;";
+
+        $r0 = virtualinvoke $r2.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        <com.accuweather.wear.WearDataManager: java.lang.String TAG> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        com.accuweather.wear.WearDataManager $r0;
+
+        $r0 := @this: com.accuweather.wear.WearDataManager;
+
+        specialinvoke $r0.<com.google.android.gms.wearable.WearableListenerService: void <init>()>();
+
+        return;
+    }
+
+    public void onConnected(android.os.Bundle)
+    {
+        com.accuweather.wear.WearDataManager $r0;
+        android.os.Bundle $r1;
+
+        $r0 := @this: com.accuweather.wear.WearDataManager;
+
+        $r1 := @parameter0: android.os.Bundle;
+
+        return;
+    }
+
+    public void onConnectionFailed(com.google.android.gms.common.ConnectionResult)
+    {
+        com.google.android.gms.common.ConnectionResult $r0;
+        com.accuweather.wear.WearDataManager $r1;
+
+        $r1 := @this: com.accuweather.wear.WearDataManager;
+
+        $r0 := @parameter0: com.google.android.gms.common.ConnectionResult;
+
+        staticinvoke <kotlin.b.b.l: void b(java.lang.Object,java.lang.String)>($r0, "connectionResult");
+
+        return;
+    }
+
+    public void onConnectionSuspended(int)
+    {
+        com.accuweather.wear.WearDataManager $r0;
+        int $i0;
+
+        $r0 := @this: com.accuweather.wear.WearDataManager;
+
+        $i0 := @parameter0: int;
+
+        return;
+    }
+
+    public void onCreate()
+    {
+        com.accuweather.wear.WearDataManager $r0;
+        com.google.android.gms.common.api.GoogleApiClient$Builder $r1;
+        android.content.Context $r2;
+        com.google.android.gms.common.api.Api $r3;
+        com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks $r4;
+        com.google.android.gms.common.api.GoogleApiClient$OnConnectionFailedListener $r5;
+        com.google.android.gms.common.api.GoogleApiClient $r6;
+
+        $r0 := @this: com.accuweather.wear.WearDataManager;
+
+        specialinvoke $r0.<com.google.android.gms.wearable.WearableListenerService: void onCreate()>();
+
+        $r1 = new com.google.android.gms.common.api.GoogleApiClient$Builder;
+
+        $r2 = virtualinvoke $r0.<com.accuweather.wear.WearDataManager: android.content.Context getApplicationContext()>();
+
+        specialinvoke $r1.<com.google.android.gms.common.api.GoogleApiClient$Builder: void <init>(android.content.Context)>($r2);
+
+        $r3 = <com.google.android.gms.wearable.l: com.google.android.gms.common.api.Api f>;
+
+        $r1 = virtualinvoke $r1.<com.google.android.gms.common.api.GoogleApiClient$Builder: com.google.android.gms.common.api.GoogleApiClient$Builder addApi(com.google.android.gms.common.api.Api)>($r3);
+
+        $r4 = (com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks) $r0;
+
+        $r1 = virtualinvoke $r1.<com.google.android.gms.common.api.GoogleApiClient$Builder: com.google.android.gms.common.api.GoogleApiClient$Builder addConnectionCallbacks(com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks)>($r4);
+
+        $r5 = (com.google.android.gms.common.api.GoogleApiClient$OnConnectionFailedListener) $r0;
+
+        $r1 = virtualinvoke $r1.<com.google.android.gms.common.api.GoogleApiClient$Builder: com.google.android.gms.common.api.GoogleApiClient$Builder addOnConnectionFailedListener(com.google.android.gms.common.api.GoogleApiClient$OnConnectionFailedListener)>($r5);
+
+        $r6 = virtualinvoke $r1.<com.google.android.gms.common.api.GoogleApiClient$Builder: com.google.android.gms.common.api.GoogleApiClient build()>();
+
+        $r0.<com.accuweather.wear.WearDataManager: com.google.android.gms.common.api.GoogleApiClient mGoogleApiClient> = $r6;
+
+        $r6 = $r0.<com.accuweather.wear.WearDataManager: com.google.android.gms.common.api.GoogleApiClient mGoogleApiClient>;
+
+        if $r6 == null goto label1;
+
+        virtualinvoke $r6.<com.google.android.gms.common.api.GoogleApiClient: void connect()>();
+
+     label1:
+        return;
+    }
+
+    public void onDestroy()
+    {
+        com.accuweather.wear.WearDataManager $r0;
+        com.google.android.gms.common.api.GoogleApiClient $r1;
+        com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks $r2;
+
+        $r0 := @this: com.accuweather.wear.WearDataManager;
+
+        $r1 = $r0.<com.accuweather.wear.WearDataManager: com.google.android.gms.common.api.GoogleApiClient mGoogleApiClient>;
+
+        if $r1 == null goto label1;
+
+        $r2 = (com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks) $r0;
+
+        virtualinvoke $r1.<com.google.android.gms.common.api.GoogleApiClient: void unregisterConnectionCallbacks(com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks)>($r2);
+
+     label1:
+        $r1 = $r0.<com.accuweather.wear.WearDataManager: com.google.android.gms.common.api.GoogleApiClient mGoogleApiClient>;
+
+        if $r1 == null goto label2;
+
+        virtualinvoke $r1.<com.google.android.gms.common.api.GoogleApiClient: void disconnect()>();
+
+     label2:
+        $r0.<com.accuweather.wear.WearDataManager: com.google.android.gms.common.api.GoogleApiClient mGoogleApiClient> = null;
+
+        specialinvoke $r0.<com.google.android.gms.wearable.WearableListenerService: void onDestroy()>();
+
+        return;
+    }
+
+    public void onMessageReceived(com.google.android.gms.wearable.i)
+    {
+        com.accuweather.wear.WearDataManager $r0;
+        com.google.android.gms.wearable.i $r1;
+        java.lang.String $r2, $r4;
+        java.lang.StringBuilder $r3;
+        android.content.Intent $r5;
+        android.content.ComponentName $r6;
+        android.content.Context $r7;
+        int $i0;
+        boolean $z0;
+        com.accuweather.locations.LocationManager $r8;
+        com.accuweather.locations.UserLocation $r9;
+        com.accuweather.deeplink.a$a $r10;
+        com.accuweather.deeplink.a $r11;
+        android.content.res.Resources $r12;
+        android.net.Uri $r13;
+
+        $r0 := @this: com.accuweather.wear.WearDataManager;
+
+        $r1 := @parameter0: com.google.android.gms.wearable.i;
+
+        specialinvoke $r0.<com.google.android.gms.wearable.WearableListenerService: void onMessageReceived(com.google.android.gms.wearable.i)>($r1);
+
+        if $r1 == null goto label4;
+
+        $r2 = <com.accuweather.wear.WearDataManager: java.lang.String TAG>;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(">>>>>>>>DataProvider: MESSAGE received");
+
+        $r4 = interfaceinvoke $r1.<com.google.android.gms.wearable.i: java.lang.String a()>();
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>($r2, $r4);
+
+        $r5 = new android.content.Intent;
+
+        specialinvoke $r5.<android.content.Intent: void <init>(java.lang.String)>("android.intent.action.MAIN");
+
+        $r5 = virtualinvoke $r5.<android.content.Intent: android.content.Intent addCategory(java.lang.String)>("android.intent.category.LAUNCHER");
+
+        $r6 = new android.content.ComponentName;
+
+        $r7 = virtualinvoke $r0.<com.accuweather.wear.WearDataManager: android.content.Context getApplicationContext()>();
+
+        staticinvoke <kotlin.b.b.l: void a(java.lang.Object,java.lang.String)>($r7, "applicationContext");
+
+        $r2 = virtualinvoke $r7.<android.content.Context: java.lang.String getPackageName()>();
+
+        specialinvoke $r6.<android.content.ComponentName: void <init>(java.lang.String,java.lang.String)>($r2, "com.accuweather.app.MainActivity");
+
+        staticinvoke <kotlin.b.b.l: void a(java.lang.Object,java.lang.String)>($r5, "intent");
+
+        virtualinvoke $r5.<android.content.Intent: android.content.Intent setComponent(android.content.ComponentName)>($r6);
+
+        $r2 = interfaceinvoke $r1.<com.google.android.gms.wearable.i: java.lang.String a()>();
+
+        if $r2 != null goto label1;
+
+        return;
+
+     label1:
+        $i0 = virtualinvoke $r2.<java.lang.String: int hashCode()>();
+
+        if $i0 == 1866347690 goto label3;
+
+        if $i0 == 2146367520 goto label2;
+
+        return;
+
+     label2:
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>("/accu-wear-openapp_severe");
+
+        if $z0 == 0 goto label4;
+
+        $r7 = virtualinvoke $r0.<com.accuweather.wear.WearDataManager: android.content.Context getApplicationContext()>();
+
+        $r8 = staticinvoke <com.accuweather.locations.LocationManager: com.accuweather.locations.LocationManager getInstance(android.content.Context)>($r7);
+
+        staticinvoke <kotlin.b.b.l: void a(java.lang.Object,java.lang.String)>($r8, "LocationManager.getInstance(applicationContext)");
+
+        $r9 = virtualinvoke $r8.<com.accuweather.locations.LocationManager: com.accuweather.locations.UserLocation getActiveUserLocation()>();
+
+        $r10 = <com.accuweather.deeplink.a: com.accuweather.deeplink.a$a a>;
+
+        $r7 = virtualinvoke $r0.<com.accuweather.wear.WearDataManager: android.content.Context getApplicationContext()>();
+
+        staticinvoke <kotlin.b.b.l: void a(java.lang.Object,java.lang.String)>($r7, "applicationContext");
+
+        $r11 = virtualinvoke $r10.<com.accuweather.deeplink.a$a: com.accuweather.deeplink.a a(android.content.Context)>($r7);
+
+        $r12 = virtualinvoke $r0.<com.accuweather.wear.WearDataManager: android.content.res.Resources getResources()>();
+
+        $r2 = virtualinvoke $r12.<android.content.res.Resources: java.lang.String getString(int)>(2131886691);
+
+        $r2 = virtualinvoke $r11.<com.accuweather.deeplink.a: java.lang.String a(com.accuweather.locations.UserLocation,java.lang.String)>($r9, $r2);
+
+        $r13 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r2);
+
+        virtualinvoke $r5.<android.content.Intent: android.content.Intent setData(android.net.Uri)>($r13);
+
+        virtualinvoke $r5.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)>("APP_ENTRY_TYPE", "CLICK_TYPE_WEAR");
+
+        virtualinvoke $r5.<android.content.Intent: android.content.Intent setFlags(int)>(335675392);
+
+        virtualinvoke $r0.<com.accuweather.wear.WearDataManager: void startActivity(android.content.Intent)>($r5);
+
+        return;
+
+     label3:
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>("/accu-wear-openapp_now");
+
+        if $z0 == 0 goto label4;
+
+        $r7 = virtualinvoke $r0.<com.accuweather.wear.WearDataManager: android.content.Context getApplicationContext()>();
+
+        $r8 = staticinvoke <com.accuweather.locations.LocationManager: com.accuweather.locations.LocationManager getInstance(android.content.Context)>($r7);
+
+        staticinvoke <kotlin.b.b.l: void a(java.lang.Object,java.lang.String)>($r8, "LocationManager.getInstance(applicationContext)");
+
+        $r9 = virtualinvoke $r8.<com.accuweather.locations.LocationManager: com.accuweather.locations.UserLocation getFavoriteLocation()>();
+
+        $r10 = <com.accuweather.deeplink.a: com.accuweather.deeplink.a$a a>;
+
+        $r7 = virtualinvoke $r0.<com.accuweather.wear.WearDataManager: android.content.Context getApplicationContext()>();
+
+        staticinvoke <kotlin.b.b.l: void a(java.lang.Object,java.lang.String)>($r7, "applicationContext");
+
+        $r11 = virtualinvoke $r10.<com.accuweather.deeplink.a$a: com.accuweather.deeplink.a a(android.content.Context)>($r7);
+
+        $r12 = virtualinvoke $r0.<com.accuweather.wear.WearDataManager: android.content.res.Resources getResources()>();
+
+        $r2 = virtualinvoke $r12.<android.content.res.Resources: java.lang.String getString(int)>(2131886935);
+
+        $r2 = virtualinvoke $r11.<com.accuweather.deeplink.a: java.lang.String a(com.accuweather.locations.UserLocation,java.lang.String)>($r9, $r2);
+
+        $r13 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r2);
+
+        virtualinvoke $r5.<android.content.Intent: android.content.Intent setData(android.net.Uri)>($r13);
+
+        virtualinvoke $r5.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)>("APP_ENTRY_TYPE", "CLICK_TYPE_WEAR");
+
+        virtualinvoke $r5.<android.content.Intent: android.content.Intent setFlags(int)>(335675392);
+
+        virtualinvoke $r0.<com.accuweather.wear.WearDataManager: void startActivity(android.content.Intent)>($r5);
+
+     label4:
+        return;
+    }
+
+    public android.os.IBinder onBind(android.content.Intent)
+    {
+        com.accuweather.wear.WearDataManager this;
+        android.content.Intent parameter0;
+
+        this := @this: com.accuweather.wear.WearDataManager;
+
+        parameter0 := @parameter0: android.content.Intent;
+
+        this.<com.accuweather.wear.WearDataManager: android.os.IBinder ipcBinder_0> = parameter0;
+
+        this.<com.accuweather.wear.WearDataManager: android.os.IBinder ipcBinder_0> = parameter0;
+
+        this.<com.accuweather.wear.WearDataManager: android.os.IBinder ipcBinder_0> = parameter0;
+
+        return parameter0;
+    }
+}

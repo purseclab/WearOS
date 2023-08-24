@@ -1,0 +1,11 @@
+com/rhul/wearflow/Config.class
+com/rhul/wearflow/ArgParser.class
+com/rhul/wearflow/MainWearFlow.class
+com/rhul/wearflow/flowAnalyser/SemanticRelation.class
+com/rhul/wearflow/flowAnalyser/MatchingFlowAnalysis.class
+com/rhul/wearflow/flowAnalyser/MatchingFlowAnalysis$PartialResult.class
+com/rhul/wearflow/flowAnalyser/FlowsExporter$1.class
+com/rhul/wearflow/flowAnalyser/FlowMatch.class
+com/rhul/wearflow/flowAnalyser/FlowsImporter.class
+com/rhul/wearflow/flowAnalyser/FlowsExporter.class
+com/rhul/wearflow/flowAnalyser/FlowUtil.class

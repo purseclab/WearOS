@@ -1,0 +1,803 @@
+public class androidx.core.content.FileProvider extends android.content.ContentProvider
+{
+    private static final java.lang.String[] c;
+    private static final java.io.File d;
+    private static java.util.HashMap e;
+    private androidx.core.content.FileProvider$a b;
+    public android.content.Intent ipcIntent;
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0;
+        java.io.File $r1;
+        java.util.HashMap $r2;
+
+        $r0 = newarray (java.lang.String)[2];
+
+        $r0[0] = "_display_name";
+
+        $r0[1] = "_size";
+
+        <androidx.core.content.FileProvider: java.lang.String[] c> = $r0;
+
+        $r1 = new java.io.File;
+
+        specialinvoke $r1.<java.io.File: void <init>(java.lang.String)>("/");
+
+        <androidx.core.content.FileProvider: java.io.File d> = $r1;
+
+        $r2 = new java.util.HashMap;
+
+        specialinvoke $r2.<java.util.HashMap: void <init>()>();
+
+        <androidx.core.content.FileProvider: java.util.HashMap e> = $r2;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        androidx.core.content.FileProvider $r0;
+
+        $r0 := @this: androidx.core.content.FileProvider;
+
+        specialinvoke $r0.<android.content.ContentProvider: void <init>()>();
+
+        return;
+    }
+
+    private static int a(java.lang.String)
+    {
+        java.lang.StringBuilder $r0;
+        java.lang.String $r1, $r2;
+        boolean $z0;
+        java.lang.IllegalArgumentException $r3;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 = "r";
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label1;
+
+        return 268435456;
+
+     label1:
+        $r2 = "w";
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 != 0 goto label6;
+
+        $r2 = "wt";
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label2;
+
+        goto label6;
+
+     label2:
+        $r2 = "wa";
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label3;
+
+        return 704643072;
+
+     label3:
+        $r2 = "rw";
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label4;
+
+        return 939524096;
+
+     label4:
+        $r2 = "rwt";
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label5;
+
+        return 1006632960;
+
+     label5:
+        $r3 = new java.lang.IllegalArgumentException;
+
+        $r0 = new java.lang.StringBuilder;
+
+        specialinvoke $r0.<java.lang.StringBuilder: void <init>()>();
+
+        virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Invalid mode: ");
+
+        virtualinvoke $r0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        $r1 = virtualinvoke $r0.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r3.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r1);
+
+        throw $r3;
+
+     label6:
+        return 738197504;
+    }
+
+    public static android.net.Uri a(android.content.Context, java.lang.String, java.io.File)
+    {
+        java.lang.String $r0;
+        java.io.File $r1;
+        android.content.Context $r2;
+        androidx.core.content.FileProvider$a $r3;
+        android.net.Uri $r4;
+
+        $r2 := @parameter0: android.content.Context;
+
+        $r0 := @parameter1: java.lang.String;
+
+        $r1 := @parameter2: java.io.File;
+
+        $r3 = staticinvoke <androidx.core.content.FileProvider: androidx.core.content.FileProvider$a a(android.content.Context,java.lang.String)>($r2, $r0);
+
+        $r4 = interfaceinvoke $r3.<androidx.core.content.FileProvider$a: android.net.Uri a(java.io.File)>($r1);
+
+        return $r4;
+    }
+
+    private static androidx.core.content.FileProvider$a a(android.content.Context, java.lang.String)
+    {
+        java.util.HashMap $r0, $r3;
+        android.content.Context $r1;
+        java.lang.String $r2;
+        java.lang.Object $r4;
+        androidx.core.content.FileProvider$a $r5, $r6;
+        org.xmlpull.v1.XmlPullParserException $r7;
+        java.lang.IllegalArgumentException $r8;
+        java.lang.Throwable $r9, $r10;
+
+        $r1 := @parameter0: android.content.Context;
+
+        $r2 := @parameter1: java.lang.String;
+
+        $r0 = <androidx.core.content.FileProvider: java.util.HashMap e>;
+
+        entermonitor $r0;
+
+     label01:
+        $r3 = <androidx.core.content.FileProvider: java.util.HashMap e>;
+
+        $r4 = virtualinvoke $r3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r2);
+
+        $r5 = (androidx.core.content.FileProvider$a) $r4;
+
+     label02:
+        if $r5 != null goto label08;
+
+     label03:
+        $r6 = staticinvoke <androidx.core.content.FileProvider: androidx.core.content.FileProvider$a b(android.content.Context,java.lang.String)>($r1, $r2);
+
+     label04:
+        $r5 = $r6;
+
+     label05:
+        $r3 = <androidx.core.content.FileProvider: java.util.HashMap e>;
+
+        virtualinvoke $r3.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r2, $r6);
+
+        goto label08;
+
+     label06:
+        $r7 := @caughtexception;
+
+        $r8 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r8.<java.lang.IllegalArgumentException: void <init>(java.lang.String,java.lang.Throwable)>("Failed to parse android.support.FILE_PROVIDER_PATHS meta-data", $r7);
+
+        throw $r8;
+
+     label07:
+        $r9 := @caughtexception;
+
+        $r8 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r8.<java.lang.IllegalArgumentException: void <init>(java.lang.String,java.lang.Throwable)>("Failed to parse android.support.FILE_PROVIDER_PATHS meta-data", $r9);
+
+        throw $r8;
+
+     label08:
+        exitmonitor $r0;
+
+     label09:
+        return $r5;
+
+     label10:
+        $r10 := @caughtexception;
+
+        exitmonitor $r0;
+
+     label11:
+        throw $r10;
+
+        catch java.lang.Throwable from label01 to label02 with label10;
+        catch java.io.IOException from label03 to label04 with label07;
+        catch org.xmlpull.v1.XmlPullParserException from label03 to label04 with label06;
+        catch java.lang.Throwable from label03 to label05 with label10;
+        catch java.lang.Throwable from label05 to label09 with label10;
+        catch java.lang.Throwable from label10 to label11 with label10;
+    }
+
+    private static transient java.io.File a(java.io.File, java.lang.String[])
+    {
+        java.lang.String[] $r0;
+        int $i0, $i1;
+        java.lang.String $r1;
+        java.io.File $r2, $r3;
+
+        $r3 := @parameter0: java.io.File;
+
+        $r0 := @parameter1: java.lang.String[];
+
+        $i0 = lengthof $r0;
+
+        $i1 = 0;
+
+     label1:
+        if $i1 >= $i0 goto label3;
+
+        $r1 = $r0[$i1];
+
+        if $r1 == null goto label2;
+
+        $r2 = new java.io.File;
+
+        specialinvoke $r2.<java.io.File: void <init>(java.io.File,java.lang.String)>($r3, $r1);
+
+        $r3 = $r2;
+
+     label2:
+        $i1 = $i1 + 1;
+
+        goto label1;
+
+     label3:
+        return $r3;
+    }
+
+    private static java.lang.Object[] a(java.lang.Object[], int)
+    {
+        java.lang.Object[] $r0, $r1;
+        int $i0;
+
+        $r0 := @parameter0: java.lang.Object[];
+
+        $i0 := @parameter1: int;
+
+        $r1 = newarray (java.lang.Object)[$i0];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, $r1, 0, $i0);
+
+        return $r1;
+    }
+
+    private static java.lang.String[] a(java.lang.String[], int)
+    {
+        java.lang.String[] $r0, $r1;
+        int $i0;
+
+        $r0 := @parameter0: java.lang.String[];
+
+        $i0 := @parameter1: int;
+
+        $r1 = newarray (java.lang.String)[$i0];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r0, 0, $r1, 0, $i0);
+
+        return $r1;
+    }
+
+    private static androidx.core.content.FileProvider$a b(android.content.Context, java.lang.String)
+    {
+        android.content.Context $r0;
+        java.lang.String $r1, $r7, $r8, $r9;
+        androidx.core.content.FileProvider$b $r2;
+        android.content.pm.PackageManager $r3;
+        android.content.pm.ProviderInfo $r4;
+        android.content.res.XmlResourceParser $r5;
+        int $i0;
+        java.io.File $r6;
+        boolean $z0;
+        java.io.File[] $r10;
+        java.lang.String[] $r11;
+        java.lang.IllegalArgumentException $r12;
+        java.lang.StringBuilder $r13;
+
+        $r0 := @parameter0: android.content.Context;
+
+        $r1 := @parameter1: java.lang.String;
+
+        $r2 = new androidx.core.content.FileProvider$b;
+
+        specialinvoke $r2.<androidx.core.content.FileProvider$b: void <init>(java.lang.String)>($r1);
+
+        $r3 = virtualinvoke $r0.<android.content.Context: android.content.pm.PackageManager getPackageManager()>();
+
+        $r4 = virtualinvoke $r3.<android.content.pm.PackageManager: android.content.pm.ProviderInfo resolveContentProvider(java.lang.String,int)>($r1, 128);
+
+        if $r4 == null goto label11;
+
+        $r3 = virtualinvoke $r0.<android.content.Context: android.content.pm.PackageManager getPackageManager()>();
+
+        $r5 = virtualinvoke $r4.<android.content.pm.ProviderInfo: android.content.res.XmlResourceParser loadXmlMetaData(android.content.pm.PackageManager,java.lang.String)>($r3, "android.support.FILE_PROVIDER_PATHS");
+
+        if $r5 == null goto label10;
+
+     label01:
+        $i0 = interfaceinvoke $r5.<android.content.res.XmlResourceParser: int next()>();
+
+        if $i0 == 1 goto label09;
+
+        if $i0 != 2 goto label01;
+
+        $r1 = interfaceinvoke $r5.<android.content.res.XmlResourceParser: java.lang.String getName()>();
+
+        $r6 = null;
+
+        $r7 = interfaceinvoke $r5.<android.content.res.XmlResourceParser: java.lang.String getAttributeValue(java.lang.String,java.lang.String)>(null, "name");
+
+        $r8 = interfaceinvoke $r5.<android.content.res.XmlResourceParser: java.lang.String getAttributeValue(java.lang.String,java.lang.String)>(null, "path");
+
+        $r9 = "root-path";
+
+        $z0 = virtualinvoke $r9.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label02;
+
+        $r6 = <androidx.core.content.FileProvider: java.io.File d>;
+
+        goto label08;
+
+     label02:
+        $r9 = "files-path";
+
+        $z0 = virtualinvoke $r9.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label03;
+
+        $r6 = virtualinvoke $r0.<android.content.Context: java.io.File getFilesDir()>();
+
+        goto label08;
+
+     label03:
+        $r9 = "cache-path";
+
+        $z0 = virtualinvoke $r9.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label04;
+
+        $r6 = virtualinvoke $r0.<android.content.Context: java.io.File getCacheDir()>();
+
+        goto label08;
+
+     label04:
+        $r9 = "external-path";
+
+        $z0 = virtualinvoke $r9.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label05;
+
+        $r6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>();
+
+        goto label08;
+
+     label05:
+        $r9 = "external-files-path";
+
+        $z0 = virtualinvoke $r9.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label06;
+
+        $r10 = staticinvoke <androidx.core.content.a: java.io.File[] b(android.content.Context,java.lang.String)>($r0, null);
+
+        $i0 = lengthof $r10;
+
+        if $i0 <= 0 goto label08;
+
+        $r6 = $r10[0];
+
+        goto label08;
+
+     label06:
+        $r9 = "external-cache-path";
+
+        $z0 = virtualinvoke $r9.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label07;
+
+        $r10 = staticinvoke <androidx.core.content.a: java.io.File[] a(android.content.Context)>($r0);
+
+        $i0 = lengthof $r10;
+
+        if $i0 <= 0 goto label08;
+
+        $r6 = $r10[0];
+
+        goto label08;
+
+     label07:
+        $i0 = <android.os.Build$VERSION: int SDK_INT>;
+
+        if $i0 < 21 goto label08;
+
+        $r9 = "external-media-path";
+
+        $z0 = virtualinvoke $r9.<java.lang.String: boolean equals(java.lang.Object)>($r1);
+
+        if $z0 == 0 goto label08;
+
+        $r10 = virtualinvoke $r0.<android.content.Context: java.io.File[] getExternalMediaDirs()>();
+
+        $i0 = lengthof $r10;
+
+        if $i0 <= 0 goto label08;
+
+        $r6 = $r10[0];
+
+     label08:
+        if $r6 == null goto label01;
+
+        $r11 = newarray (java.lang.String)[1];
+
+        $r11[0] = $r8;
+
+        $r6 = staticinvoke <androidx.core.content.FileProvider: java.io.File a(java.io.File,java.lang.String[])>($r6, $r11);
+
+        virtualinvoke $r2.<androidx.core.content.FileProvider$b: void a(java.lang.String,java.io.File)>($r7, $r6);
+
+        goto label01;
+
+     label09:
+        return $r2;
+
+     label10:
+        $r12 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r12.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Missing android.support.FILE_PROVIDER_PATHS meta-data");
+
+        throw $r12;
+
+     label11:
+        $r12 = new java.lang.IllegalArgumentException;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>()>();
+
+        virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Couldn\'t find meta-data for provider with authority ");
+
+        virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        $r1 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r12.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r1);
+
+        throw $r12;
+    }
+
+    public void attachInfo(android.content.Context, android.content.pm.ProviderInfo)
+    {
+        androidx.core.content.FileProvider $r0;
+        androidx.core.content.FileProvider$a $r1;
+        android.content.Context $r2;
+        android.content.pm.ProviderInfo $r3;
+        boolean $z0;
+        java.lang.String $r4;
+        java.lang.SecurityException $r5;
+
+        $r0 := @this: androidx.core.content.FileProvider;
+
+        $r2 := @parameter0: android.content.Context;
+
+        $r3 := @parameter1: android.content.pm.ProviderInfo;
+
+        specialinvoke $r0.<android.content.ContentProvider: void attachInfo(android.content.Context,android.content.pm.ProviderInfo)>($r2, $r3);
+
+        $z0 = $r3.<android.content.pm.ProviderInfo: boolean exported>;
+
+        if $z0 != 0 goto label2;
+
+        $z0 = $r3.<android.content.pm.ProviderInfo: boolean grantUriPermissions>;
+
+        if $z0 == 0 goto label1;
+
+        $r4 = $r3.<android.content.pm.ProviderInfo: java.lang.String authority>;
+
+        $r1 = staticinvoke <androidx.core.content.FileProvider: androidx.core.content.FileProvider$a a(android.content.Context,java.lang.String)>($r2, $r4);
+
+        $r0.<androidx.core.content.FileProvider: androidx.core.content.FileProvider$a b> = $r1;
+
+        return;
+
+     label1:
+        $r5 = new java.lang.SecurityException;
+
+        specialinvoke $r5.<java.lang.SecurityException: void <init>(java.lang.String)>("Provider must grant uri permissions");
+
+        throw $r5;
+
+     label2:
+        $r5 = new java.lang.SecurityException;
+
+        specialinvoke $r5.<java.lang.SecurityException: void <init>(java.lang.String)>("Provider must not be exported");
+
+        throw $r5;
+    }
+
+    public int delete(android.net.Uri, java.lang.String, java.lang.String[])
+    {
+        androidx.core.content.FileProvider $r0;
+        java.lang.String[] $r1;
+        android.net.Uri $r2;
+        java.lang.String $r3;
+        androidx.core.content.FileProvider$a $r4;
+        java.io.File $r5;
+        boolean $z0;
+        int i0;
+
+        $r0 := @this: androidx.core.content.FileProvider;
+
+        $r2 := @parameter0: android.net.Uri;
+
+        $r3 := @parameter1: java.lang.String;
+
+        $r1 := @parameter2: java.lang.String[];
+
+        $r4 = $r0.<androidx.core.content.FileProvider: androidx.core.content.FileProvider$a b>;
+
+        $r5 = interfaceinvoke $r4.<androidx.core.content.FileProvider$a: java.io.File a(android.net.Uri)>($r2);
+
+        $z0 = virtualinvoke $r5.<java.io.File: boolean delete()>();
+
+        i0 = (int) $z0;
+
+        return i0;
+    }
+
+    public java.lang.String getType(android.net.Uri)
+    {
+        androidx.core.content.FileProvider $r0;
+        android.net.Uri $r1;
+        androidx.core.content.FileProvider$a $r2;
+        java.io.File $r3;
+        java.lang.String $r4;
+        int $i0;
+        android.webkit.MimeTypeMap $r5;
+
+        $r0 := @this: androidx.core.content.FileProvider;
+
+        $r1 := @parameter0: android.net.Uri;
+
+        $r2 = $r0.<androidx.core.content.FileProvider: androidx.core.content.FileProvider$a b>;
+
+        $r3 = interfaceinvoke $r2.<androidx.core.content.FileProvider$a: java.io.File a(android.net.Uri)>($r1);
+
+        $r4 = virtualinvoke $r3.<java.io.File: java.lang.String getName()>();
+
+        $i0 = virtualinvoke $r4.<java.lang.String: int lastIndexOf(int)>(46);
+
+        if $i0 < 0 goto label1;
+
+        $r4 = virtualinvoke $r3.<java.io.File: java.lang.String getName()>();
+
+        $i0 = $i0 + 1;
+
+        $r4 = virtualinvoke $r4.<java.lang.String: java.lang.String substring(int)>($i0);
+
+        $r5 = staticinvoke <android.webkit.MimeTypeMap: android.webkit.MimeTypeMap getSingleton()>();
+
+        $r4 = virtualinvoke $r5.<android.webkit.MimeTypeMap: java.lang.String getMimeTypeFromExtension(java.lang.String)>($r4);
+
+        if $r4 == null goto label1;
+
+        return $r4;
+
+     label1:
+        return "application/octet-stream";
+    }
+
+    public android.net.Uri insert(android.net.Uri, android.content.ContentValues)
+    {
+        androidx.core.content.FileProvider $r0;
+        android.net.Uri $r1;
+        android.content.ContentValues $r2;
+        java.lang.UnsupportedOperationException $r3;
+
+        $r0 := @this: androidx.core.content.FileProvider;
+
+        $r1 := @parameter0: android.net.Uri;
+
+        $r2 := @parameter1: android.content.ContentValues;
+
+        $r3 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r3.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("No external inserts");
+
+        throw $r3;
+    }
+
+    public boolean onCreate()
+    {
+        androidx.core.content.FileProvider $r0;
+
+        $r0 := @this: androidx.core.content.FileProvider;
+
+        return 1;
+    }
+
+    public android.os.ParcelFileDescriptor openFile(android.net.Uri, java.lang.String)
+    {
+        androidx.core.content.FileProvider $r0;
+        androidx.core.content.FileProvider$a $r1;
+        android.net.Uri $r2;
+        java.lang.String $r3;
+        java.io.File $r4;
+        int $i0;
+        android.os.ParcelFileDescriptor $r5;
+
+        $r0 := @this: androidx.core.content.FileProvider;
+
+        $r2 := @parameter0: android.net.Uri;
+
+        $r3 := @parameter1: java.lang.String;
+
+        $r1 = $r0.<androidx.core.content.FileProvider: androidx.core.content.FileProvider$a b>;
+
+        $r4 = interfaceinvoke $r1.<androidx.core.content.FileProvider$a: java.io.File a(android.net.Uri)>($r2);
+
+        $i0 = staticinvoke <androidx.core.content.FileProvider: int a(java.lang.String)>($r3);
+
+        $r5 = staticinvoke <android.os.ParcelFileDescriptor: android.os.ParcelFileDescriptor open(java.io.File,int)>($r4, $i0);
+
+        return $r5;
+    }
+
+    public android.database.Cursor query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String)
+    {
+        androidx.core.content.FileProvider $r0;
+        android.net.Uri $r1;
+        java.lang.String[] $r2, $r4;
+        java.lang.String $r3, $r5;
+        androidx.core.content.FileProvider$a $r6;
+        java.io.File $r7;
+        int $i0, $i1, $i2, $i3;
+        java.lang.Object[] $r8;
+        boolean $z0;
+        long $l4;
+        java.lang.Long $r9;
+        android.database.MatrixCursor $r10;
+
+        $r0 := @this: androidx.core.content.FileProvider;
+
+        $r1 := @parameter0: android.net.Uri;
+
+        $r2 := @parameter1: java.lang.String[];
+
+        $r3 := @parameter2: java.lang.String;
+
+        $r4 := @parameter3: java.lang.String[];
+
+        $r5 := @parameter4: java.lang.String;
+
+        $r6 = $r0.<androidx.core.content.FileProvider: androidx.core.content.FileProvider$a b>;
+
+        $r7 = interfaceinvoke $r6.<androidx.core.content.FileProvider$a: java.io.File a(android.net.Uri)>($r1);
+
+        if $r2 != null goto label1;
+
+        $r2 = <androidx.core.content.FileProvider: java.lang.String[] c>;
+
+     label1:
+        $i0 = lengthof $r2;
+
+        $r4 = newarray (java.lang.String)[$i0];
+
+        $i0 = lengthof $r2;
+
+        $r8 = newarray (java.lang.Object)[$i0];
+
+        $i0 = lengthof $r2;
+
+        $i1 = 0;
+
+        $i2 = 0;
+
+     label2:
+        if $i1 >= $i0 goto label6;
+
+        $r3 = $r2[$i1];
+
+        $r5 = "_display_name";
+
+        $z0 = virtualinvoke $r5.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z0 == 0 goto label4;
+
+        $r4[$i2] = "_display_name";
+
+        $i3 = $i2 + 1;
+
+        $r3 = virtualinvoke $r7.<java.io.File: java.lang.String getName()>();
+
+        $r8[$i2] = $r3;
+
+     label3:
+        $i2 = $i3;
+
+        goto label5;
+
+     label4:
+        $r5 = "_size";
+
+        $z0 = virtualinvoke $r5.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z0 == 0 goto label5;
+
+        $r4[$i2] = "_size";
+
+        $i3 = $i2 + 1;
+
+        $l4 = virtualinvoke $r7.<java.io.File: long length()>();
+
+        $r9 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l4);
+
+        $r8[$i2] = $r9;
+
+        goto label3;
+
+     label5:
+        $i1 = $i1 + 1;
+
+        goto label2;
+
+     label6:
+        $r2 = staticinvoke <androidx.core.content.FileProvider: java.lang.String[] a(java.lang.String[],int)>($r4, $i2);
+
+        $r8 = staticinvoke <androidx.core.content.FileProvider: java.lang.Object[] a(java.lang.Object[],int)>($r8, $i2);
+
+        $r10 = new android.database.MatrixCursor;
+
+        specialinvoke $r10.<android.database.MatrixCursor: void <init>(java.lang.String[],int)>($r2, 1);
+
+        virtualinvoke $r10.<android.database.MatrixCursor: void addRow(java.lang.Object[])>($r8);
+
+        return $r10;
+    }
+
+    public int update(android.net.Uri, android.content.ContentValues, java.lang.String, java.lang.String[])
+    {
+        androidx.core.content.FileProvider $r0;
+        java.lang.String $r1;
+        java.lang.String[] $r2;
+        android.net.Uri $r3;
+        android.content.ContentValues $r4;
+        java.lang.UnsupportedOperationException $r5;
+
+        $r0 := @this: androidx.core.content.FileProvider;
+
+        $r3 := @parameter0: android.net.Uri;
+
+        $r4 := @parameter1: android.content.ContentValues;
+
+        $r1 := @parameter2: java.lang.String;
+
+        $r2 := @parameter3: java.lang.String[];
+
+        $r5 = new java.lang.UnsupportedOperationException;
+
+        specialinvoke $r5.<java.lang.UnsupportedOperationException: void <init>(java.lang.String)>("No external updates");
+
+        throw $r5;
+    }
+}

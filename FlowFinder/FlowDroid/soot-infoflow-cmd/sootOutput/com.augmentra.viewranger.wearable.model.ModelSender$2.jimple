@@ -1,0 +1,102 @@
+class com.augmentra.viewranger.wearable.model.ModelSender$2 extends java.lang.Object implements rx.functions.Action1
+{
+    final com.augmentra.viewranger.wearable.model.ModelSender this$0;
+
+    void <init>(com.augmentra.viewranger.wearable.model.ModelSender)
+    {
+        com.augmentra.viewranger.wearable.model.ModelSender$2 $r0;
+        com.augmentra.viewranger.wearable.model.ModelSender $r1;
+
+        $r0 := @this: com.augmentra.viewranger.wearable.model.ModelSender$2;
+
+        $r1 := @parameter0: com.augmentra.viewranger.wearable.model.ModelSender;
+
+        $r0.<com.augmentra.viewranger.wearable.model.ModelSender$2: com.augmentra.viewranger.wearable.model.ModelSender this$0> = $r1;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public volatile void call(java.lang.Object)
+    {
+        com.augmentra.viewranger.wearable.model.ModelSender$2 $r0;
+        java.lang.Object $r1;
+        byte[] $r2;
+
+        $r0 := @this: com.augmentra.viewranger.wearable.model.ModelSender$2;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = (byte[]) $r1;
+
+        virtualinvoke $r0.<com.augmentra.viewranger.wearable.model.ModelSender$2: void call(byte[])>($r2);
+
+        return;
+    }
+
+    public void call(byte[])
+    {
+        com.augmentra.viewranger.wearable.model.ModelSender$2 $r0;
+        byte[] $r1;
+        com.google.android.gms.wearable.NodeApi $r2;
+        com.augmentra.viewranger.wearable.model.ModelSender $r3;
+        com.google.android.gms.common.api.GoogleApiClient $r4;
+        com.google.android.gms.common.api.PendingResult $r5;
+        com.google.android.gms.common.api.Result $r6;
+        com.google.android.gms.wearable.NodeApi$GetConnectedNodesResult $r7;
+        java.util.List $r8;
+        java.util.Iterator $r9;
+        boolean $z0;
+        java.lang.Object $r10;
+        com.google.android.gms.wearable.Node $r11;
+        com.google.android.gms.wearable.MessageApi $r12;
+        java.lang.String $r13;
+
+        $r0 := @this: com.augmentra.viewranger.wearable.model.ModelSender$2;
+
+        $r1 := @parameter0: byte[];
+
+        if $r1 == null goto label2;
+
+        $r2 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.NodeApi NodeApi>;
+
+        $r3 = $r0.<com.augmentra.viewranger.wearable.model.ModelSender$2: com.augmentra.viewranger.wearable.model.ModelSender this$0>;
+
+        $r4 = $r3.<com.augmentra.viewranger.wearable.model.ModelSender: com.google.android.gms.common.api.GoogleApiClient mGoogleApiClient>;
+
+        $r5 = interfaceinvoke $r2.<com.google.android.gms.wearable.NodeApi: com.google.android.gms.common.api.PendingResult getConnectedNodes(com.google.android.gms.common.api.GoogleApiClient)>($r4);
+
+        $r6 = virtualinvoke $r5.<com.google.android.gms.common.api.PendingResult: com.google.android.gms.common.api.Result await()>();
+
+        $r7 = (com.google.android.gms.wearable.NodeApi$GetConnectedNodesResult) $r6;
+
+        $r8 = interfaceinvoke $r7.<com.google.android.gms.wearable.NodeApi$GetConnectedNodesResult: java.util.List getNodes()>();
+
+        $r9 = interfaceinvoke $r8.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r9.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r10 = interfaceinvoke $r9.<java.util.Iterator: java.lang.Object next()>();
+
+        $r11 = (com.google.android.gms.wearable.Node) $r10;
+
+        $r12 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.MessageApi MessageApi>;
+
+        $r3 = $r0.<com.augmentra.viewranger.wearable.model.ModelSender$2: com.augmentra.viewranger.wearable.model.ModelSender this$0>;
+
+        $r4 = $r3.<com.augmentra.viewranger.wearable.model.ModelSender: com.google.android.gms.common.api.GoogleApiClient mGoogleApiClient>;
+
+        $r13 = interfaceinvoke $r11.<com.google.android.gms.wearable.Node: java.lang.String getId()>();
+
+        interfaceinvoke $r12.<com.google.android.gms.wearable.MessageApi: com.google.android.gms.common.api.PendingResult sendMessage(com.google.android.gms.common.api.GoogleApiClient,java.lang.String,java.lang.String,byte[])>($r4, $r13, "general_path", $r1);
+
+        goto label1;
+
+     label2:
+        return;
+    }
+}

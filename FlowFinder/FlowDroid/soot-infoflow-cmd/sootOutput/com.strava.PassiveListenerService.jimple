@@ -1,0 +1,179 @@
+public class com.strava.PassiveListenerService extends com.google.android.gms.wearable.WearableListenerService
+{
+    private static final java.lang.String a;
+    public android.content.Intent ipcIntent;
+    public android.os.IBinder ipcBinder_0;
+
+    static void <clinit>()
+    {
+        java.lang.String $r0;
+        java.lang.Class $r1;
+
+        $r1 = class "Lcom/strava/PassiveListenerService;";
+
+        $r0 = virtualinvoke $r1.<java.lang.Class: java.lang.String getCanonicalName()>();
+
+        <com.strava.PassiveListenerService: java.lang.String a> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        com.strava.PassiveListenerService $r0;
+
+        $r0 := @this: com.strava.PassiveListenerService;
+
+        specialinvoke $r0.<com.google.android.gms.wearable.WearableListenerService: void <init>()>();
+
+        return;
+    }
+
+    public final void a(com.google.android.gms.wearable.DataEventBuffer)
+    {
+        com.strava.PassiveListenerService $r0;
+        com.google.android.gms.wearable.DataEventBuffer $r1;
+        java.lang.String $r2, $r8;
+        java.util.Iterator $r3;
+        boolean $z0;
+        java.lang.Object $r4;
+        com.google.android.gms.wearable.DataEvent $r5;
+        com.google.android.gms.wearable.DataItem $r6;
+        android.net.Uri $r7;
+        com.google.android.gms.wearable.DataMapItem $r9;
+        com.google.android.gms.wearable.DataMap $r10;
+        int $i0;
+
+        $r0 := @this: com.strava.PassiveListenerService;
+
+        $r1 := @parameter0: com.google.android.gms.wearable.DataEventBuffer;
+
+        $r3 = virtualinvoke $r1.<com.google.android.gms.wearable.DataEventBuffer: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r3.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label5;
+
+        $r4 = interfaceinvoke $r3.<java.util.Iterator: java.lang.Object next()>();
+
+        $r5 = (com.google.android.gms.wearable.DataEvent) $r4;
+
+        $r6 = interfaceinvoke $r5.<com.google.android.gms.wearable.DataEvent: com.google.android.gms.wearable.DataItem getDataItem()>();
+
+        $r7 = interfaceinvoke $r6.<com.google.android.gms.wearable.DataItem: android.net.Uri getUri()>();
+
+        $r8 = virtualinvoke $r7.<android.net.Uri: java.lang.String getEncodedPath()>();
+
+        $r2 = "/com/strava/preference_sync";
+
+        $z0 = virtualinvoke $r2.<java.lang.String: boolean equals(java.lang.Object)>($r8);
+
+        if $z0 == 0 goto label1;
+
+        $r9 = staticinvoke <com.google.android.gms.wearable.DataMapItem: com.google.android.gms.wearable.DataMapItem fromDataItem(com.google.android.gms.wearable.DataItem)>($r6);
+
+        $r10 = $r9.<com.google.android.gms.wearable.DataMapItem: com.google.android.gms.wearable.DataMap a>;
+
+        $z0 = virtualinvoke $r10.<com.google.android.gms.wearable.DataMap: boolean a(java.lang.String)>("is_standard_uom");
+
+        if $z0 == 0 goto label2;
+
+        $z0 = virtualinvoke $r10.<com.google.android.gms.wearable.DataMap: boolean c(java.lang.String)>("is_standard_uom");
+
+        staticinvoke <com.strava.util.PreferenceUtils: void c(boolean)>($z0);
+
+     label2:
+        $z0 = virtualinvoke $r10.<com.google.android.gms.wearable.DataMap: boolean a(java.lang.String)>("use_native_gps");
+
+        if $z0 == 0 goto label3;
+
+        $z0 = virtualinvoke $r10.<com.google.android.gms.wearable.DataMap: boolean c(java.lang.String)>("use_native_gps");
+
+        staticinvoke <com.strava.util.PreferenceUtils: void a(boolean)>($z0);
+
+     label3:
+        $z0 = virtualinvoke $r10.<com.google.android.gms.wearable.DataMap: boolean a(java.lang.String)>("athlete_type");
+
+        if $z0 == 0 goto label4;
+
+        $i0 = virtualinvoke $r10.<com.google.android.gms.wearable.DataMap: int getIntSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        staticinvoke <com.strava.util.PreferenceUtils: void a(int)>($i0);
+
+     label4:
+        $z0 = virtualinvoke $r10.<com.google.android.gms.wearable.DataMap: boolean a(java.lang.String)>("accepted_safety_warning");
+
+        if $z0 == 0 goto label5;
+
+        $z0 = virtualinvoke $r10.<com.google.android.gms.wearable.DataMap: boolean c(java.lang.String)>("accepted_safety_warning");
+
+        staticinvoke <com.strava.util.PreferenceUtils: void b(boolean)>($z0);
+
+     label5:
+        return;
+    }
+
+    public final void a(com.google.android.gms.wearable.MessageEvent)
+    {
+        com.strava.PassiveListenerService $r0;
+        com.google.android.gms.wearable.MessageEvent $r1;
+        java.lang.StringBuilder $r2;
+        boolean $z0;
+        java.lang.String $r3, $r4;
+        android.content.Intent $r5;
+
+        $r0 := @this: com.strava.PassiveListenerService;
+
+        $r1 := @parameter0: com.google.android.gms.wearable.MessageEvent;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("onMessageReceived: ");
+
+        virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r1);
+
+        $z0 = staticinvoke <com.strava.util.PreferenceUtils: boolean a()>();
+
+        if $z0 != 0 goto label1;
+
+        $r3 = "com/strava/recording/start";
+
+        $r4 = interfaceinvoke $r1.<com.google.android.gms.wearable.MessageEvent: java.lang.String getPath()>();
+
+        $z0 = virtualinvoke $r3.<java.lang.String: boolean equals(java.lang.Object)>($r4);
+
+        if $z0 == 0 goto label1;
+
+        $r5 = new android.content.Intent;
+
+        specialinvoke $r5.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r0, class "Lcom/strava/service/RecordingListenerService;");
+
+        virtualinvoke $r5.<android.content.Intent: android.content.Intent putExtra(java.lang.String,int)>("extra", 1999);
+
+        virtualinvoke $r5.<android.content.Intent: android.content.Intent setFlags(int)>(268435456);
+
+        virtualinvoke $r0.<com.strava.PassiveListenerService: android.content.ComponentName startService(android.content.Intent)>($r5);
+
+     label1:
+        return;
+    }
+
+    public android.os.IBinder onBind(android.content.Intent)
+    {
+        com.strava.PassiveListenerService this;
+        android.content.Intent parameter0;
+
+        this := @this: com.strava.PassiveListenerService;
+
+        parameter0 := @parameter0: android.content.Intent;
+
+        this.<com.strava.PassiveListenerService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        this.<com.strava.PassiveListenerService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        this.<com.strava.PassiveListenerService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        return parameter0;
+    }
+}

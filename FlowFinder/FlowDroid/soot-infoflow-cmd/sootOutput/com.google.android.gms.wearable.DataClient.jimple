@@ -1,0 +1,70 @@
+public abstract class com.google.android.gms.wearable.DataClient extends com.google.android.gms.common.api.GoogleApi
+{
+    public static final java.lang.String ACTION_DATA_CHANGED;
+    public static final int FILTER_LITERAL;
+    public static final int FILTER_PREFIX;
+
+    public void <init>(android.app.Activity, com.google.android.gms.common.api.GoogleApi$Settings)
+    {
+        com.google.android.gms.wearable.DataClient $r0;
+        android.app.Activity $r1;
+        com.google.android.gms.common.api.GoogleApi$Settings $r2;
+        com.google.android.gms.common.api.Api $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataClient;
+
+        $r1 := @parameter0: android.app.Activity;
+
+        $r2 := @parameter1: com.google.android.gms.common.api.GoogleApi$Settings;
+
+        $r3 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.common.api.Api API>;
+
+        specialinvoke $r0.<com.google.android.gms.common.api.GoogleApi: void <init>(android.app.Activity,com.google.android.gms.common.api.Api,com.google.android.gms.common.api.Api$ApiOptions,com.google.android.gms.common.api.GoogleApi$Settings)>($r1, $r3, null, $r2);
+
+        return;
+    }
+
+    public void <init>(android.content.Context, com.google.android.gms.common.api.GoogleApi$Settings)
+    {
+        com.google.android.gms.wearable.DataClient $r0;
+        android.content.Context $r1;
+        com.google.android.gms.common.api.GoogleApi$Settings $r2;
+        com.google.android.gms.common.api.Api $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataClient;
+
+        $r1 := @parameter0: android.content.Context;
+
+        $r2 := @parameter1: com.google.android.gms.common.api.GoogleApi$Settings;
+
+        $r3 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.common.api.Api API>;
+
+        specialinvoke $r0.<com.google.android.gms.common.api.GoogleApi: void <init>(android.content.Context,com.google.android.gms.common.api.Api,com.google.android.gms.common.api.Api$ApiOptions,com.google.android.gms.common.api.GoogleApi$Settings)>($r1, $r3, null, $r2);
+
+        return;
+    }
+
+    public abstract com.google.android.gms.tasks.Task addListener(com.google.android.gms.wearable.DataClient$OnDataChangedListener);
+
+    public abstract com.google.android.gms.tasks.Task addListener(com.google.android.gms.wearable.DataClient$OnDataChangedListener, android.net.Uri, int);
+
+    public abstract com.google.android.gms.tasks.Task deleteDataItems(android.net.Uri);
+
+    public abstract com.google.android.gms.tasks.Task deleteDataItems(android.net.Uri, int);
+
+    public abstract com.google.android.gms.tasks.Task getDataItem(android.net.Uri);
+
+    public abstract com.google.android.gms.tasks.Task getDataItems();
+
+    public abstract com.google.android.gms.tasks.Task getDataItems(android.net.Uri);
+
+    public abstract com.google.android.gms.tasks.Task getDataItems(android.net.Uri, int);
+
+    public abstract com.google.android.gms.tasks.Task getFdForAsset(com.google.android.gms.wearable.Asset);
+
+    public abstract com.google.android.gms.tasks.Task getFdForAsset(com.google.android.gms.wearable.DataItemAsset);
+
+    public abstract com.google.android.gms.tasks.Task putDataItem(com.google.android.gms.wearable.PutDataRequest);
+
+    public abstract com.google.android.gms.tasks.Task removeListener(com.google.android.gms.wearable.DataClient$OnDataChangedListener);
+}

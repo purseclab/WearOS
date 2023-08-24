@@ -1,0 +1,2 @@
+<com.google.android.gms.wearable.ChannelClient: com.google.android.gms.tasks.Task sendFile(com.google.android.gms.wearable.ChannelClient$Channel,android.net.Uri)> -> _SINK_
+<com.google.android.gms.wearable.ChannelClient: com.google.android.gms.tasks.Task sendFile(com.google.android.gms.wearable.ChannelClient$Channel,android.net.Uri,long)> -> _SINK_

@@ -1,0 +1,29 @@
+
+#Messages
+com.google.android.gms.wearable.MessageApi$MessageListener (R)
+com.google.android.gms.wearable.MessageClient$OnMessageReceivedListener (R)
+
+#DataItems
+com.google.android.gms.wearable.DataApi$DataListener (R)
+com.google.android.gms.wearable.DataClient$OnDataChangedListener (R)
+
+# Services
+com.google.android.gms.wearable.WearableListenerService (R)
+
+com.google.android.gms.wearable.NodeApi$NodeListener (P)
+
+
+
+# GoogleApis
+
+com.google.android.gms.common.api.ResultCallback
+com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks (R)
+
+
+com.google.android.gms.common.api.GoogleApiClient$OnConnectionFailedListener (N)
+com.google.android.gms.wearable.ChannelApi$ChannelListener	(P)
+com.google.android.gms.wearable.CapabilityApi$CapabilityListener (P)
+
+android.support.v4.app.ActivityCompat$OnRequestPermissionsResultCallback (N)
+
+com.google.android.gms.wearable.CapabilityClient.OnCapabilityChangedListener (P)

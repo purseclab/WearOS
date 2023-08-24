@@ -1,0 +1,177 @@
+public class com.rhul.assets.MainActivity extends android.support.wearable.activity.WearableActivity
+{
+    private java.lang.String key;
+    private java.lang.String text;
+    public android.content.Intent ipcIntent;
+    public android.content.Intent ipcResultIntent;
+
+    public void <init>()
+    {
+        com.rhul.assets.MainActivity $r0;
+
+        $r0 := @this: com.rhul.assets.MainActivity;
+
+        specialinvoke $r0.<android.support.wearable.activity.WearableActivity: void <init>()>();
+
+        $r0.<com.rhul.assets.MainActivity: java.lang.String key> = "secret_1";
+
+        return;
+    }
+
+    private java.lang.String source()
+    {
+        com.rhul.assets.MainActivity $r0;
+        java.util.UUID $r1;
+        java.lang.String $r2;
+
+        $r0 := @this: com.rhul.assets.MainActivity;
+
+        $r1 = staticinvoke <java.util.UUID: java.util.UUID randomUUID()>();
+
+        $r2 = virtualinvoke $r1.<java.util.UUID: java.lang.String toString()>();
+
+        return $r2;
+    }
+
+    protected void onCreate(android.os.Bundle)
+    {
+        com.rhul.assets.MainActivity $r0;
+        android.os.Bundle $r1;
+        java.lang.String $r2;
+
+        $r0 := @this: com.rhul.assets.MainActivity;
+
+        $r1 := @parameter0: android.os.Bundle;
+
+        specialinvoke $r0.<android.support.wearable.activity.WearableActivity: void onCreate(android.os.Bundle)>($r1);
+
+        virtualinvoke $r0.<com.rhul.assets.MainActivity: void setContentView(int)>(2131558404);
+
+        $r2 = specialinvoke $r0.<com.rhul.assets.MainActivity: java.lang.String source()>();
+
+        $r0.<com.rhul.assets.MainActivity: java.lang.String text> = $r2;
+
+        virtualinvoke $r0.<com.rhul.assets.MainActivity: void sendAsset()>();
+
+        $r2 = $r0.<com.rhul.assets.MainActivity: java.lang.String text>;
+
+        virtualinvoke $r0.<com.rhul.assets.MainActivity: void sendAsset(java.lang.String)>($r2);
+
+        return;
+    }
+
+    public void sendAsset()
+    {
+        com.rhul.assets.MainActivity $r0;
+        java.lang.String $r1;
+        byte[] $r2;
+        com.google.android.gms.wearable.Asset $r3, tmp7;
+        com.google.android.gms.wearable.PutDataRequest $r4;
+        com.google.android.gms.wearable.DataClient $r5;
+
+        $r0 := @this: com.rhul.assets.MainActivity;
+
+        $r1 = $r0.<com.rhul.assets.MainActivity: java.lang.String text>;
+
+        $r2 = virtualinvoke $r1.<java.lang.String: byte[] getBytes()>();
+
+        $r3 = staticinvoke <com.google.android.gms.wearable.Asset: com.google.android.gms.wearable.Asset createFromBytes(byte[])>($r2);
+
+        $r4 = staticinvoke <com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest create(java.lang.String)>("/path_1");
+
+        $r1 = $r0.<com.rhul.assets.MainActivity: java.lang.String key>;
+
+        virtualinvoke $r4.<com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest putAsset(java.lang.String,com.google.android.gms.wearable.Asset)>($r1, $r3);
+
+        tmp7 = $r3;
+
+        $r5 = staticinvoke <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.DataClient getDataClient(android.app.Activity)>($r0);
+
+        virtualinvoke $r5.<com.google.android.gms.wearable.DataClient: com.google.android.gms.tasks.Task putDataItem(com.google.android.gms.wearable.PutDataRequest)>($r4);
+
+        virtualinvoke $r5.<com.google.android.gms.wearable.DataClient: void putAssetSink(java.lang.String,java.lang.String,com.google.android.gms.wearable.Assets)>("/path_1", "secret_1", $r3);
+
+        return;
+    }
+
+    public void sendAsset(java.lang.String)
+    {
+        com.rhul.assets.MainActivity $r0;
+        java.lang.String $r1;
+        byte[] $r2;
+        com.google.android.gms.wearable.Asset $r3, tmp9;
+        com.google.android.gms.wearable.PutDataMapRequest $r4;
+        com.google.android.gms.wearable.DataMap $r5;
+        com.google.android.gms.wearable.PutDataRequest $r6;
+        com.google.android.gms.wearable.DataClient $r7;
+
+        $r0 := @this: com.rhul.assets.MainActivity;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 = virtualinvoke $r1.<java.lang.String: byte[] getBytes()>();
+
+        $r3 = staticinvoke <com.google.android.gms.wearable.Asset: com.google.android.gms.wearable.Asset createFromBytes(byte[])>($r2);
+
+        $r4 = staticinvoke <com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataMapRequest create(java.lang.String)>("/path_2");
+
+        $r5 = virtualinvoke $r4.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap getDataMap()>();
+
+        virtualinvoke $r5.<com.google.android.gms.wearable.DataMap: void putAsset(java.lang.String,com.google.android.gms.wearable.Asset)>("secret_2", $r3);
+
+        tmp9 = $r3;
+
+        $r6 = virtualinvoke $r4.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest asPutDataRequest()>();
+
+        $r7 = staticinvoke <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.DataClient getDataClient(android.app.Activity)>($r0);
+
+        virtualinvoke $r7.<com.google.android.gms.wearable.DataClient: com.google.android.gms.tasks.Task putDataItem(com.google.android.gms.wearable.PutDataRequest)>($r6);
+
+        virtualinvoke $r7.<com.google.android.gms.wearable.DataClient: void putAssetSink(java.lang.String,java.lang.String,com.google.android.gms.wearable.Assets)>("/path_2", "secret_2", $r3);
+
+        return;
+    }
+
+    public android.content.Intent getIntent()
+    {
+        com.rhul.assets.MainActivity this;
+        android.content.Intent $r0;
+
+        this := @this: com.rhul.assets.MainActivity;
+
+        $r0 = this.<com.rhul.assets.MainActivity: android.content.Intent ipcIntent>;
+
+        return $r0;
+    }
+
+    public void setIntent(android.content.Intent)
+    {
+        com.rhul.assets.MainActivity this;
+        android.content.Intent parameter0;
+
+        this := @this: com.rhul.assets.MainActivity;
+
+        parameter0 := @parameter0: android.content.Intent;
+
+        this.<com.rhul.assets.MainActivity: android.content.Intent ipcIntent> = parameter0;
+
+        return;
+    }
+
+    public void setResult(int, android.content.Intent)
+    {
+        com.rhul.assets.MainActivity this;
+        int parameter0;
+        android.content.Intent parameter1;
+
+        this := @this: com.rhul.assets.MainActivity;
+
+        parameter0 := @parameter0: int;
+
+        parameter1 := @parameter1: android.content.Intent;
+
+        this.<com.rhul.assets.MainActivity: android.content.Intent ipcResultIntent> = parameter1;
+
+        return;
+    }
+}

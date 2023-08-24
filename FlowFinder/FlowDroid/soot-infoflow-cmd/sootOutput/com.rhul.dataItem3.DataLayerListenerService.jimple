@@ -1,0 +1,101 @@
+public class com.rhul.dataItem3.DataLayerListenerService extends com.google.android.gms.wearable.WearableListenerService
+{
+    private static final java.lang.String PATH_DATA;
+    public android.content.Intent ipcIntent;
+    public android.os.IBinder ipcBinder_0;
+
+    public void <init>()
+    {
+        com.rhul.dataItem3.DataLayerListenerService $r0;
+
+        $r0 := @this: com.rhul.dataItem3.DataLayerListenerService;
+
+        specialinvoke $r0.<com.google.android.gms.wearable.WearableListenerService: void <init>()>();
+
+        return;
+    }
+
+    public void onDataChanged(com.google.android.gms.wearable.DataEventBuffer)
+    {
+        com.rhul.dataItem3.DataLayerListenerService $r0;
+        com.google.android.gms.wearable.DataEventBuffer $r1;
+        java.util.ArrayList $r2;
+        java.util.Iterator $r3;
+        boolean $z0;
+        java.lang.Object $r4;
+        com.google.android.gms.wearable.DataEvent $r5;
+        com.google.android.gms.wearable.DataItem $r6;
+        com.google.android.gms.wearable.DataMapItem $r7;
+        com.google.android.gms.wearable.PutDataMapRequest $r8;
+        int $i0;
+        android.net.Uri $r9;
+        java.lang.String $r10, $r11;
+        com.google.android.gms.wearable.DataMap $r12;
+
+        $r0 := @this: com.rhul.dataItem3.DataLayerListenerService;
+
+        $r1 := @parameter0: com.google.android.gms.wearable.DataEventBuffer;
+
+        $r2 = staticinvoke <com.google.android.gms.common.data.FreezableUtils: java.util.ArrayList freezeIterable(java.lang.Iterable)>($r1);
+
+        $r3 = virtualinvoke $r2.<java.util.ArrayList: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r3.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r4 = interfaceinvoke $r3.<java.util.Iterator: java.lang.Object next()>();
+
+        $r5 = (com.google.android.gms.wearable.DataEvent) $r4;
+
+        $r6 = interfaceinvoke $r5.<com.google.android.gms.wearable.DataEvent: com.google.android.gms.wearable.DataItem getDataItem()>();
+
+        $r7 = staticinvoke <com.google.android.gms.wearable.DataMapItem: com.google.android.gms.wearable.DataMapItem fromDataItem(com.google.android.gms.wearable.DataItem)>($r6);
+
+        $r8 = staticinvoke <com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataMapRequest createFromDataMapItem(com.google.android.gms.wearable.DataMapItem)>($r7);
+
+        $i0 = interfaceinvoke $r5.<com.google.android.gms.wearable.DataEvent: int getType()>();
+
+        if $i0 != 1 goto label1;
+
+        $r6 = interfaceinvoke $r5.<com.google.android.gms.wearable.DataEvent: com.google.android.gms.wearable.DataItem getDataItem()>();
+
+        $r9 = interfaceinvoke $r6.<com.google.android.gms.wearable.DataItem: android.net.Uri getUri()>();
+
+        $r10 = virtualinvoke $r9.<android.net.Uri: java.lang.String getPath()>();
+
+        $r11 = "/sync";
+
+        $z0 = virtualinvoke $r11.<java.lang.String: boolean equals(java.lang.Object)>($r10);
+
+        if $z0 == 0 goto label1;
+
+        $r12 = virtualinvoke $r8.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap getDataMap()>();
+
+        $r10 = virtualinvoke $r12.<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String,java.lang.String)>("secret", "/sync");
+
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Leak", $r10);
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    public android.os.IBinder onBind(android.content.Intent)
+    {
+        com.rhul.dataItem3.DataLayerListenerService this;
+        android.content.Intent parameter0;
+
+        this := @this: com.rhul.dataItem3.DataLayerListenerService;
+
+        parameter0 := @parameter0: android.content.Intent;
+
+        this.<com.rhul.dataItem3.DataLayerListenerService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        this.<com.rhul.dataItem3.DataLayerListenerService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        return parameter0;
+    }
+}

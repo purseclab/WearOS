@@ -1,0 +1,70 @@
+<android.location.Location: double getLatitude()> -> _SOURCE_
+<android.location.Location: double getLongitude()> -> _SOURCE_
+
+%<android.telephony.TelephonyManager: java.lang.String getImei()> android.permission.READ_PHONE_STATE -> _SOURCE_
+%<android.telephony.TelephonyManager: java.lang.String getImei(int)> -> _SOURCE_
+%<com.frost.SensorEvent: float[] getSensorData()> -> _SOURCE_
+%<android.util.Log: int d(java.lang.String,java.lang.String)> -> _SINK_
+%<android.telephony.TelephonyManager: java.lang.String getImei()> -> _SOURCE_
+%<android.telephony.TelephonyManager: long getMaximumCallComposerPictureSize()> -> _SOURCE_
+% From here wearable APIs and other sources/sinks used for wearflow experiment
+% New DataClient API (1s,1s)
+<com.google.android.gms.wearable.DataClient: com.google.android.gms.tasks.Task putDataItem(com.google.android.gms.wearable.PutDataRequest)> -> _SINK_
+<com.google.android.gms.wearable.DataMap: java.lang.String getString(java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: int getInt(java.lang.String)> -> _SOURCE_
+% New MessageClient API (1s,1s)
+<com.google.android.gms.wearable.MessageClient: com.google.android.gms.tasks.Task sendMessage(java.lang.String,java.lang.String,byte[])> -> _SINK_
+<com.google.android.gms.wearable.MessageEvent: byte[] getData()> -> _SOURCE_
+%<com.google.android.gms.wearable.MessageEvent: byte[] getDataSource(java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: com.google.android.gms.wearable.Asset getAsset(java.lang.String)> -> _SOURCE_
+% Old Data Layer API (0s,4s)
+<com.google.android.gms.wearable.DataApi: com.google.android.gms.common.api.PendingResult putDataItem(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.wearable.PutDataRequest)> -> _SINK_
+<com.google.android.gms.wearable.MessageApi: com.google.android.gms.common.api.PendingResult sendMessage(com.google.android.gms.common.api.GoogleApiClient,java.lang.String, java.lang.String, byte[])> -> _SINK_
+% Channel Client sources-Sinks
+<com.google.android.gms.wearable.ChannelClient: android.net.Uri taintUri(android.net.Uri, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.ChannelClient: com.google.android.gms.tasks.Task receiveFileSource(com.google.android.gms.wearable.ChannelClient$Channel,android.net.Uri,java.lang.Boolean,java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.ChannelClient :com.google.android.gms.tasks.Task sendFileSink(com.google.android.gms.wearable.ChannelClient$Channel,android.net.Uri,java.lang.String)> -> _SINK_
+<com.rhul.simplechannel.MainActivityMobile: java.io.File getTaintedFile(java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.ChannelClient: com.google.android.gms.tasks.Task receiveFile(com.google.android.gms.wearable.ChannelClient$Channel,android.net.Uri,java.lang.Boolean)> -> _SOURCE_
+<com.google.android.gms.wearable.ChannelClient: com.google.android.gms.tasks.Task receiveFile(com.google.android.gms.wearable.ChannelClient$Channel,android.net.Uri,boolean)> -> _SOURCE_
+<com.google.android.gms.wearable.ChannelClient :com.google.android.gms.tasks.Task sendFile(com.google.android.gms.wearable.ChannelClient$Channel,android.net.Uri)> -> _SINK_
+% instrumented sinks DataClient
+<com.google.android.gms.wearable.DataClient: void putStringSink(java.lang.String,java.lang.String,java.lang.String)> -> _SINK_
+<com.google.android.gms.wearable.DataClient: void putIntSink(java.lang.String,java.lang.String,int)> -> _SINK_
+<com.google.android.gms.wearable.DataClient: void putLongSink(java.lang.String,java.lang.String,long)> -> _SINK_
+<com.google.android.gms.wearable.DataClient: void putDoubleSink(java.lang.String,java.lang.String,double)> -> _SINK_
+<com.google.android.gms.wearable.DataClient: void putFloatSink(java.lang.String,java.lang.String,float)> -> _SINK_
+<com.google.android.gms.wearable.DataClient: void putBooleanSink(java.lang.String,java.lang.String,boolean)> -> _SINK_
+<com.google.android.gms.wearable.DataClient: void putByteSink(java.lang.String,java.lang.String,byte)> -> _SINK_
+<com.google.android.gms.wearable.DataClient: void putByteArraySink(java.lang.String,java.lang.String,byte[])> -> _SINK_
+<com.google.android.gms.wearable.DataClient: void putStringArraySink(java.lang.String,java.lang.String,java.lang.String[])> -> _SINK_
+<com.google.android.gms.wearable.DataClient: void putLongArraySink(java.lang.String,java.lang.String,long[])> -> _SINK_
+<com.google.android.gms.wearable.DataClient: void putFloatArraySink(java.lang.String,java.lang.String,float[])> -> _SINK_
+<com.google.android.gms.wearable.DataClient: void putAssetSink(java.lang.String,java.lang.String,com.google.android.gms.wearable.Asset)> -> _SINK_
+<com.google.android.gms.wearable.DataClient: void putDataMapSink(java.lang.String,java.lang.String,com.google.android.gms.wearable.DataMap)> -> _SINK_
+<com.google.android.gms.wearable.DataClient: void putStringArrayListSink(java.lang.String,java.lang.String,java.lang.String[])> -> _SINK_
+<com.google.android.gms.wearable.DataClient: void putDataMapArrayListSink(java.lang.String,java.lang.String,com.google.android.gms.wearable.DataMap[])> -> _SINK_
+% instrumented sources DataMap
+<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: java.lang.String getStringSource2(java.lang.String, java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: com.google.android.gms.wearable.Asset getAssetSource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: boolean getBooleanSource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: boolean getBooleanSource2(java.lang.String, boolean, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: byte getByteSource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: byte getByteSource2(java.lang.String, byte, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: getByteArraySource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: com.google.android.gms.wearable.DataMap getDataMapSource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: java.util.ArrayList getDataMapArrayListSource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: double getDoubleSource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: double getDoubleSource2(java.lang.String, double, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: float getFloatSource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: float getFloatSource2(java.lang.String, float, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: float[] getFloatArraySource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: int getIntSource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: int getIntSource2(java.lang.String, int, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: java.util.ArrayList getIntegerArrayListSource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: long getLongSource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: long getLongSource2(java.lang.String, long, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: long[] getLongArraySource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: java.lang.String[] getStringArraySource(java.lang.String, java.lang.String)> -> _SOURCE_
+<com.google.android.gms.wearable.DataMap: java.util.ArrayList getStringArrayListSource(java.lang.String, java.lang.String)> -> _SOURCE_

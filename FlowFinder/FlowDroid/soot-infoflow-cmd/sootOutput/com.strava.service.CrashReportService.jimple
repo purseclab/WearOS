@@ -1,0 +1,291 @@
+public class com.strava.service.CrashReportService extends com.strava.service.AbstractUploadService
+{
+    private static final java.lang.String a;
+
+    static void <clinit>()
+    {
+        java.lang.String $r0;
+        java.lang.Class $r1;
+
+        $r1 = class "Lcom/strava/service/CrashReportService;";
+
+        $r0 = virtualinvoke $r1.<java.lang.Class: java.lang.String getCanonicalName()>();
+
+        <com.strava.service.CrashReportService: java.lang.String a> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        com.strava.service.CrashReportService $r0;
+        java.lang.String $r1;
+
+        $r0 := @this: com.strava.service.CrashReportService;
+
+        $r1 = <com.strava.service.CrashReportService: java.lang.String a>;
+
+        specialinvoke $r0.<com.strava.service.AbstractUploadService: void <init>(java.lang.String)>($r1);
+
+        return;
+    }
+
+    public static void a(java.lang.Throwable, android.content.Context)
+    {
+        java.lang.Throwable $r0;
+        android.content.Context $r1;
+        android.content.Intent $r2;
+
+        $r0 := @parameter0: java.lang.Throwable;
+
+        $r1 := @parameter1: android.content.Context;
+
+        $r2 = new android.content.Intent;
+
+        specialinvoke $r2.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r1, class "Lcom/strava/service/CrashReportService;");
+
+        $r2 = virtualinvoke $r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.io.Serializable)>("data", $r0);
+
+        virtualinvoke $r1.<android.content.Context: android.content.ComponentName startService(android.content.Intent)>($r2);
+
+        return;
+    }
+
+    private static boolean a(java.lang.Throwable, com.google.android.gms.wearable.DataMap)
+    {
+        java.lang.Throwable $r0, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14;
+        com.google.android.gms.wearable.DataMap $r1;
+        java.io.ByteArrayOutputStream $r2;
+        java.lang.String $r3;
+        byte[] $r4, $r5;
+        java.io.ObjectOutputStream $r6;
+
+        $r0 := @parameter0: java.lang.Throwable;
+
+        $r1 := @parameter1: com.google.android.gms.wearable.DataMap;
+
+        $r5 = null;
+
+        $r2 = new java.io.ByteArrayOutputStream;
+
+        specialinvoke $r2.<java.io.ByteArrayOutputStream: void <init>()>();
+
+     label01:
+        $r6 = new java.io.ObjectOutputStream;
+
+     label02:
+        specialinvoke $r6.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>($r2);
+
+     label03:
+        virtualinvoke $r6.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>($r0);
+
+        $r4 = virtualinvoke $r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+
+     label04:
+        $r5 = $r4;
+
+     label05:
+        virtualinvoke $r2.<java.io.ByteArrayOutputStream: void close()>();
+
+     label06:
+        virtualinvoke $r6.<java.io.ObjectOutputStream: void close()>();
+
+     label07:
+        if $r5 == null goto label20;
+
+        $r3 = <android.os.Build: java.lang.String BOARD>;
+
+        virtualinvoke $r1.<com.google.android.gms.wearable.DataMap: void a(java.lang.String,java.lang.String)>("board", $r3);
+
+        $r3 = <android.os.Build: java.lang.String FINGERPRINT>;
+
+        virtualinvoke $r1.<com.google.android.gms.wearable.DataMap: void a(java.lang.String,java.lang.String)>("fingerprint", $r3);
+
+        $r3 = <android.os.Build: java.lang.String MODEL>;
+
+        virtualinvoke $r1.<com.google.android.gms.wearable.DataMap: void a(java.lang.String,java.lang.String)>("model", $r3);
+
+        $r3 = <android.os.Build: java.lang.String MANUFACTURER>;
+
+        virtualinvoke $r1.<com.google.android.gms.wearable.DataMap: void a(java.lang.String,java.lang.String)>("manufacturer", $r3);
+
+        $r3 = <android.os.Build: java.lang.String PRODUCT>;
+
+        virtualinvoke $r1.<com.google.android.gms.wearable.DataMap: void a(java.lang.String,java.lang.String)>("product", $r3);
+
+        virtualinvoke $r1.<com.google.android.gms.wearable.DataMap: void a(java.lang.String,byte[])>("exception", $r5);
+
+        return 1;
+
+     label08:
+        $r7 := @caughtexception;
+
+        $r6 = null;
+
+     label09:
+        $r3 = <com.strava.service.CrashReportService: java.lang.String a>;
+
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String,java.lang.Throwable)>($r3, "couldn\'t serialize exception", $r7);
+
+     label10:
+        virtualinvoke $r2.<java.io.ByteArrayOutputStream: void close()>();
+
+     label11:
+        if $r6 == null goto label07;
+
+     label12:
+        virtualinvoke $r6.<java.io.ObjectOutputStream: void close()>();
+
+     label13:
+        goto label07;
+
+     label14:
+        $r8 := @caughtexception;
+
+        goto label07;
+
+     label15:
+        $r9 := @caughtexception;
+
+        $r6 = null;
+
+     label16:
+        virtualinvoke $r2.<java.io.ByteArrayOutputStream: void close()>();
+
+     label17:
+        if $r6 == null goto label19;
+
+     label18:
+        virtualinvoke $r6.<java.io.ObjectOutputStream: void close()>();
+
+     label19:
+        throw $r9;
+
+     label20:
+        return 0;
+
+     label21:
+        $r10 := @caughtexception;
+
+        goto label06;
+
+     label22:
+        $r11 := @caughtexception;
+
+        goto label07;
+
+     label23:
+        $r12 := @caughtexception;
+
+        goto label11;
+
+     label24:
+        $r13 := @caughtexception;
+
+        goto label17;
+
+     label25:
+        $r14 := @caughtexception;
+
+        goto label19;
+
+     label26:
+        $r9 := @caughtexception;
+
+        goto label16;
+
+     label27:
+        $r7 := @caughtexception;
+
+        goto label09;
+
+        catch java.io.IOException from label02 to label03 with label08;
+        catch java.lang.Throwable from label01 to label03 with label15;
+        catch java.io.IOException from label03 to label04 with label27;
+        catch java.lang.Throwable from label03 to label04 with label26;
+        catch java.io.IOException from label05 to label06 with label21;
+        catch java.io.IOException from label06 to label07 with label22;
+        catch java.lang.Throwable from label09 to label10 with label26;
+        catch java.io.IOException from label10 to label11 with label23;
+        catch java.io.IOException from label12 to label13 with label14;
+        catch java.io.IOException from label16 to label17 with label24;
+        catch java.io.IOException from label18 to label19 with label25;
+    }
+
+    static java.lang.String b()
+    {
+        java.lang.String r0;
+
+        r0 = <com.strava.service.CrashReportService: java.lang.String a>;
+
+        return r0;
+    }
+
+    protected void onHandleIntent(android.content.Intent)
+    {
+        com.strava.service.CrashReportService $r0;
+        android.content.Intent $r1;
+        java.io.Serializable $r2;
+        java.lang.Throwable $r3;
+        com.google.android.gms.common.api.GoogleApiClient $r4;
+        java.lang.StringBuilder $r5;
+        long $l0;
+        java.lang.String $r6;
+        com.google.android.gms.wearable.PutDataMapRequest $r7;
+        com.google.android.gms.wearable.DataMap $r8;
+        com.google.android.gms.wearable.PutDataRequest $r9;
+        com.google.android.gms.wearable.DataApi $r10;
+        com.google.android.gms.common.api.PendingResult $r11;
+        com.strava.service.CrashReportService$1 $r12;
+
+        $r0 := @this: com.strava.service.CrashReportService;
+
+        $r1 := @parameter0: android.content.Intent;
+
+        $r2 = virtualinvoke $r1.<android.content.Intent: java.io.Serializable getSerializableExtra(java.lang.String)>("data");
+
+        $r3 = (java.lang.Throwable) $r2;
+
+        $r4 = virtualinvoke $r0.<com.strava.service.CrashReportService: com.google.android.gms.common.api.GoogleApiClient a()>();
+
+        if $r3 == null goto label2;
+
+        if $r4 != null goto label1;
+
+        return;
+
+     label1:
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("/com/strava/crash_report/");
+
+        $l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        $r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r7 = staticinvoke <com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataMapRequest a(java.lang.String)>($r6);
+
+        $r8 = $r7.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap a>;
+
+        staticinvoke <com.strava.service.CrashReportService: boolean a(java.lang.Throwable,com.google.android.gms.wearable.DataMap)>($r3, $r8);
+
+        $r9 = virtualinvoke $r7.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest a()>();
+
+        $r9.<com.google.android.gms.wearable.PutDataRequest: long e> = 0L;
+
+        $r10 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.DataApi a>;
+
+        $r11 = interfaceinvoke $r10.<com.google.android.gms.wearable.DataApi: com.google.android.gms.common.api.PendingResult a(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.wearable.PutDataRequest)>($r4, $r9);
+
+        $r12 = new com.strava.service.CrashReportService$1;
+
+        specialinvoke $r12.<com.strava.service.CrashReportService$1: void <init>(com.strava.service.CrashReportService)>($r0);
+
+        virtualinvoke $r11.<com.google.android.gms.common.api.PendingResult: void setResultCallback(com.google.android.gms.common.api.ResultCallback)>($r12);
+
+     label2:
+        return;
+    }
+}

@@ -1,0 +1,314 @@
+public class com.strava.service.ActivitySyncService extends com.strava.service.AbstractUploadService
+{
+    private static final java.lang.String b;
+    com.strava.data.Repository a;
+    public android.content.Intent ipcIntent;
+    public android.os.IBinder ipcBinder_0;
+
+    static void <clinit>()
+    {
+        java.lang.String $r0;
+        java.lang.Class $r1;
+
+        $r1 = class "Lcom/strava/service/ActivitySyncService;";
+
+        $r0 = virtualinvoke $r1.<java.lang.Class: java.lang.String getCanonicalName()>();
+
+        <com.strava.service.ActivitySyncService: java.lang.String b> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        com.strava.service.ActivitySyncService $r0;
+        java.lang.String $r1;
+
+        $r0 := @this: com.strava.service.ActivitySyncService;
+
+        $r1 = <com.strava.service.ActivitySyncService: java.lang.String b>;
+
+        specialinvoke $r0.<com.strava.service.AbstractUploadService: void <init>(java.lang.String)>($r1);
+
+        return;
+    }
+
+    public static void a(android.content.Context)
+    {
+        android.content.Context $r0;
+        android.content.Intent $r1;
+
+        $r0 := @parameter0: android.content.Context;
+
+        $r1 = new android.content.Intent;
+
+        specialinvoke $r1.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r0, class "Lcom/strava/service/ActivitySyncService;");
+
+        virtualinvoke $r0.<android.content.Context: android.content.ComponentName startService(android.content.Intent)>($r1);
+
+        return;
+    }
+
+    protected void onHandleIntent(android.content.Intent)
+    {
+        com.strava.service.ActivitySyncService $r0;
+        android.content.Intent $r1;
+        java.io.ByteArrayOutputStream $r2;
+        com.strava.data.Repository $r3;
+        com.strava.StravaWearApplication $r4;
+        com.google.android.gms.common.api.GoogleApiClient $r5;
+        java.util.List $r6;
+        java.util.Iterator $r7;
+        boolean $z0;
+        java.lang.Object $r8;
+        com.strava.data.UnsyncedActivity $r9;
+        java.lang.String $r10, $r22;
+        int $i0;
+        java.lang.StringBuilder $r11;
+        com.strava.io.WearActivityUploadWriter $r12;
+        byte[] $r13;
+        com.google.android.gms.wearable.Asset $r14, tmp28;
+        long $l1;
+        com.google.android.gms.wearable.PutDataRequest $r15;
+        com.google.android.gms.wearable.DataApi $r16;
+        com.google.android.gms.common.api.PendingResult $r17;
+        com.google.android.gms.common.api.Result $r18;
+        com.google.android.gms.wearable.DataApi$DataItemResult $r19;
+        com.google.android.gms.common.api.Status $r20;
+        java.lang.Throwable $r21;
+        com.google.android.gms.wearable.DataClient k27;
+
+        $r0 := @this: com.strava.service.ActivitySyncService;
+
+        $r1 := @parameter0: android.content.Intent;
+
+        $r3 = $r0.<com.strava.service.ActivitySyncService: com.strava.data.Repository a>;
+
+        if $r3 != null goto label01;
+
+        $r4 = staticinvoke <com.strava.StravaWearApplication: com.strava.StravaWearApplication a()>();
+
+        virtualinvoke $r4.<com.strava.StravaWearApplication: void a(java.lang.Object)>($r0);
+
+     label01:
+        $r5 = virtualinvoke $r0.<com.strava.service.ActivitySyncService: com.google.android.gms.common.api.GoogleApiClient a()>();
+
+        if $r5 != null goto label02;
+
+        return;
+
+     label02:
+        $r3 = $r0.<com.strava.service.ActivitySyncService: com.strava.data.Repository a>;
+
+        $r6 = interfaceinvoke $r3.<com.strava.data.Repository: java.util.List getFinishedUnsyncedActivities()>();
+
+        $r2 = new java.io.ByteArrayOutputStream;
+
+        specialinvoke $r2.<java.io.ByteArrayOutputStream: void <init>(int)>(2048);
+
+        $r7 = interfaceinvoke $r6.<java.util.List: java.util.Iterator iterator()>();
+
+     label03:
+        $z0 = interfaceinvoke $r7.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label25;
+
+        $r8 = interfaceinvoke $r7.<java.util.Iterator: java.lang.Object next()>();
+
+        $r9 = (com.strava.data.UnsyncedActivity) $r8;
+
+        $r3 = $r0.<com.strava.service.ActivitySyncService: com.strava.data.Repository a>;
+
+        $r10 = virtualinvoke $r9.<com.strava.data.UnsyncedActivity: java.lang.String getGuid()>();
+
+        $i0 = interfaceinvoke $r3.<com.strava.data.Repository: int getWaypointsCount(java.lang.String)>($r10);
+
+        if $i0 != 0 goto label04;
+
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("skipping and removing activity with no waypoints ");
+
+        $r10 = virtualinvoke $r9.<com.strava.data.UnsyncedActivity: java.lang.String getGuid()>();
+
+        virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+
+        $r3 = $r0.<com.strava.service.ActivitySyncService: com.strava.data.Repository a>;
+
+        $r10 = virtualinvoke $r9.<com.strava.data.UnsyncedActivity: java.lang.String getGuid()>();
+
+        interfaceinvoke $r3.<com.strava.data.Repository: void deleteUnsyncedActivity(java.lang.String)>($r10);
+
+        goto label03;
+
+     label04:
+        $r11 = new java.lang.StringBuilder;
+
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("syncing activity ");
+
+        $r10 = virtualinvoke $r9.<com.strava.data.UnsyncedActivity: java.lang.String getGuid()>();
+
+        virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+
+        virtualinvoke $r9.<com.strava.data.UnsyncedActivity: void setValuesForServerOverride()>();
+
+        $r12 = new com.strava.io.WearActivityUploadWriter;
+
+        specialinvoke $r12.<com.strava.io.WearActivityUploadWriter: void <init>(com.strava.data.UnsyncedActivity,byte)>($r9, 0);
+
+     label05:
+        virtualinvoke $r2.<java.io.ByteArrayOutputStream: void reset()>();
+
+        virtualinvoke $r12.<com.strava.io.WearActivityUploadWriter: void a(java.io.OutputStream)>($r2);
+
+        $r13 = virtualinvoke $r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+
+     label06:
+        $r11 = new java.lang.StringBuilder;
+
+     label07:
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("data is ");
+
+     label08:
+        $i0 = lengthof $r13;
+
+     label09:
+        $r11 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" bytes");
+
+        $r14 = staticinvoke <com.google.android.gms.wearable.Asset: com.google.android.gms.wearable.Asset a(byte[])>($r13);
+
+     label10:
+        $r11 = new java.lang.StringBuilder;
+
+     label11:
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("/com/strava/activity_sync/");
+
+        $r10 = virtualinvoke $r9.<com.strava.data.UnsyncedActivity: java.lang.String getType()>();
+
+        $r11 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+
+        $r11 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/");
+
+        $l1 = virtualinvoke $r9.<com.strava.data.UnsyncedActivity: long getStartTimestamp()>();
+
+        $r11 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+
+        $r11 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/");
+
+        $r10 = virtualinvoke $r9.<com.strava.data.UnsyncedActivity: java.lang.String getGuid()>();
+
+        $r11 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+
+        $r10 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r15 = staticinvoke <com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest create(java.lang.String)>($r10);
+
+        virtualinvoke $r15.<com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest putAsset(java.lang.String,com.google.android.gms.wearable.Asset)>("data", $r14);
+
+        tmp28 = $r14;
+
+     label12:
+        $r15.<com.google.android.gms.wearable.PutDataRequest: long e> = 0L;
+
+        $r16 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.DataApi a>;
+
+     label13:
+        $r17 = interfaceinvoke $r16.<com.google.android.gms.wearable.DataApi: com.google.android.gms.common.api.PendingResult putDataItem(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.wearable.PutDataRequest)>($r5, $r15);
+
+        $r18 = virtualinvoke $r17.<com.google.android.gms.common.api.PendingResult: com.google.android.gms.common.api.Result await()>();
+
+     label14:
+        $r19 = (com.google.android.gms.wearable.DataApi$DataItemResult) $r18;
+
+     label15:
+        $r20 = interfaceinvoke $r19.<com.google.android.gms.wearable.DataApi$DataItemResult: com.google.android.gms.common.api.Status getStatus()>();
+
+        $z0 = virtualinvoke $r20.<com.google.android.gms.common.api.Status: boolean isSuccess()>();
+
+     label16:
+        if $z0 == 0 goto label22;
+
+        $r11 = new java.lang.StringBuilder;
+
+     label17:
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("deleting activity ");
+
+        $r10 = virtualinvoke $r9.<com.strava.data.UnsyncedActivity: java.lang.String getGuid()>();
+
+        virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+
+     label18:
+        $r3 = $r0.<com.strava.service.ActivitySyncService: com.strava.data.Repository a>;
+
+     label19:
+        $r10 = virtualinvoke $r9.<com.strava.data.UnsyncedActivity: java.lang.String getGuid()>();
+
+        interfaceinvoke $r3.<com.strava.data.Repository: void deleteUnsyncedActivity(java.lang.String)>($r10);
+
+     label20:
+        goto label03;
+
+     label21:
+        $r21 := @caughtexception;
+
+        $r10 = <com.strava.service.ActivitySyncService: java.lang.String b>;
+
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String,java.lang.Throwable)>($r10, "failed to marshall activity", $r21);
+
+        goto label03;
+
+     label22:
+        $r10 = <com.strava.service.ActivitySyncService: java.lang.String b>;
+
+        $r11 = new java.lang.StringBuilder;
+
+     label23:
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("error uploading activity ");
+
+        $r22 = virtualinvoke $r9.<com.strava.data.UnsyncedActivity: java.lang.String getGuid()>();
+
+        $r11 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r22);
+
+        $r22 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>($r10, $r22);
+
+     label24:
+        goto label03;
+
+     label25:
+        virtualinvoke $r5.<com.google.android.gms.common.api.GoogleApiClient: void disconnect()>();
+
+        return;
+
+        catch java.io.IOException from label05 to label06 with label21;
+        catch java.io.IOException from label07 to label08 with label21;
+        catch java.io.IOException from label09 to label10 with label21;
+        catch java.io.IOException from label11 to label12 with label21;
+        catch java.io.IOException from label13 to label14 with label21;
+        catch java.io.IOException from label15 to label16 with label21;
+        catch java.io.IOException from label17 to label18 with label21;
+        catch java.io.IOException from label19 to label20 with label21;
+        catch java.io.IOException from label23 to label24 with label21;
+    }
+
+    public android.os.IBinder onBind(android.content.Intent)
+    {
+        com.strava.service.ActivitySyncService this;
+        android.content.Intent parameter0;
+
+        this := @this: com.strava.service.ActivitySyncService;
+
+        parameter0 := @parameter0: android.content.Intent;
+
+        this.<com.strava.service.ActivitySyncService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        this.<com.strava.service.ActivitySyncService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        this.<com.strava.service.ActivitySyncService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        return parameter0;
+    }
+}

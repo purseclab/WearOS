@@ -1,0 +1,57 @@
+public final class bur extends java.lang.Object
+{
+
+    public static java.lang.Throwable a(com.google.android.gms.wearable.DataMap)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.io.ByteArrayInputStream $r1;
+        byte[] $r2;
+        java.io.ObjectInputStream $r3;
+        java.lang.Object $r4;
+        java.lang.Throwable $r5;
+        java.lang.ClassCastException $r6;
+        java.lang.ClassNotFoundException $r7;
+
+        $r0 := @parameter0: com.google.android.gms.wearable.DataMap;
+
+        if $r0 != null goto label1;
+
+        return null;
+
+     label1:
+        $r2 = virtualinvoke $r0.<com.google.android.gms.wearable.DataMap: byte[] getByteArray(java.lang.String)>("exception");
+
+        if $r2 == null goto label7;
+
+        $r1 = new java.io.ByteArrayInputStream;
+
+        specialinvoke $r1.<java.io.ByteArrayInputStream: void <init>(byte[])>($r2);
+
+        $r3 = new java.io.ObjectInputStream;
+
+        specialinvoke $r3.<java.io.ObjectInputStream: void <init>(java.io.InputStream)>($r1);
+
+     label2:
+        $r4 = virtualinvoke $r3.<java.io.ObjectInputStream: java.lang.Object readObject()>();
+
+     label3:
+        $r5 = (java.lang.Throwable) $r4;
+
+     label4:
+        return $r5;
+
+     label5:
+        $r6 := @caughtexception;
+
+        return null;
+
+     label6:
+        $r7 := @caughtexception;
+
+     label7:
+        return null;
+
+        catch java.lang.ClassCastException from label2 to label4 with label5;
+        catch java.lang.ClassNotFoundException from label2 to label3 with label6;
+    }
+}

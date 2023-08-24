@@ -1,0 +1,30 @@
+public interface  com.google.android.gms.wearable.DataApi extends java.lang.Object
+{
+    public static final java.lang.String ACTION_DATA_CHANGED;
+    public static final int FILTER_LITERAL;
+    public static final int FILTER_PREFIX;
+
+    public abstract com.google.android.gms.common.api.PendingResult addListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.DataApi$DataListener);
+
+    public abstract com.google.android.gms.common.api.PendingResult addListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.DataApi$DataListener, android.net.Uri, int);
+
+    public abstract com.google.android.gms.common.api.PendingResult deleteDataItems(com.google.android.gms.common.api.GoogleApiClient, android.net.Uri);
+
+    public abstract com.google.android.gms.common.api.PendingResult deleteDataItems(com.google.android.gms.common.api.GoogleApiClient, android.net.Uri, int);
+
+    public abstract com.google.android.gms.common.api.PendingResult getDataItem(com.google.android.gms.common.api.GoogleApiClient, android.net.Uri);
+
+    public abstract com.google.android.gms.common.api.PendingResult getDataItems(com.google.android.gms.common.api.GoogleApiClient);
+
+    public abstract com.google.android.gms.common.api.PendingResult getDataItems(com.google.android.gms.common.api.GoogleApiClient, android.net.Uri);
+
+    public abstract com.google.android.gms.common.api.PendingResult getDataItems(com.google.android.gms.common.api.GoogleApiClient, android.net.Uri, int);
+
+    public abstract com.google.android.gms.common.api.PendingResult getFdForAsset(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.Asset);
+
+    public abstract com.google.android.gms.common.api.PendingResult getFdForAsset(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.DataItemAsset);
+
+    public abstract com.google.android.gms.common.api.PendingResult putDataItem(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.PutDataRequest);
+
+    public abstract com.google.android.gms.common.api.PendingResult removeListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.DataApi$DataListener);
+}

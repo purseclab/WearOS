@@ -1,0 +1,2284 @@
+public class com.google.android.gms.wearable.DataMap extends java.lang.Object
+{
+    public static final java.lang.String TAG;
+    private final java.util.HashMap zzq;
+
+    public void <init>()
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.util.HashMap $r1;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r1 = new java.util.HashMap;
+
+        specialinvoke $r1.<java.util.HashMap: void <init>()>();
+
+        $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq> = $r1;
+
+        return;
+    }
+
+    public static java.util.ArrayList arrayListFromBundleArrayList(java.util.ArrayList)
+    {
+        java.util.ArrayList $r0, $r1;
+        int $i0, $i1;
+        java.lang.Object $r2;
+        android.os.Bundle $r3;
+        com.google.android.gms.wearable.DataMap $r4;
+
+        $r1 := @parameter0: java.util.ArrayList;
+
+        $r0 = new java.util.ArrayList;
+
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+
+        $i0 = virtualinvoke $r1.<java.util.ArrayList: int size()>();
+
+        $i1 = 0;
+
+     label1:
+        if $i1 >= $i0 goto label2;
+
+        $r2 = virtualinvoke $r1.<java.util.ArrayList: java.lang.Object get(int)>($i1);
+
+        $i1 = $i1 + 1;
+
+        $r3 = (android.os.Bundle) $r2;
+
+        $r4 = staticinvoke <com.google.android.gms.wearable.DataMap: com.google.android.gms.wearable.DataMap fromBundle(android.os.Bundle)>($r3);
+
+        virtualinvoke $r0.<java.util.ArrayList: boolean add(java.lang.Object)>($r4);
+
+        goto label1;
+
+     label2:
+        return $r0;
+    }
+
+    public static com.google.android.gms.wearable.DataMap fromBundle(android.os.Bundle)
+    {
+        android.os.Bundle $r0, $r20;
+        java.lang.Class $r1;
+        java.lang.ClassLoader $r2;
+        com.google.android.gms.wearable.DataMap $r3, $r21;
+        java.util.Set $r4;
+        java.util.Iterator $r5;
+        boolean $z0;
+        java.lang.Object $r6;
+        java.lang.String $r7, $r8;
+        java.lang.Integer $r9;
+        int $i0;
+        java.lang.Long $r10;
+        long $l1;
+        java.lang.Double $r11;
+        double $d0;
+        java.lang.Float $r12;
+        float $f0;
+        java.lang.Boolean $r13;
+        java.lang.Byte $r14;
+        byte $b2;
+        byte[] $r15;
+        java.lang.String[] $r16;
+        long[] $r17;
+        float[] $r18;
+        com.google.android.gms.wearable.Asset $r19;
+        java.util.ArrayList $r22;
+
+        $r0 := @parameter0: android.os.Bundle;
+
+        $r1 = class "Lcom/google/android/gms/wearable/Asset;";
+
+        $r2 = virtualinvoke $r1.<java.lang.Class: java.lang.ClassLoader getClassLoader()>();
+
+        virtualinvoke $r0.<android.os.Bundle: void setClassLoader(java.lang.ClassLoader)>($r2);
+
+        $r3 = new com.google.android.gms.wearable.DataMap;
+
+        specialinvoke $r3.<com.google.android.gms.wearable.DataMap: void <init>()>();
+
+        $r4 = virtualinvoke $r0.<android.os.Bundle: java.util.Set keySet()>();
+
+        $r5 = interfaceinvoke $r4.<java.util.Set: java.util.Iterator iterator()>();
+
+     label01:
+        $z0 = interfaceinvoke $r5.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label20;
+
+        $r6 = interfaceinvoke $r5.<java.util.Iterator: java.lang.Object next()>();
+
+        $r7 = (java.lang.String) $r6;
+
+        $r6 = virtualinvoke $r0.<android.os.Bundle: java.lang.Object get(java.lang.String)>($r7);
+
+        $z0 = $r6 instanceof java.lang.String;
+
+        if $z0 == 0 goto label02;
+
+        $r8 = (java.lang.String) $r6;
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putString(java.lang.String,java.lang.String)>($r7, $r8);
+
+        goto label01;
+
+     label02:
+        $z0 = $r6 instanceof java.lang.Integer;
+
+        if $z0 == 0 goto label03;
+
+        $r9 = (java.lang.Integer) $r6;
+
+        $i0 = virtualinvoke $r9.<java.lang.Integer: int intValue()>();
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putInt(java.lang.String,int)>($r7, $i0);
+
+        goto label01;
+
+     label03:
+        $z0 = $r6 instanceof java.lang.Long;
+
+        if $z0 == 0 goto label04;
+
+        $r10 = (java.lang.Long) $r6;
+
+        $l1 = virtualinvoke $r10.<java.lang.Long: long longValue()>();
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putLong(java.lang.String,long)>($r7, $l1);
+
+        goto label01;
+
+     label04:
+        $z0 = $r6 instanceof java.lang.Double;
+
+        if $z0 == 0 goto label05;
+
+        $r11 = (java.lang.Double) $r6;
+
+        $d0 = virtualinvoke $r11.<java.lang.Double: double doubleValue()>();
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putDouble(java.lang.String,double)>($r7, $d0);
+
+        goto label01;
+
+     label05:
+        $z0 = $r6 instanceof java.lang.Float;
+
+        if $z0 == 0 goto label06;
+
+        $r12 = (java.lang.Float) $r6;
+
+        $f0 = virtualinvoke $r12.<java.lang.Float: float floatValue()>();
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putFloat(java.lang.String,float)>($r7, $f0);
+
+        goto label01;
+
+     label06:
+        $z0 = $r6 instanceof java.lang.Boolean;
+
+        if $z0 == 0 goto label07;
+
+        $r13 = (java.lang.Boolean) $r6;
+
+        $z0 = virtualinvoke $r13.<java.lang.Boolean: boolean booleanValue()>();
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putBoolean(java.lang.String,boolean)>($r7, $z0);
+
+        goto label01;
+
+     label07:
+        $z0 = $r6 instanceof java.lang.Byte;
+
+        if $z0 == 0 goto label08;
+
+        $r14 = (java.lang.Byte) $r6;
+
+        $b2 = virtualinvoke $r14.<java.lang.Byte: byte byteValue()>();
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putByte(java.lang.String,byte)>($r7, $b2);
+
+        goto label01;
+
+     label08:
+        $z0 = $r6 instanceof byte[];
+
+        if $z0 == 0 goto label09;
+
+        $r15 = (byte[]) $r6;
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putByteArray(java.lang.String,byte[])>($r7, $r15);
+
+        goto label01;
+
+     label09:
+        $z0 = $r6 instanceof java.lang.String[];
+
+        if $z0 == 0 goto label10;
+
+        $r16 = (java.lang.String[]) $r6;
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putStringArray(java.lang.String,java.lang.String[])>($r7, $r16);
+
+        goto label01;
+
+     label10:
+        $z0 = $r6 instanceof long[];
+
+        if $z0 == 0 goto label11;
+
+        $r17 = (long[]) $r6;
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putLongArray(java.lang.String,long[])>($r7, $r17);
+
+        goto label01;
+
+     label11:
+        $z0 = $r6 instanceof float[];
+
+        if $z0 == 0 goto label12;
+
+        $r18 = (float[]) $r6;
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putFloatArray(java.lang.String,float[])>($r7, $r18);
+
+        goto label01;
+
+     label12:
+        $z0 = $r6 instanceof com.google.android.gms.wearable.Asset;
+
+        if $z0 == 0 goto label13;
+
+        $r19 = (com.google.android.gms.wearable.Asset) $r6;
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putAsset(java.lang.String,com.google.android.gms.wearable.Asset)>($r7, $r19);
+
+        goto label01;
+
+     label13:
+        $z0 = $r6 instanceof android.os.Bundle;
+
+        if $z0 == 0 goto label14;
+
+        $r20 = (android.os.Bundle) $r6;
+
+        $r21 = staticinvoke <com.google.android.gms.wearable.DataMap: com.google.android.gms.wearable.DataMap fromBundle(android.os.Bundle)>($r20);
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putDataMap(java.lang.String,com.google.android.gms.wearable.DataMap)>($r7, $r21);
+
+        goto label01;
+
+     label14:
+        $z0 = $r6 instanceof java.util.ArrayList;
+
+        if $z0 == 0 goto label01;
+
+        $r22 = (java.util.ArrayList) $r6;
+
+        $i0 = staticinvoke <com.google.android.gms.wearable.DataMap: int zza(java.util.ArrayList)>($r22);
+
+        if $i0 == 0 goto label19;
+
+        if $i0 == 1 goto label18;
+
+        if $i0 == 2 goto label17;
+
+        if $i0 == 3 goto label16;
+
+        if $i0 == 5 goto label15;
+
+        goto label01;
+
+     label15:
+        $r22 = staticinvoke <com.google.android.gms.wearable.DataMap: java.util.ArrayList arrayListFromBundleArrayList(java.util.ArrayList)>($r22);
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putDataMapArrayList(java.lang.String,java.util.ArrayList)>($r7, $r22);
+
+        goto label01;
+
+     label16:
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putStringArrayList(java.lang.String,java.util.ArrayList)>($r7, $r22);
+
+        goto label01;
+
+     label17:
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putIntegerArrayList(java.lang.String,java.util.ArrayList)>($r7, $r22);
+
+        goto label01;
+
+     label18:
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putStringArrayList(java.lang.String,java.util.ArrayList)>($r7, $r22);
+
+        goto label01;
+
+     label19:
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putStringArrayList(java.lang.String,java.util.ArrayList)>($r7, $r22);
+
+        goto label01;
+
+     label20:
+        return $r3;
+    }
+
+    public static com.google.android.gms.wearable.DataMap fromByteArray(byte[])
+    {
+        byte[] $r0;
+        com.google.android.gms.internal.wearable.zzf $r1;
+        com.google.android.gms.internal.wearable.zzg $r2;
+        java.util.ArrayList $r3;
+        com.google.android.gms.wearable.DataMap $r4;
+        com.google.android.gms.internal.wearable.zzs $r5;
+        java.lang.IllegalArgumentException $r6;
+
+        $r0 := @parameter0: byte[];
+
+        $r1 = new com.google.android.gms.internal.wearable.zzf;
+
+     label1:
+        $r2 = staticinvoke <com.google.android.gms.internal.wearable.zzg: com.google.android.gms.internal.wearable.zzg zza(byte[])>($r0);
+
+     label2:
+        $r3 = new java.util.ArrayList;
+
+     label3:
+        specialinvoke $r3.<java.util.ArrayList: void <init>()>();
+
+        specialinvoke $r1.<com.google.android.gms.internal.wearable.zzf: void <init>(com.google.android.gms.internal.wearable.zzg,java.util.List)>($r2, $r3);
+
+        $r4 = staticinvoke <com.google.android.gms.internal.wearable.zze: com.google.android.gms.wearable.DataMap zza(com.google.android.gms.internal.wearable.zzf)>($r1);
+
+     label4:
+        return $r4;
+
+     label5:
+        $r5 := @caughtexception;
+
+        $r6 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r6.<java.lang.IllegalArgumentException: void <init>(java.lang.String,java.lang.Throwable)>("Unable to convert data", $r5);
+
+        throw $r6;
+
+        catch com.google.android.gms.internal.wearable.zzs from label1 to label2 with label5;
+        catch com.google.android.gms.internal.wearable.zzs from label3 to label4 with label5;
+    }
+
+    private static int zza(java.util.ArrayList)
+    {
+        java.util.ArrayList $r0;
+        boolean $z0;
+        int $i0, $i1;
+        java.lang.Object $r1;
+
+        $r0 := @parameter0: java.util.ArrayList;
+
+        $z0 = virtualinvoke $r0.<java.util.ArrayList: boolean isEmpty()>();
+
+        $i0 = 0;
+
+        if $z0 == 0 goto label1;
+
+        return 0;
+
+     label1:
+        $i1 = virtualinvoke $r0.<java.util.ArrayList: int size()>();
+
+     label2:
+        if $i0 >= $i1 goto label6;
+
+        $r1 = virtualinvoke $r0.<java.util.ArrayList: java.lang.Object get(int)>($i0);
+
+        $i0 = $i0 + 1;
+
+        if $r1 == null goto label2;
+
+        $z0 = $r1 instanceof java.lang.Integer;
+
+        if $z0 == 0 goto label3;
+
+        return 2;
+
+     label3:
+        $z0 = $r1 instanceof java.lang.String;
+
+        if $z0 == 0 goto label4;
+
+        return 3;
+
+     label4:
+        $z0 = $r1 instanceof com.google.android.gms.wearable.DataMap;
+
+        if $z0 == 0 goto label5;
+
+        return 4;
+
+     label5:
+        $z0 = $r1 instanceof android.os.Bundle;
+
+        if $z0 == 0 goto label2;
+
+        return 5;
+
+     label6:
+        return 1;
+    }
+
+    private static void zza(java.lang.String, java.lang.Object, java.lang.String, java.lang.ClassCastException)
+    {
+        java.lang.String $r0, $r2;
+        java.lang.Object $r1;
+        java.lang.ClassCastException $r3;
+
+        $r0 := @parameter0: java.lang.String;
+
+        $r1 := @parameter1: java.lang.Object;
+
+        $r2 := @parameter2: java.lang.String;
+
+        $r3 := @parameter3: java.lang.ClassCastException;
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.Object,java.lang.ClassCastException)>($r0, $r1, $r2, "<null>", $r3);
+
+        return;
+    }
+
+    private static void zza(java.lang.String, java.lang.Object, java.lang.String, java.lang.Object, java.lang.ClassCastException)
+    {
+        java.lang.String $r0, $r4;
+        java.lang.Object $r1, $r5;
+        java.lang.ClassCastException $r2;
+        java.lang.StringBuilder $r3;
+        java.lang.Class $r6;
+
+        $r4 := @parameter0: java.lang.String;
+
+        $r5 := @parameter1: java.lang.Object;
+
+        $r0 := @parameter2: java.lang.String;
+
+        $r1 := @parameter3: java.lang.Object;
+
+        $r2 := @parameter4: java.lang.ClassCastException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Key ");
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" expected ");
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r0);
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" but value was a ");
+
+        $r6 = virtualinvoke $r5.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r4 = virtualinvoke $r6.<java.lang.Class: java.lang.String getName()>();
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".  The default value ");
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r1);
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" was returned.");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <android.util.Log: int w(java.lang.String,java.lang.String)>("DataMap", $r4);
+
+        staticinvoke <android.util.Log: int w(java.lang.String,java.lang.String,java.lang.Throwable)>("DataMap", "Attempt to cast generated internal exception:", $r2);
+
+        return;
+    }
+
+    public void clear()
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.util.HashMap $r1;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        virtualinvoke $r1.<java.util.HashMap: void clear()>();
+
+        return;
+    }
+
+    public boolean containsKey(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.util.HashMap $r1;
+        boolean $z0;
+        java.lang.String $r2;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r2 := @parameter0: java.lang.String;
+
+        $r1 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $z0 = virtualinvoke $r1.<java.util.HashMap: boolean containsKey(java.lang.Object)>($r2);
+
+        return $z0;
+    }
+
+    public boolean equals(java.lang.Object)
+    {
+        com.google.android.gms.wearable.DataMap $r0, $r2;
+        java.lang.Object $r1, $r6;
+        boolean $z0;
+        int $i0, $i1;
+        java.util.Set $r3;
+        java.util.Iterator $r4;
+        java.lang.String $r5, $r9;
+        com.google.android.gms.wearable.Asset $r7, $r8;
+        byte[] $r10, $r11;
+        java.lang.String[] $r12, $r13;
+        long[] $r14, $r15;
+        float[] $r16, $r17;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $z0 = $r1 instanceof com.google.android.gms.wearable.DataMap;
+
+        if $z0 != 0 goto label01;
+
+        return 0;
+
+     label01:
+        $r2 = (com.google.android.gms.wearable.DataMap) $r1;
+
+        $i0 = virtualinvoke $r0.<com.google.android.gms.wearable.DataMap: int size()>();
+
+        $i1 = virtualinvoke $r2.<com.google.android.gms.wearable.DataMap: int size()>();
+
+        if $i0 == $i1 goto label02;
+
+        return 0;
+
+     label02:
+        $r3 = virtualinvoke $r0.<com.google.android.gms.wearable.DataMap: java.util.Set keySet()>();
+
+        $r4 = interfaceinvoke $r3.<java.util.Set: java.util.Iterator iterator()>();
+
+     label03:
+        $z0 = interfaceinvoke $r4.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label21;
+
+        $r1 = interfaceinvoke $r4.<java.util.Iterator: java.lang.Object next()>();
+
+        $r5 = (java.lang.String) $r1;
+
+        $r1 = virtualinvoke $r0.<com.google.android.gms.wearable.DataMap: java.lang.Object get(java.lang.String)>($r5);
+
+        $r6 = virtualinvoke $r2.<com.google.android.gms.wearable.DataMap: java.lang.Object get(java.lang.String)>($r5);
+
+        $z0 = $r1 instanceof com.google.android.gms.wearable.Asset;
+
+        if $z0 == 0 goto label10;
+
+        $z0 = $r6 instanceof com.google.android.gms.wearable.Asset;
+
+        if $z0 != 0 goto label04;
+
+        return 0;
+
+     label04:
+        $r7 = (com.google.android.gms.wearable.Asset) $r1;
+
+        $r8 = (com.google.android.gms.wearable.Asset) $r6;
+
+        if $r7 == null goto label07;
+
+        if $r8 != null goto label05;
+
+        goto label07;
+
+     label05:
+        $r5 = virtualinvoke $r7.<com.google.android.gms.wearable.Asset: java.lang.String getDigest()>();
+
+        $z0 = staticinvoke <android.text.TextUtils: boolean isEmpty(java.lang.CharSequence)>($r5);
+
+        if $z0 != 0 goto label06;
+
+        $r5 = virtualinvoke $r7.<com.google.android.gms.wearable.Asset: java.lang.String getDigest()>();
+
+        $r9 = virtualinvoke $r8.<com.google.android.gms.wearable.Asset: java.lang.String getDigest()>();
+
+        $z0 = virtualinvoke $r5.<java.lang.String: boolean equals(java.lang.Object)>($r9);
+
+        goto label09;
+
+     label06:
+        $r10 = virtualinvoke $r7.<com.google.android.gms.wearable.Asset: byte[] getData()>();
+
+        $r11 = virtualinvoke $r8.<com.google.android.gms.wearable.Asset: byte[] getData()>();
+
+        $z0 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r10, $r11);
+
+        goto label09;
+
+     label07:
+        if $r7 != $r8 goto label08;
+
+        $z0 = 1;
+
+        goto label09;
+
+     label08:
+        $z0 = 0;
+
+     label09:
+        if $z0 != 0 goto label03;
+
+        return 0;
+
+     label10:
+        $z0 = $r1 instanceof java.lang.String[];
+
+        if $z0 == 0 goto label12;
+
+        $z0 = $r6 instanceof java.lang.String[];
+
+        if $z0 != 0 goto label11;
+
+        return 0;
+
+     label11:
+        $r12 = (java.lang.String[]) $r1;
+
+        $r13 = (java.lang.String[]) $r6;
+
+        $z0 = staticinvoke <java.util.Arrays: boolean equals(java.lang.Object[],java.lang.Object[])>($r12, $r13);
+
+        if $z0 != 0 goto label03;
+
+        return 0;
+
+     label12:
+        $z0 = $r1 instanceof long[];
+
+        if $z0 == 0 goto label14;
+
+        $z0 = $r6 instanceof long[];
+
+        if $z0 != 0 goto label13;
+
+        return 0;
+
+     label13:
+        $r14 = (long[]) $r1;
+
+        $r15 = (long[]) $r6;
+
+        $z0 = staticinvoke <java.util.Arrays: boolean equals(long[],long[])>($r14, $r15);
+
+        if $z0 != 0 goto label03;
+
+        return 0;
+
+     label14:
+        $z0 = $r1 instanceof float[];
+
+        if $z0 == 0 goto label16;
+
+        $z0 = $r6 instanceof float[];
+
+        if $z0 != 0 goto label15;
+
+        return 0;
+
+     label15:
+        $r16 = (float[]) $r1;
+
+        $r17 = (float[]) $r6;
+
+        $z0 = staticinvoke <java.util.Arrays: boolean equals(float[],float[])>($r16, $r17);
+
+        if $z0 != 0 goto label03;
+
+        return 0;
+
+     label16:
+        $z0 = $r1 instanceof byte[];
+
+        if $z0 == 0 goto label18;
+
+        $z0 = $r6 instanceof byte[];
+
+        if $z0 != 0 goto label17;
+
+        return 0;
+
+     label17:
+        $r10 = (byte[]) $r1;
+
+        $r11 = (byte[]) $r6;
+
+        $z0 = staticinvoke <java.util.Arrays: boolean equals(byte[],byte[])>($r10, $r11);
+
+        if $z0 != 0 goto label03;
+
+        return 0;
+
+     label18:
+        if $r1 == null goto label20;
+
+        if $r6 != null goto label19;
+
+        goto label20;
+
+     label19:
+        $z0 = virtualinvoke $r1.<java.lang.Object: boolean equals(java.lang.Object)>($r6);
+
+        if $z0 != 0 goto label03;
+
+        return 0;
+
+     label20:
+        if $r1 == $r6 goto label21;
+
+        return 0;
+
+     label21:
+        return 1;
+    }
+
+    public java.lang.Object get(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.util.HashMap $r1;
+        java.lang.Object $r2;
+        java.lang.String $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r3 := @parameter0: java.lang.String;
+
+        $r1 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r2 = virtualinvoke $r1.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r3);
+
+        return $r2;
+    }
+
+    public com.google.android.gms.wearable.Asset getAsset(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.lang.ClassCastException $r2;
+        java.lang.Object $r3;
+        java.util.HashMap $r4;
+        com.google.android.gms.wearable.Asset $r5;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r4 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r4.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return null;
+
+     label1:
+        $r5 = (com.google.android.gms.wearable.Asset) $r3;
+
+     label2:
+        return $r5;
+
+     label3:
+        $r2 := @caughtexception;
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.ClassCastException)>($r1, $r3, "Asset", $r2);
+
+        return null;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public boolean getBoolean(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        boolean $z0;
+        java.lang.String $r1;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $z0 = virtualinvoke $r0.<com.google.android.gms.wearable.DataMap: boolean getBoolean(java.lang.String,boolean)>($r1, 0);
+
+        return $z0;
+    }
+
+    public boolean getBoolean(java.lang.String, boolean)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        boolean $z0, $z1;
+        java.lang.String $r1;
+        java.util.HashMap $r2;
+        java.lang.Object $r3;
+        java.lang.Boolean $r4;
+        java.lang.ClassCastException $r5;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $z0 := @parameter1: boolean;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return $z0;
+
+     label1:
+        $r4 = (java.lang.Boolean) $r3;
+
+        $z1 = virtualinvoke $r4.<java.lang.Boolean: boolean booleanValue()>();
+
+     label2:
+        return $z1;
+
+     label3:
+        $r5 := @caughtexception;
+
+        $r4 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z0);
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.Object,java.lang.ClassCastException)>($r1, $r3, "Boolean", $r4, $r5);
+
+        return $z0;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public byte getByte(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        byte $b0;
+        java.lang.String $r1;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $b0 = virtualinvoke $r0.<com.google.android.gms.wearable.DataMap: byte getByte(java.lang.String,byte)>($r1, 0);
+
+        return $b0;
+    }
+
+    public byte getByte(java.lang.String, byte)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        byte $b0, $b1;
+        java.lang.String $r1;
+        java.util.HashMap $r2;
+        java.lang.Object $r3;
+        java.lang.Byte $r4;
+        java.lang.ClassCastException $r5;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $b0 := @parameter1: byte;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return $b0;
+
+     label1:
+        $r4 = (java.lang.Byte) $r3;
+
+        $b1 = virtualinvoke $r4.<java.lang.Byte: byte byteValue()>();
+
+     label2:
+        return $b1;
+
+     label3:
+        $r5 := @caughtexception;
+
+        $r4 = staticinvoke <java.lang.Byte: java.lang.Byte valueOf(byte)>($b0);
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.Object,java.lang.ClassCastException)>($r1, $r3, "Byte", $r4, $r5);
+
+        return $b0;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public byte[] getByteArray(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.lang.ClassCastException $r2;
+        java.lang.Object $r3;
+        java.util.HashMap $r4;
+        byte[] $r5;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r4 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r4.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return null;
+
+     label1:
+        $r5 = (byte[]) $r3;
+
+     label2:
+        return $r5;
+
+     label3:
+        $r2 := @caughtexception;
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.ClassCastException)>($r1, $r3, "byte[]", $r2);
+
+        return null;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public com.google.android.gms.wearable.DataMap getDataMap(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.lang.ClassCastException $r2;
+        java.lang.Object $r3;
+        java.util.HashMap $r4;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r4 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r4.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return null;
+
+     label1:
+        $r0 = (com.google.android.gms.wearable.DataMap) $r3;
+
+     label2:
+        return $r0;
+
+     label3:
+        $r2 := @caughtexception;
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.ClassCastException)>($r1, $r3, "DataMap", $r2);
+
+        return null;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public java.util.ArrayList getDataMapArrayList(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.lang.ClassCastException $r2;
+        java.lang.Object $r3;
+        java.util.HashMap $r4;
+        java.util.ArrayList $r5;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r4 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r4.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return null;
+
+     label1:
+        $r5 = (java.util.ArrayList) $r3;
+
+     label2:
+        return $r5;
+
+     label3:
+        $r2 := @caughtexception;
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.ClassCastException)>($r1, $r3, "ArrayList<DataMap>", $r2);
+
+        return null;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public double getDouble(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        double $d0;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $d0 = virtualinvoke $r0.<com.google.android.gms.wearable.DataMap: double getDouble(java.lang.String,double)>($r1, 0.0);
+
+        return $d0;
+    }
+
+    public double getDouble(java.lang.String, double)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        double $d0, $d1;
+        java.lang.String $r1;
+        java.util.HashMap $r2;
+        java.lang.Object $r3;
+        java.lang.Double $r4;
+        java.lang.ClassCastException $r5;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $d0 := @parameter1: double;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return $d0;
+
+     label1:
+        $r4 = (java.lang.Double) $r3;
+
+        $d1 = virtualinvoke $r4.<java.lang.Double: double doubleValue()>();
+
+     label2:
+        return $d1;
+
+     label3:
+        $r5 := @caughtexception;
+
+        $r4 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d0);
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.Object,java.lang.ClassCastException)>($r1, $r3, "Double", $r4, $r5);
+
+        return $d0;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public float getFloat(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        float $f0;
+        java.lang.String $r1;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $f0 = virtualinvoke $r0.<com.google.android.gms.wearable.DataMap: float getFloat(java.lang.String,float)>($r1, 0.0F);
+
+        return $f0;
+    }
+
+    public float getFloat(java.lang.String, float)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        float $f0, $f1;
+        java.lang.String $r1;
+        java.util.HashMap $r2;
+        java.lang.Object $r3;
+        java.lang.Float $r4;
+        java.lang.ClassCastException $r5;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $f0 := @parameter1: float;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return $f0;
+
+     label1:
+        $r4 = (java.lang.Float) $r3;
+
+        $f1 = virtualinvoke $r4.<java.lang.Float: float floatValue()>();
+
+     label2:
+        return $f1;
+
+     label3:
+        $r5 := @caughtexception;
+
+        $r4 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f0);
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.Object,java.lang.ClassCastException)>($r1, $r3, "Float", $r4, $r5);
+
+        return $f0;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public float[] getFloatArray(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.lang.ClassCastException $r2;
+        java.lang.Object $r3;
+        java.util.HashMap $r4;
+        float[] $r5;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r4 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r4.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return null;
+
+     label1:
+        $r5 = (float[]) $r3;
+
+     label2:
+        return $r5;
+
+     label3:
+        $r2 := @caughtexception;
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.ClassCastException)>($r1, $r3, "float[]", $r2);
+
+        return null;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public int getInt(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        int $i0;
+        java.lang.String $r1;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $i0 = virtualinvoke $r0.<com.google.android.gms.wearable.DataMap: int getInt(java.lang.String,int)>($r1, 0);
+
+        return $i0;
+    }
+
+    public int getInt(java.lang.String, int)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        int $i0, $i1;
+        java.lang.String $r1;
+        java.util.HashMap $r2;
+        java.lang.Object $r3;
+        java.lang.Integer $r4;
+        java.lang.ClassCastException $r5;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $i0 := @parameter1: int;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return $i0;
+
+     label1:
+        $r4 = (java.lang.Integer) $r3;
+
+        $i1 = virtualinvoke $r4.<java.lang.Integer: int intValue()>();
+
+     label2:
+        return $i1;
+
+     label3:
+        $r5 := @caughtexception;
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.ClassCastException)>($r1, $r3, "Integer", $r5);
+
+        return $i0;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public java.util.ArrayList getIntegerArrayList(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.lang.ClassCastException $r2;
+        java.lang.Object $r3;
+        java.util.HashMap $r4;
+        java.util.ArrayList $r5;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r4 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r4.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return null;
+
+     label1:
+        $r5 = (java.util.ArrayList) $r3;
+
+     label2:
+        return $r5;
+
+     label3:
+        $r2 := @caughtexception;
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.ClassCastException)>($r1, $r3, "ArrayList<Integer>", $r2);
+
+        return null;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public long getLong(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        long $l0;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $l0 = virtualinvoke $r0.<com.google.android.gms.wearable.DataMap: long getLong(java.lang.String,long)>($r1, 0L);
+
+        return $l0;
+    }
+
+    public long getLong(java.lang.String, long)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        long $l0, $l1;
+        java.lang.String $r1;
+        java.util.HashMap $r2;
+        java.lang.Object $r3;
+        java.lang.Long $r4;
+        java.lang.ClassCastException $r5;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $l0 := @parameter1: long;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return $l0;
+
+     label1:
+        $r4 = (java.lang.Long) $r3;
+
+        $l1 = virtualinvoke $r4.<java.lang.Long: long longValue()>();
+
+     label2:
+        return $l1;
+
+     label3:
+        $r5 := @caughtexception;
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.ClassCastException)>($r1, $r3, "long", $r5);
+
+        return $l0;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public long[] getLongArray(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.lang.ClassCastException $r2;
+        java.lang.Object $r3;
+        java.util.HashMap $r4;
+        long[] $r5;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r4 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r4.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return null;
+
+     label1:
+        $r5 = (long[]) $r3;
+
+     label2:
+        return $r5;
+
+     label3:
+        $r2 := @caughtexception;
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.ClassCastException)>($r1, $r3, "long[]", $r2);
+
+        return null;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public java.lang.String getString(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1, $r5;
+        java.lang.ClassCastException $r2;
+        java.lang.Object $r3;
+        java.util.HashMap $r4;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r4 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r4.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return null;
+
+     label1:
+        $r5 = (java.lang.String) $r3;
+
+     label2:
+        return $r5;
+
+     label3:
+        $r2 := @caughtexception;
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.ClassCastException)>($r1, $r3, "String", $r2);
+
+        return null;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public java.lang.String getString(java.lang.String, java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1, $r2;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r2 := @parameter0: java.lang.String;
+
+        $r1 := @parameter1: java.lang.String;
+
+        $r2 = virtualinvoke $r0.<com.google.android.gms.wearable.DataMap: java.lang.String getString(java.lang.String)>($r2);
+
+        if $r2 != null goto label1;
+
+        return $r1;
+
+     label1:
+        return $r2;
+    }
+
+    public java.lang.String[] getStringArray(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.lang.ClassCastException $r2;
+        java.lang.Object $r3;
+        java.util.HashMap $r4;
+        java.lang.String[] $r5;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r4 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r4.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return null;
+
+     label1:
+        $r5 = (java.lang.String[]) $r3;
+
+     label2:
+        return $r5;
+
+     label3:
+        $r2 := @caughtexception;
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.ClassCastException)>($r1, $r3, "String[]", $r2);
+
+        return null;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public java.util.ArrayList getStringArrayList(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.lang.ClassCastException $r2;
+        java.lang.Object $r3;
+        java.util.HashMap $r4;
+        java.util.ArrayList $r5;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r4 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r4.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r1);
+
+        if $r3 != null goto label1;
+
+        return null;
+
+     label1:
+        $r5 = (java.util.ArrayList) $r3;
+
+     label2:
+        return $r5;
+
+     label3:
+        $r2 := @caughtexception;
+
+        staticinvoke <com.google.android.gms.wearable.DataMap: void zza(java.lang.String,java.lang.Object,java.lang.String,java.lang.ClassCastException)>($r1, $r3, "ArrayList<String>", $r2);
+
+        return null;
+
+        catch java.lang.ClassCastException from label1 to label2 with label3;
+    }
+
+    public int hashCode()
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        int $i0;
+        java.util.HashMap $r1;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $i0 = virtualinvoke $r1.<java.util.HashMap: int hashCode()>();
+
+        $i0 = $i0 * 29;
+
+        return $i0;
+    }
+
+    public boolean isEmpty()
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        boolean $z0;
+        java.util.HashMap $r1;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $z0 = virtualinvoke $r1.<java.util.HashMap: boolean isEmpty()>();
+
+        return $z0;
+    }
+
+    public java.util.Set keySet()
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.util.Set $r1;
+        java.util.HashMap $r2;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r1 = virtualinvoke $r2.<java.util.HashMap: java.util.Set keySet()>();
+
+        return $r1;
+    }
+
+    public void putAll(com.google.android.gms.wearable.DataMap)
+    {
+        com.google.android.gms.wearable.DataMap $r0, $r1;
+        java.util.HashMap $r2;
+        java.util.Set $r3;
+        java.util.Iterator $r4;
+        boolean $z0;
+        java.lang.Object $r5;
+        java.lang.String $r6;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: com.google.android.gms.wearable.DataMap;
+
+        $r3 = virtualinvoke $r1.<com.google.android.gms.wearable.DataMap: java.util.Set keySet()>();
+
+        $r4 = interfaceinvoke $r3.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r4.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r5 = interfaceinvoke $r4.<java.util.Iterator: java.lang.Object next()>();
+
+        $r6 = (java.lang.String) $r5;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r5 = virtualinvoke $r1.<com.google.android.gms.wearable.DataMap: java.lang.Object get(java.lang.String)>($r6);
+
+        virtualinvoke $r2.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r6, $r5);
+
+        goto label1;
+
+     label2:
+        return;
+    }
+
+    public void putAsset(java.lang.String, com.google.android.gms.wearable.Asset)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        com.google.android.gms.wearable.Asset $r2;
+        java.util.HashMap $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 := @parameter1: com.google.android.gms.wearable.Asset;
+
+        $r3 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        virtualinvoke $r3.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        return;
+    }
+
+    public void putBoolean(java.lang.String, boolean)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.util.HashMap $r2;
+        java.lang.Boolean $r3;
+        boolean $z0;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $z0 := @parameter1: boolean;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z0);
+
+        virtualinvoke $r2.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r3);
+
+        return;
+    }
+
+    public void putByte(java.lang.String, byte)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.util.HashMap $r2;
+        java.lang.Byte $r3;
+        byte $b0;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $b0 := @parameter1: byte;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = staticinvoke <java.lang.Byte: java.lang.Byte valueOf(byte)>($b0);
+
+        virtualinvoke $r2.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r3);
+
+        return;
+    }
+
+    public void putByteArray(java.lang.String, byte[])
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        byte[] $r2;
+        java.util.HashMap $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 := @parameter1: byte[];
+
+        $r3 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        virtualinvoke $r3.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        return;
+    }
+
+    public void putDataMap(java.lang.String, com.google.android.gms.wearable.DataMap)
+    {
+        com.google.android.gms.wearable.DataMap $r0, $r2;
+        java.lang.String $r1;
+        java.util.HashMap $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 := @parameter1: com.google.android.gms.wearable.DataMap;
+
+        $r3 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        virtualinvoke $r3.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        return;
+    }
+
+    public void putDataMapArrayList(java.lang.String, java.util.ArrayList)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.util.ArrayList $r2;
+        java.util.HashMap $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 := @parameter1: java.util.ArrayList;
+
+        $r3 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        virtualinvoke $r3.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        return;
+    }
+
+    public void putDouble(java.lang.String, double)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.util.HashMap $r2;
+        java.lang.Double $r3;
+        double $d0;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $d0 := @parameter1: double;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d0);
+
+        virtualinvoke $r2.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r3);
+
+        return;
+    }
+
+    public void putFloat(java.lang.String, float)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.util.HashMap $r2;
+        java.lang.Float $r3;
+        float $f0;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $f0 := @parameter1: float;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = staticinvoke <java.lang.Float: java.lang.Float valueOf(float)>($f0);
+
+        virtualinvoke $r2.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r3);
+
+        return;
+    }
+
+    public void putFloatArray(java.lang.String, float[])
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        float[] $r2;
+        java.util.HashMap $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 := @parameter1: float[];
+
+        $r3 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        virtualinvoke $r3.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        return;
+    }
+
+    public void putInt(java.lang.String, int)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.util.HashMap $r2;
+        java.lang.Integer $r3;
+        int $i0;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $i0 := @parameter1: int;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+
+        virtualinvoke $r2.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r3);
+
+        return;
+    }
+
+    public void putIntegerArrayList(java.lang.String, java.util.ArrayList)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.util.ArrayList $r2;
+        java.util.HashMap $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 := @parameter1: java.util.ArrayList;
+
+        $r3 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        virtualinvoke $r3.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        return;
+    }
+
+    public void putLong(java.lang.String, long)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.util.HashMap $r2;
+        java.lang.Long $r3;
+        long $l0;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $l0 := @parameter1: long;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>($l0);
+
+        virtualinvoke $r2.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r3);
+
+        return;
+    }
+
+    public void putLongArray(java.lang.String, long[])
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        long[] $r2;
+        java.util.HashMap $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 := @parameter1: long[];
+
+        $r3 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        virtualinvoke $r3.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        return;
+    }
+
+    public void putString(java.lang.String, java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1, $r2;
+        java.util.HashMap $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 := @parameter1: java.lang.String;
+
+        $r3 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        virtualinvoke $r3.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        return;
+    }
+
+    public void putStringArray(java.lang.String, java.lang.String[])
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.lang.String[] $r2;
+        java.util.HashMap $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 := @parameter1: java.lang.String[];
+
+        $r3 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        virtualinvoke $r3.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        return;
+    }
+
+    public void putStringArrayList(java.lang.String, java.util.ArrayList)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.util.ArrayList $r2;
+        java.util.HashMap $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 := @parameter1: java.util.ArrayList;
+
+        $r3 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        virtualinvoke $r3.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r1, $r2);
+
+        return;
+    }
+
+    public java.lang.Object remove(java.lang.String)
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.util.HashMap $r1;
+        java.lang.Object $r2;
+        java.lang.String $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r3 := @parameter0: java.lang.String;
+
+        $r1 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r2 = virtualinvoke $r1.<java.util.HashMap: java.lang.Object remove(java.lang.Object)>($r3);
+
+        return $r2;
+    }
+
+    public int size()
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        int $i0;
+        java.util.HashMap $r1;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $i0 = virtualinvoke $r1.<java.util.HashMap: int size()>();
+
+        return $i0;
+    }
+
+    public android.os.Bundle toBundle()
+    {
+        com.google.android.gms.wearable.DataMap $r0, $r19;
+        android.os.Bundle $r1, $r20;
+        java.util.HashMap $r2;
+        java.util.Set $r3;
+        java.util.Iterator $r4;
+        boolean $z0;
+        java.lang.Object $r5;
+        java.lang.String $r6, $r7;
+        java.lang.Integer $r8;
+        int $i0, $i3;
+        java.lang.Long $r9;
+        long $l1;
+        java.lang.Double $r10;
+        double $d0;
+        java.lang.Float $r11;
+        float $f0;
+        java.lang.Boolean $r12;
+        java.lang.Byte $r13;
+        byte $b2;
+        byte[] $r14;
+        java.lang.String[] $r15;
+        long[] $r16;
+        float[] $r17;
+        com.google.android.gms.wearable.Asset $r18;
+        java.util.ArrayList $r21, $r22;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 = new android.os.Bundle;
+
+        specialinvoke $r1.<android.os.Bundle: void <init>()>();
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r3 = virtualinvoke $r2.<java.util.HashMap: java.util.Set keySet()>();
+
+        $r4 = interfaceinvoke $r3.<java.util.Set: java.util.Iterator iterator()>();
+
+     label01:
+        $z0 = interfaceinvoke $r4.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label22;
+
+        $r5 = interfaceinvoke $r4.<java.util.Iterator: java.lang.Object next()>();
+
+        $r6 = (java.lang.String) $r5;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r5 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r6);
+
+        $z0 = $r5 instanceof java.lang.String;
+
+        if $z0 == 0 goto label02;
+
+        $r7 = (java.lang.String) $r5;
+
+        virtualinvoke $r1.<android.os.Bundle: void putString(java.lang.String,java.lang.String)>($r6, $r7);
+
+        goto label01;
+
+     label02:
+        $z0 = $r5 instanceof java.lang.Integer;
+
+        if $z0 == 0 goto label03;
+
+        $r8 = (java.lang.Integer) $r5;
+
+        $i0 = virtualinvoke $r8.<java.lang.Integer: int intValue()>();
+
+        virtualinvoke $r1.<android.os.Bundle: void putInt(java.lang.String,int)>($r6, $i0);
+
+        goto label01;
+
+     label03:
+        $z0 = $r5 instanceof java.lang.Long;
+
+        if $z0 == 0 goto label04;
+
+        $r9 = (java.lang.Long) $r5;
+
+        $l1 = virtualinvoke $r9.<java.lang.Long: long longValue()>();
+
+        virtualinvoke $r1.<android.os.Bundle: void putLong(java.lang.String,long)>($r6, $l1);
+
+        goto label01;
+
+     label04:
+        $z0 = $r5 instanceof java.lang.Double;
+
+        if $z0 == 0 goto label05;
+
+        $r10 = (java.lang.Double) $r5;
+
+        $d0 = virtualinvoke $r10.<java.lang.Double: double doubleValue()>();
+
+        virtualinvoke $r1.<android.os.Bundle: void putDouble(java.lang.String,double)>($r6, $d0);
+
+        goto label01;
+
+     label05:
+        $z0 = $r5 instanceof java.lang.Float;
+
+        if $z0 == 0 goto label06;
+
+        $r11 = (java.lang.Float) $r5;
+
+        $f0 = virtualinvoke $r11.<java.lang.Float: float floatValue()>();
+
+        virtualinvoke $r1.<android.os.Bundle: void putFloat(java.lang.String,float)>($r6, $f0);
+
+        goto label01;
+
+     label06:
+        $z0 = $r5 instanceof java.lang.Boolean;
+
+        if $z0 == 0 goto label07;
+
+        $r12 = (java.lang.Boolean) $r5;
+
+        $z0 = virtualinvoke $r12.<java.lang.Boolean: boolean booleanValue()>();
+
+        virtualinvoke $r1.<android.os.Bundle: void putBoolean(java.lang.String,boolean)>($r6, $z0);
+
+        goto label01;
+
+     label07:
+        $z0 = $r5 instanceof java.lang.Byte;
+
+        if $z0 == 0 goto label08;
+
+        $r13 = (java.lang.Byte) $r5;
+
+        $b2 = virtualinvoke $r13.<java.lang.Byte: byte byteValue()>();
+
+        virtualinvoke $r1.<android.os.Bundle: void putByte(java.lang.String,byte)>($r6, $b2);
+
+        goto label01;
+
+     label08:
+        $z0 = $r5 instanceof byte[];
+
+        if $z0 == 0 goto label09;
+
+        $r14 = (byte[]) $r5;
+
+        virtualinvoke $r1.<android.os.Bundle: void putByteArray(java.lang.String,byte[])>($r6, $r14);
+
+        goto label01;
+
+     label09:
+        $z0 = $r5 instanceof java.lang.String[];
+
+        if $z0 == 0 goto label10;
+
+        $r15 = (java.lang.String[]) $r5;
+
+        virtualinvoke $r1.<android.os.Bundle: void putStringArray(java.lang.String,java.lang.String[])>($r6, $r15);
+
+        goto label01;
+
+     label10:
+        $z0 = $r5 instanceof long[];
+
+        if $z0 == 0 goto label11;
+
+        $r16 = (long[]) $r5;
+
+        virtualinvoke $r1.<android.os.Bundle: void putLongArray(java.lang.String,long[])>($r6, $r16);
+
+        goto label01;
+
+     label11:
+        $z0 = $r5 instanceof float[];
+
+        if $z0 == 0 goto label12;
+
+        $r17 = (float[]) $r5;
+
+        virtualinvoke $r1.<android.os.Bundle: void putFloatArray(java.lang.String,float[])>($r6, $r17);
+
+        goto label01;
+
+     label12:
+        $z0 = $r5 instanceof com.google.android.gms.wearable.Asset;
+
+        if $z0 == 0 goto label13;
+
+        $r18 = (com.google.android.gms.wearable.Asset) $r5;
+
+        virtualinvoke $r1.<android.os.Bundle: void putParcelable(java.lang.String,android.os.Parcelable)>($r6, $r18);
+
+        goto label01;
+
+     label13:
+        $z0 = $r5 instanceof com.google.android.gms.wearable.DataMap;
+
+        if $z0 == 0 goto label14;
+
+        $r19 = (com.google.android.gms.wearable.DataMap) $r5;
+
+        $r20 = virtualinvoke $r19.<com.google.android.gms.wearable.DataMap: android.os.Bundle toBundle()>();
+
+        virtualinvoke $r1.<android.os.Bundle: void putParcelable(java.lang.String,android.os.Parcelable)>($r6, $r20);
+
+        goto label01;
+
+     label14:
+        $z0 = $r5 instanceof java.util.ArrayList;
+
+        if $z0 == 0 goto label01;
+
+        $r21 = (java.util.ArrayList) $r5;
+
+        $i0 = staticinvoke <com.google.android.gms.wearable.DataMap: int zza(java.util.ArrayList)>($r21);
+
+        if $i0 == 0 goto label21;
+
+        if $i0 == 1 goto label20;
+
+        if $i0 == 2 goto label19;
+
+        if $i0 == 3 goto label18;
+
+        if $i0 == 4 goto label15;
+
+        goto label01;
+
+     label15:
+        $r22 = new java.util.ArrayList;
+
+        specialinvoke $r22.<java.util.ArrayList: void <init>()>();
+
+        $i0 = virtualinvoke $r21.<java.util.ArrayList: int size()>();
+
+        $i3 = 0;
+
+     label16:
+        if $i3 >= $i0 goto label17;
+
+        $r5 = virtualinvoke $r21.<java.util.ArrayList: java.lang.Object get(int)>($i3);
+
+        $i3 = $i3 + 1;
+
+        $r19 = (com.google.android.gms.wearable.DataMap) $r5;
+
+        $r20 = virtualinvoke $r19.<com.google.android.gms.wearable.DataMap: android.os.Bundle toBundle()>();
+
+        virtualinvoke $r22.<java.util.ArrayList: boolean add(java.lang.Object)>($r20);
+
+        goto label16;
+
+     label17:
+        virtualinvoke $r1.<android.os.Bundle: void putParcelableArrayList(java.lang.String,java.util.ArrayList)>($r6, $r22);
+
+        goto label01;
+
+     label18:
+        virtualinvoke $r1.<android.os.Bundle: void putStringArrayList(java.lang.String,java.util.ArrayList)>($r6, $r21);
+
+        goto label01;
+
+     label19:
+        virtualinvoke $r1.<android.os.Bundle: void putIntegerArrayList(java.lang.String,java.util.ArrayList)>($r6, $r21);
+
+        goto label01;
+
+     label20:
+        virtualinvoke $r1.<android.os.Bundle: void putStringArrayList(java.lang.String,java.util.ArrayList)>($r6, $r21);
+
+        goto label01;
+
+     label21:
+        virtualinvoke $r1.<android.os.Bundle: void putStringArrayList(java.lang.String,java.util.ArrayList)>($r6, $r21);
+
+        goto label01;
+
+     label22:
+        return $r1;
+    }
+
+    public byte[] toByteArray()
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        com.google.android.gms.internal.wearable.zzf $r1;
+        com.google.android.gms.internal.wearable.zzg $r2;
+        byte[] $r3;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r1 = staticinvoke <com.google.android.gms.internal.wearable.zze: com.google.android.gms.internal.wearable.zzf zza(com.google.android.gms.wearable.DataMap)>($r0);
+
+        $r2 = $r1.<com.google.android.gms.internal.wearable.zzf: com.google.android.gms.internal.wearable.zzg zzfw>;
+
+        $r3 = staticinvoke <com.google.android.gms.internal.wearable.zzt: byte[] zzb(com.google.android.gms.internal.wearable.zzt)>($r2);
+
+        return $r3;
+    }
+
+    public java.lang.String toString()
+    {
+        com.google.android.gms.wearable.DataMap $r0;
+        java.lang.String $r1;
+        java.util.HashMap $r2;
+
+        $r0 := @this: com.google.android.gms.wearable.DataMap;
+
+        $r2 = $r0.<com.google.android.gms.wearable.DataMap: java.util.HashMap zzq>;
+
+        $r1 = virtualinvoke $r2.<java.util.HashMap: java.lang.String toString()>();
+
+        return $r1;
+    }
+}

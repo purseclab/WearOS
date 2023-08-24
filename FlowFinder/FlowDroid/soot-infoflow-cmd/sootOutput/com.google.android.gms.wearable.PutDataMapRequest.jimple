@@ -1,0 +1,307 @@
+public class com.google.android.gms.wearable.PutDataMapRequest extends java.lang.Object
+{
+    private final com.google.android.gms.wearable.DataMap zzr;
+    private final com.google.android.gms.wearable.PutDataRequest zzs;
+
+    private void <init>(com.google.android.gms.wearable.PutDataRequest, com.google.android.gms.wearable.DataMap)
+    {
+        com.google.android.gms.wearable.PutDataMapRequest $r0;
+        com.google.android.gms.wearable.DataMap $r1, $r3;
+        com.google.android.gms.wearable.PutDataRequest $r2;
+
+        $r0 := @this: com.google.android.gms.wearable.PutDataMapRequest;
+
+        $r2 := @parameter0: com.google.android.gms.wearable.PutDataRequest;
+
+        $r1 := @parameter1: com.google.android.gms.wearable.DataMap;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest zzs> = $r2;
+
+        $r3 = new com.google.android.gms.wearable.DataMap;
+
+        specialinvoke $r3.<com.google.android.gms.wearable.DataMap: void <init>()>();
+
+        $r0.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap zzr> = $r3;
+
+        if $r1 == null goto label1;
+
+        $r3 = $r0.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap zzr>;
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putAll(com.google.android.gms.wearable.DataMap)>($r1);
+
+     label1:
+        return;
+    }
+
+    public static com.google.android.gms.wearable.PutDataMapRequest create(java.lang.String)
+    {
+        com.google.android.gms.wearable.PutDataRequest $r0;
+        java.lang.String $r1;
+        com.google.android.gms.wearable.PutDataMapRequest $r2;
+
+        $r1 := @parameter0: java.lang.String;
+
+        staticinvoke <com.google.android.gms.common.internal.Asserts: void checkNotNull(java.lang.Object,java.lang.Object)>($r1, "path must not be null");
+
+        $r2 = new com.google.android.gms.wearable.PutDataMapRequest;
+
+        $r0 = staticinvoke <com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest create(java.lang.String)>($r1);
+
+        specialinvoke $r2.<com.google.android.gms.wearable.PutDataMapRequest: void <init>(com.google.android.gms.wearable.PutDataRequest,com.google.android.gms.wearable.DataMap)>($r0, null);
+
+        return $r2;
+    }
+
+    public static com.google.android.gms.wearable.PutDataMapRequest createFromDataMapItem(com.google.android.gms.wearable.DataMapItem)
+    {
+        com.google.android.gms.wearable.DataMapItem $r0;
+        com.google.android.gms.wearable.PutDataMapRequest $r1;
+        android.net.Uri $r2;
+        com.google.android.gms.wearable.PutDataRequest $r3;
+        com.google.android.gms.wearable.DataMap $r4;
+
+        $r0 := @parameter0: com.google.android.gms.wearable.DataMapItem;
+
+        staticinvoke <com.google.android.gms.common.internal.Asserts: void checkNotNull(java.lang.Object,java.lang.Object)>($r0, "source must not be null");
+
+        $r1 = new com.google.android.gms.wearable.PutDataMapRequest;
+
+        $r2 = virtualinvoke $r0.<com.google.android.gms.wearable.DataMapItem: android.net.Uri getUri()>();
+
+        $r3 = staticinvoke <com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest zza(android.net.Uri)>($r2);
+
+        $r4 = virtualinvoke $r0.<com.google.android.gms.wearable.DataMapItem: com.google.android.gms.wearable.DataMap getDataMap()>();
+
+        specialinvoke $r1.<com.google.android.gms.wearable.PutDataMapRequest: void <init>(com.google.android.gms.wearable.PutDataRequest,com.google.android.gms.wearable.DataMap)>($r3, $r4);
+
+        return $r1;
+    }
+
+    public static com.google.android.gms.wearable.PutDataMapRequest createWithAutoAppendedId(java.lang.String)
+    {
+        com.google.android.gms.wearable.PutDataRequest $r0;
+        java.lang.String $r1;
+        com.google.android.gms.wearable.PutDataMapRequest $r2;
+
+        $r1 := @parameter0: java.lang.String;
+
+        staticinvoke <com.google.android.gms.common.internal.Asserts: void checkNotNull(java.lang.Object,java.lang.Object)>($r1, "pathPrefix must not be null");
+
+        $r2 = new com.google.android.gms.wearable.PutDataMapRequest;
+
+        $r0 = staticinvoke <com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest createWithAutoAppendedId(java.lang.String)>($r1);
+
+        specialinvoke $r2.<com.google.android.gms.wearable.PutDataMapRequest: void <init>(com.google.android.gms.wearable.PutDataRequest,com.google.android.gms.wearable.DataMap)>($r0, null);
+
+        return $r2;
+    }
+
+    public com.google.android.gms.wearable.PutDataRequest asPutDataRequest()
+    {
+        com.google.android.gms.wearable.PutDataMapRequest $r0;
+        com.google.android.gms.wearable.DataMap $r1;
+        com.google.android.gms.internal.wearable.zzf $r2;
+        com.google.android.gms.wearable.PutDataRequest $r3;
+        com.google.android.gms.internal.wearable.zzg $r4;
+        byte[] $r5;
+        java.util.List $r6;
+        int $i0, $i1, $i2, $i3;
+        java.lang.String $r7, $r11, $r12;
+        java.lang.Object $r8;
+        com.google.android.gms.wearable.Asset $r9;
+        java.lang.IllegalStateException $r10;
+        boolean $z0;
+        java.lang.StringBuilder $r13;
+
+        $r0 := @this: com.google.android.gms.wearable.PutDataMapRequest;
+
+        $r1 = $r0.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap zzr>;
+
+        $r2 = staticinvoke <com.google.android.gms.internal.wearable.zze: com.google.android.gms.internal.wearable.zzf zza(com.google.android.gms.wearable.DataMap)>($r1);
+
+        $r3 = $r0.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest zzs>;
+
+        $r4 = $r2.<com.google.android.gms.internal.wearable.zzf: com.google.android.gms.internal.wearable.zzg zzfw>;
+
+        $r5 = staticinvoke <com.google.android.gms.internal.wearable.zzt: byte[] zzb(com.google.android.gms.internal.wearable.zzt)>($r4);
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest setData(byte[])>($r5);
+
+        $r6 = $r2.<com.google.android.gms.internal.wearable.zzf: java.util.List zzfx>;
+
+        $i0 = interfaceinvoke $r6.<java.util.List: int size()>();
+
+        $i1 = 0;
+
+     label1:
+        if $i1 >= $i0 goto label7;
+
+        $r7 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>($i1);
+
+        $r6 = $r2.<com.google.android.gms.internal.wearable.zzf: java.util.List zzfx>;
+
+        $r8 = interfaceinvoke $r6.<java.util.List: java.lang.Object get(int)>($i1);
+
+        $r9 = (com.google.android.gms.wearable.Asset) $r8;
+
+        if $r7 == null goto label6;
+
+        if $r9 != null goto label4;
+
+        $r10 = new java.lang.IllegalStateException;
+
+        $r11 = "asset cannot be null: key=";
+
+        $r7 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r7);
+
+        $i0 = virtualinvoke $r7.<java.lang.String: int length()>();
+
+        if $i0 == 0 goto label2;
+
+        $r7 = virtualinvoke $r11.<java.lang.String: java.lang.String concat(java.lang.String)>($r7);
+
+        goto label3;
+
+     label2:
+        $r7 = new java.lang.String;
+
+        specialinvoke $r7.<java.lang.String: void <init>(java.lang.String)>("asset cannot be null: key=");
+
+     label3:
+        specialinvoke $r10.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r7);
+
+        throw $r10;
+
+     label4:
+        $z0 = staticinvoke <android.util.Log: boolean isLoggable(java.lang.String,int)>("DataMap", 3);
+
+        if $z0 == 0 goto label5;
+
+        $r11 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r9);
+
+        $r12 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r7);
+
+        $i2 = virtualinvoke $r12.<java.lang.String: int length()>();
+
+        $i2 = $i2 + 33;
+
+        $r12 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r11);
+
+        $i3 = virtualinvoke $r12.<java.lang.String: int length()>();
+
+        $i2 = $i2 + $i3;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(int)>($i2);
+
+        virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("asPutDataRequest: adding asset: ");
+
+        virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+
+        virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ");
+
+        virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+
+        $r11 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>("DataMap", $r11);
+
+     label5:
+        $r3 = $r0.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest zzs>;
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest putAsset(java.lang.String,com.google.android.gms.wearable.Asset)>($r7, $r9);
+
+        $i1 = $i1 + 1;
+
+        goto label1;
+
+     label6:
+        $r10 = new java.lang.IllegalStateException;
+
+        $r7 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r9);
+
+        $r11 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r7);
+
+        $i0 = virtualinvoke $r11.<java.lang.String: int length()>();
+
+        $i0 = $i0 + 26;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(int)>($i0);
+
+        virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("asset key cannot be null: ");
+
+        virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+
+        $r7 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r10.<java.lang.IllegalStateException: void <init>(java.lang.String)>($r7);
+
+        throw $r10;
+
+     label7:
+        $r3 = $r0.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest zzs>;
+
+        return $r3;
+    }
+
+    public com.google.android.gms.wearable.DataMap getDataMap()
+    {
+        com.google.android.gms.wearable.PutDataMapRequest $r0;
+        com.google.android.gms.wearable.DataMap r1;
+
+        $r0 := @this: com.google.android.gms.wearable.PutDataMapRequest;
+
+        r1 = $r0.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap zzr>;
+
+        return r1;
+    }
+
+    public android.net.Uri getUri()
+    {
+        com.google.android.gms.wearable.PutDataMapRequest $r0;
+        android.net.Uri $r1;
+        com.google.android.gms.wearable.PutDataRequest $r2;
+
+        $r0 := @this: com.google.android.gms.wearable.PutDataMapRequest;
+
+        $r2 = $r0.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest zzs>;
+
+        $r1 = virtualinvoke $r2.<com.google.android.gms.wearable.PutDataRequest: android.net.Uri getUri()>();
+
+        return $r1;
+    }
+
+    public boolean isUrgent()
+    {
+        com.google.android.gms.wearable.PutDataMapRequest $r0;
+        boolean $z0;
+        com.google.android.gms.wearable.PutDataRequest $r1;
+
+        $r0 := @this: com.google.android.gms.wearable.PutDataMapRequest;
+
+        $r1 = $r0.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest zzs>;
+
+        $z0 = virtualinvoke $r1.<com.google.android.gms.wearable.PutDataRequest: boolean isUrgent()>();
+
+        return $z0;
+    }
+
+    public com.google.android.gms.wearable.PutDataMapRequest setUrgent()
+    {
+        com.google.android.gms.wearable.PutDataMapRequest $r0;
+        com.google.android.gms.wearable.PutDataRequest $r1;
+
+        $r0 := @this: com.google.android.gms.wearable.PutDataMapRequest;
+
+        $r1 = $r0.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest zzs>;
+
+        virtualinvoke $r1.<com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest setUrgent()>();
+
+        return $r0;
+    }
+}

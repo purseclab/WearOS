@@ -1,0 +1,220 @@
+public class com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService extends com.google.android.gms.wearable.WearableListenerService
+{
+    private com.google.android.gms.common.api.GoogleApiClient a;
+
+    public void <init>()
+    {
+        com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService $r0;
+
+        $r0 := @this: com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService;
+
+        specialinvoke $r0.<com.google.android.gms.wearable.WearableListenerService: void <init>()>();
+
+        $r0.<com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService: com.google.android.gms.common.api.GoogleApiClient a> = null;
+
+        return;
+    }
+
+    protected void a(java.lang.String, com.google.android.gms.wearable.DataMap)
+    {
+        com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService $r0;
+        java.lang.String $r1;
+        com.google.android.gms.wearable.DataMap $r2;
+
+        $r0 := @this: com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 := @parameter1: com.google.android.gms.wearable.DataMap;
+
+        return;
+    }
+
+    protected void a(java.lang.String, byte[])
+    {
+        com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService $r0;
+        java.lang.String $r1;
+        byte[] $r2;
+
+        $r0 := @this: com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 := @parameter1: byte[];
+
+        return;
+    }
+
+    public void onCreate()
+    {
+        com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService $r0;
+        com.google.android.gms.common.api.Api $r1;
+        com.google.android.gms.common.api.GoogleApiClient$Builder $r2;
+        com.google.android.gms.common.api.GoogleApiClient $r3;
+        java.lang.Class $r4;
+        java.lang.Throwable $r5;
+
+        $r0 := @this: com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService;
+
+        entermonitor $r0;
+
+     label1:
+        specialinvoke $r0.<com.google.android.gms.wearable.WearableListenerService: void onCreate()>();
+
+        $r2 = new com.google.android.gms.common.api.GoogleApiClient$Builder;
+
+        specialinvoke $r2.<com.google.android.gms.common.api.GoogleApiClient$Builder: void <init>(android.content.Context)>($r0);
+
+        $r1 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.common.api.Api f>;
+
+        $r2 = virtualinvoke $r2.<com.google.android.gms.common.api.GoogleApiClient$Builder: com.google.android.gms.common.api.GoogleApiClient$Builder a(com.google.android.gms.common.api.Api)>($r1);
+
+        $r3 = virtualinvoke $r2.<com.google.android.gms.common.api.GoogleApiClient$Builder: com.google.android.gms.common.api.GoogleApiClient c()>();
+
+        $r0.<com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService: com.google.android.gms.common.api.GoogleApiClient a> = $r3;
+
+        $r3 = $r0.<com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService: com.google.android.gms.common.api.GoogleApiClient a>;
+
+        virtualinvoke $r3.<com.google.android.gms.common.api.GoogleApiClient: void b()>();
+
+        $r4 = virtualinvoke $r0.<java.lang.Object: java.lang.Class getClass()>();
+
+        virtualinvoke $r4.<java.lang.Class: java.lang.String getSimpleName()>();
+
+     label2:
+        exitmonitor $r0;
+
+        return;
+
+     label3:
+        $r5 := @caughtexception;
+
+        exitmonitor $r0;
+
+        throw $r5;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+    }
+
+    public void onDestroy()
+    {
+        com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService $r0;
+        java.lang.Class $r1;
+        com.google.android.gms.common.api.GoogleApiClient $r2;
+        java.lang.Throwable $r3;
+
+        $r0 := @this: com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService;
+
+        entermonitor $r0;
+
+     label1:
+        specialinvoke $r0.<com.google.android.gms.wearable.WearableListenerService: void onDestroy()>();
+
+        $r2 = $r0.<com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService: com.google.android.gms.common.api.GoogleApiClient a>;
+
+        virtualinvoke $r2.<com.google.android.gms.common.api.GoogleApiClient: void d()>();
+
+        $r1 = virtualinvoke $r0.<java.lang.Object: java.lang.Class getClass()>();
+
+        virtualinvoke $r1.<java.lang.Class: java.lang.String getSimpleName()>();
+
+     label2:
+        exitmonitor $r0;
+
+        return;
+
+     label3:
+        $r3 := @caughtexception;
+
+        exitmonitor $r0;
+
+        throw $r3;
+
+        catch java.lang.Throwable from label1 to label2 with label3;
+    }
+
+    public final void onMessageReceived(com.google.android.gms.wearable.MessageEvent)
+    {
+        com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService $r0;
+        com.google.android.gms.wearable.MessageEvent $r1;
+        java.lang.String $r2;
+        byte[] $r3;
+
+        $r0 := @this: com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService;
+
+        $r1 := @parameter0: com.google.android.gms.wearable.MessageEvent;
+
+        specialinvoke $r0.<com.google.android.gms.wearable.WearableListenerService: void a(com.google.android.gms.wearable.MessageEvent)>($r1);
+
+        $r2 = interfaceinvoke $r1.<com.google.android.gms.wearable.MessageEvent: java.lang.String getPath()>();
+
+        $r3 = virtualinvoke $r1.<com.google.android.gms.wearable.MessageEvent: byte[] getDataSource(java.lang.String)>("general_path");
+
+        virtualinvoke $r0.<com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService: void a(java.lang.String,byte[])>($r2, $r3);
+
+        return;
+    }
+
+    public final void onDataChanged(com.google.android.gms.wearable.DataEventBuffer)
+    {
+        com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService $r0;
+        com.google.android.gms.wearable.DataEventBuffer $r1;
+        java.lang.Class $r2;
+        java.lang.String $r3;
+        java.util.Iterator $r4;
+        boolean $z0;
+        java.lang.Object $r5;
+        com.google.android.gms.wearable.DataEvent $r6;
+        int $i0;
+        com.google.android.gms.wearable.DataItem $r7;
+        android.net.Uri $r8;
+        com.google.android.gms.wearable.DataMapItem $r9;
+        com.google.android.gms.wearable.DataMap $r10;
+
+        $r0 := @this: com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService;
+
+        $r1 := @parameter0: com.google.android.gms.wearable.DataEventBuffer;
+
+        specialinvoke $r0.<com.google.android.gms.wearable.WearableListenerService: void a(com.google.android.gms.wearable.DataEventBuffer)>($r1);
+
+        $r2 = virtualinvoke $r0.<java.lang.Object: java.lang.Class getClass()>();
+
+        $r3 = virtualinvoke $r2.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>($r3, "::: ON DATA CHANGED :::");
+
+        $r4 = virtualinvoke $r1.<com.google.android.gms.wearable.DataEventBuffer: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r4.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label2;
+
+        $r5 = interfaceinvoke $r4.<java.util.Iterator: java.lang.Object next()>();
+
+        $r6 = (com.google.android.gms.wearable.DataEvent) $r5;
+
+        $i0 = interfaceinvoke $r6.<com.google.android.gms.wearable.DataEvent: int c()>();
+
+        if $i0 != 1 goto label1;
+
+        $r7 = interfaceinvoke $r6.<com.google.android.gms.wearable.DataEvent: com.google.android.gms.wearable.DataItem getDataItem()>();
+
+        $r8 = interfaceinvoke $r7.<com.google.android.gms.wearable.DataItem: android.net.Uri getUri()>();
+
+        $r3 = virtualinvoke $r8.<android.net.Uri: java.lang.String getPath()>();
+
+        $r7 = interfaceinvoke $r6.<com.google.android.gms.wearable.DataEvent: com.google.android.gms.wearable.DataItem getDataItem()>();
+
+        $r9 = staticinvoke <com.google.android.gms.wearable.DataMapItem: com.google.android.gms.wearable.DataMapItem fromDataItem(com.google.android.gms.wearable.DataItem)>($r7);
+
+        $r10 = $r9.<com.google.android.gms.wearable.DataMapItem: com.google.android.gms.wearable.DataMap a>;
+
+        virtualinvoke $r0.<com.jeremysteckling.facerrel.lib.sync.local.WearableSyncService: void a(java.lang.String,com.google.android.gms.wearable.DataMap)>($r3, $r10);
+
+        goto label1;
+
+     label2:
+        return;
+    }
+}

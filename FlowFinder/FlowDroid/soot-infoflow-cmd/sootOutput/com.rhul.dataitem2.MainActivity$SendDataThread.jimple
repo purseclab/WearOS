@@ -1,0 +1,100 @@
+class com.rhul.dataitem2.MainActivity$SendDataThread extends java.lang.Thread
+{
+    com.google.android.gms.wearable.DataMap dataMap;
+    java.lang.String path;
+    final com.rhul.dataitem2.MainActivity this$0;
+    static java.lang.String var3;
+
+    void <init>(com.rhul.dataitem2.MainActivity, java.lang.String, com.google.android.gms.wearable.DataMap)
+    {
+        com.rhul.dataitem2.MainActivity$SendDataThread $r0;
+        com.rhul.dataitem2.MainActivity $r1;
+        java.lang.String $r2;
+        com.google.android.gms.wearable.DataMap $r3;
+
+        $r0 := @this: com.rhul.dataitem2.MainActivity$SendDataThread;
+
+        $r1 := @parameter0: com.rhul.dataitem2.MainActivity;
+
+        $r2 := @parameter1: java.lang.String;
+
+        $r3 := @parameter2: com.google.android.gms.wearable.DataMap;
+
+        $r0.<com.rhul.dataitem2.MainActivity$SendDataThread: com.rhul.dataitem2.MainActivity this$0> = $r1;
+
+        specialinvoke $r0.<java.lang.Thread: void <init>()>();
+
+        $r0.<com.rhul.dataitem2.MainActivity$SendDataThread: java.lang.String path> = $r2;
+
+        $r0.<com.rhul.dataitem2.MainActivity$SendDataThread: com.google.android.gms.wearable.DataMap dataMap> = $r3;
+
+        return;
+    }
+
+    public void run()
+    {
+        com.rhul.dataitem2.MainActivity$SendDataThread $r0;
+        java.lang.String $r1, tmp15;
+        com.google.android.gms.wearable.PutDataMapRequest $r2;
+        com.google.android.gms.wearable.DataMap $r3, $r4;
+        com.google.android.gms.wearable.PutDataRequest $r5;
+        com.google.android.gms.wearable.DataApi $r6;
+        com.rhul.dataitem2.MainActivity $r7;
+        com.google.android.gms.common.api.GoogleApiClient $r8;
+        com.google.android.gms.common.api.PendingResult $r9;
+        com.google.android.gms.common.api.Result $r10;
+        com.google.android.gms.wearable.DataApi$DataItemResult $r11;
+        java.lang.StringBuilder $r12;
+        com.google.android.gms.wearable.DataClient k14;
+
+        $r0 := @this: com.rhul.dataitem2.MainActivity$SendDataThread;
+
+        $r1 = $r0.<com.rhul.dataitem2.MainActivity$SendDataThread: java.lang.String path>;
+
+        $r2 = staticinvoke <com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataMapRequest create(java.lang.String)>($r1);
+
+        $r3 = virtualinvoke $r2.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap getDataMap()>();
+
+        $r4 = $r0.<com.rhul.dataitem2.MainActivity$SendDataThread: com.google.android.gms.wearable.DataMap dataMap>;
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putAll(com.google.android.gms.wearable.DataMap)>($r4);
+
+        $r5 = virtualinvoke $r2.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest asPutDataRequest()>();
+
+        virtualinvoke $r5.<com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest setUrgent()>();
+
+        $r6 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.DataApi DataApi>;
+
+        $r7 = $r0.<com.rhul.dataitem2.MainActivity$SendDataThread: com.rhul.dataitem2.MainActivity this$0>;
+
+        $r8 = $r7.<com.rhul.dataitem2.MainActivity: com.google.android.gms.common.api.GoogleApiClient googleClient>;
+
+        tmp15 = <com.rhul.dataitem2.MainActivity$SendDataThread: java.lang.String var3>;
+
+        $r9 = interfaceinvoke $r6.<com.google.android.gms.wearable.DataApi: com.google.android.gms.common.api.PendingResult putDataItem(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.wearable.PutDataRequest)>($r8, $r5);
+
+        virtualinvoke k14.<com.google.android.gms.wearable.DataClient: void putStringSink(java.lang.String,java.lang.String,java.lang.String)>("general_path", "deviceID", tmp15);
+
+        $r10 = virtualinvoke $r9.<com.google.android.gms.common.api.PendingResult: com.google.android.gms.common.api.Result await()>();
+
+        $r11 = (com.google.android.gms.wearable.DataApi$DataItemResult) $r10;
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>()>();
+
+        virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("DataMap: ");
+
+        $r3 = $r0.<com.rhul.dataitem2.MainActivity$SendDataThread: com.google.android.gms.wearable.DataMap dataMap>;
+
+        virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r3);
+
+        virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" sent successfully to data layer ");
+
+        $r1 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>("mobile", $r1);
+
+        return;
+    }
+}

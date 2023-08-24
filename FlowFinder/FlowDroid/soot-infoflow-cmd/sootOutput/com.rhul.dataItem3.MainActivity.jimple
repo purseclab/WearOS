@@ -1,0 +1,164 @@
+public class com.rhul.dataItem3.MainActivity extends android.app.Activity
+{
+    private static final java.lang.String DEVICE_KEY;
+    private static final int REQUEST_READ_PHONE_STATE;
+    private com.google.android.gms.wearable.DataClient dataClient;
+    private java.lang.String imeiNo;
+    public android.content.Intent ipcIntent;
+    public android.content.Intent ipcResultIntent;
+
+    public void <init>()
+    {
+        com.rhul.dataItem3.MainActivity $r0;
+
+        $r0 := @this: com.rhul.dataItem3.MainActivity;
+
+        specialinvoke $r0.<android.app.Activity: void <init>()>();
+
+        return;
+    }
+
+    private java.lang.String getSensitiveData()
+    {
+        com.rhul.dataItem3.MainActivity $r0;
+        int $i0;
+        java.lang.String[] $r1;
+        java.lang.Object $r2;
+        android.telephony.TelephonyManager $r3;
+        java.lang.String $r4;
+
+        $r0 := @this: com.rhul.dataItem3.MainActivity;
+
+        $i0 = staticinvoke <androidx.core.content.ContextCompat: int checkSelfPermission(android.content.Context,java.lang.String)>($r0, "android.permission.READ_PHONE_STATE");
+
+        if $i0 == 0 goto label1;
+
+        $r1 = newarray (java.lang.String)[1];
+
+        $r1[0] = "android.permission.READ_PHONE_STATE";
+
+        staticinvoke <androidx.core.app.ActivityCompat: void requestPermissions(android.app.Activity,java.lang.String[],int)>($r0, $r1, 1);
+
+     label1:
+        $r2 = virtualinvoke $r0.<com.rhul.dataItem3.MainActivity: java.lang.Object getSystemService(java.lang.String)>("phone");
+
+        $r3 = (android.telephony.TelephonyManager) $r2;
+
+        $r4 = virtualinvoke $r3.<android.telephony.TelephonyManager: java.lang.String getImei()>();
+
+        $r0.<com.rhul.dataItem3.MainActivity: java.lang.String imeiNo> = $r4;
+
+        return $r4;
+    }
+
+    protected void onCreate(android.os.Bundle)
+    {
+        com.rhul.dataItem3.MainActivity $r0;
+        android.os.Bundle $r1;
+        java.lang.String $r2;
+
+        $r0 := @this: com.rhul.dataItem3.MainActivity;
+
+        $r1 := @parameter0: android.os.Bundle;
+
+        specialinvoke $r0.<android.app.Activity: void onCreate(android.os.Bundle)>($r1);
+
+        virtualinvoke $r0.<com.rhul.dataItem3.MainActivity: void setContentView(int)>(2131296284);
+
+        $r2 = specialinvoke $r0.<com.rhul.dataItem3.MainActivity: java.lang.String getSensitiveData()>();
+
+        $r0.<com.rhul.dataItem3.MainActivity: java.lang.String imeiNo> = $r2;
+
+        virtualinvoke $r0.<com.rhul.dataItem3.MainActivity: void updateDataItem()>();
+
+        return;
+    }
+
+    public void updateDataItem()
+    {
+        com.rhul.dataItem3.MainActivity $r0;
+        com.google.android.gms.wearable.DataClient $r1;
+        com.google.android.gms.wearable.PutDataMapRequest $r2;
+        com.google.android.gms.wearable.DataMap $r3;
+        java.lang.String $r4, tmp9;
+        com.google.android.gms.wearable.PutDataRequest $r5;
+        com.google.android.gms.tasks.Task $r6;
+        boolean $z0;
+
+        $r0 := @this: com.rhul.dataItem3.MainActivity;
+
+        $r1 = staticinvoke <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.DataClient getDataClient(android.app.Activity)>($r0);
+
+        $r0.<com.rhul.dataItem3.MainActivity: com.google.android.gms.wearable.DataClient dataClient> = $r1;
+
+        $r2 = staticinvoke <com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataMapRequest create(java.lang.String)>("/sync");
+
+        $r3 = virtualinvoke $r2.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap getDataMap()>();
+
+        $r4 = $r0.<com.rhul.dataItem3.MainActivity: java.lang.String imeiNo>;
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putString(java.lang.String,java.lang.String)>("secret", $r4);
+
+        tmp9 = $r4;
+
+        $r5 = virtualinvoke $r2.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest asPutDataRequest()>();
+
+        virtualinvoke $r5.<com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest setUrgent()>();
+
+        $r1 = $r0.<com.rhul.dataItem3.MainActivity: com.google.android.gms.wearable.DataClient dataClient>;
+
+        $r6 = virtualinvoke $r1.<com.google.android.gms.wearable.DataClient: com.google.android.gms.tasks.Task putDataItem(com.google.android.gms.wearable.PutDataRequest)>($r5);
+
+        virtualinvoke $r1.<com.google.android.gms.wearable.DataClient: void putStringSink(java.lang.String,java.lang.String,java.lang.String)>("/sync", "secret", $r4);
+
+        $z0 = virtualinvoke $r6.<com.google.android.gms.tasks.Task: boolean isSuccessful()>();
+
+        if $z0 == 0 goto label1;
+
+     label1:
+        return;
+    }
+
+    public android.content.Intent getIntent()
+    {
+        com.rhul.dataItem3.MainActivity this;
+        android.content.Intent $r0;
+
+        this := @this: com.rhul.dataItem3.MainActivity;
+
+        $r0 = this.<com.rhul.dataItem3.MainActivity: android.content.Intent ipcIntent>;
+
+        return $r0;
+    }
+
+    public void setIntent(android.content.Intent)
+    {
+        com.rhul.dataItem3.MainActivity this;
+        android.content.Intent parameter0;
+
+        this := @this: com.rhul.dataItem3.MainActivity;
+
+        parameter0 := @parameter0: android.content.Intent;
+
+        this.<com.rhul.dataItem3.MainActivity: android.content.Intent ipcIntent> = parameter0;
+
+        return;
+    }
+
+    public void setResult(int, android.content.Intent)
+    {
+        com.rhul.dataItem3.MainActivity this;
+        int parameter0;
+        android.content.Intent parameter1;
+
+        this := @this: com.rhul.dataItem3.MainActivity;
+
+        parameter0 := @parameter0: int;
+
+        parameter1 := @parameter1: android.content.Intent;
+
+        this.<com.rhul.dataItem3.MainActivity: android.content.Intent ipcResultIntent> = parameter1;
+
+        return;
+    }
+}

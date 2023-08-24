@@ -1,0 +1,122 @@
+public class com.rhul.assets.MyService extends com.google.android.gms.wearable.WearableListenerService
+{
+    private static final java.lang.String DEVICE_KEY;
+    public android.content.Intent ipcIntent;
+    public android.os.IBinder ipcBinder_0;
+
+    public void <init>()
+    {
+        com.rhul.assets.MyService $r0;
+
+        $r0 := @this: com.rhul.assets.MyService;
+
+        specialinvoke $r0.<com.google.android.gms.wearable.WearableListenerService: void <init>()>();
+
+        return;
+    }
+
+    public void onDataChanged(com.google.android.gms.wearable.DataEventBuffer)
+    {
+        com.rhul.assets.MyService $r0;
+        com.google.android.gms.wearable.DataEventBuffer $r1;
+        java.util.Iterator $r2;
+        boolean $z0;
+        java.lang.Object $r3;
+        com.google.android.gms.wearable.DataEvent $r4;
+        int $i0;
+        com.google.android.gms.wearable.DataItem $r5;
+        com.google.android.gms.wearable.DataMapItem $r6;
+        com.google.android.gms.wearable.DataMap $r7;
+        android.net.Uri $r8;
+        java.lang.String $r9, $r12;
+        com.google.android.gms.wearable.Asset $r10;
+        byte[] $r11;
+
+        $r0 := @this: com.rhul.assets.MyService;
+
+        $r1 := @parameter0: com.google.android.gms.wearable.DataEventBuffer;
+
+        $r2 = virtualinvoke $r1.<com.google.android.gms.wearable.DataEventBuffer: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r2.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r3 = interfaceinvoke $r2.<java.util.Iterator: java.lang.Object next()>();
+
+        $r4 = (com.google.android.gms.wearable.DataEvent) $r3;
+
+        $i0 = interfaceinvoke $r4.<com.google.android.gms.wearable.DataEvent: int getType()>();
+
+        if $i0 != 1 goto label1;
+
+        $r5 = interfaceinvoke $r4.<com.google.android.gms.wearable.DataEvent: com.google.android.gms.wearable.DataItem getDataItem()>();
+
+        $r6 = staticinvoke <com.google.android.gms.wearable.DataMapItem: com.google.android.gms.wearable.DataMapItem fromDataItem(com.google.android.gms.wearable.DataItem)>($r5);
+
+        $r7 = virtualinvoke $r6.<com.google.android.gms.wearable.DataMapItem: com.google.android.gms.wearable.DataMap getDataMap()>();
+
+        $r8 = interfaceinvoke $r5.<com.google.android.gms.wearable.DataItem: android.net.Uri getUri()>();
+
+        $r9 = virtualinvoke $r8.<android.net.Uri: java.lang.String getPath()>();
+
+        $z0 = virtualinvoke $r9.<java.lang.String: boolean equals(java.lang.Object)>("/path_1");
+
+        if $z0 == 0 goto label2;
+
+        $r10 = virtualinvoke $r7.<com.google.android.gms.wearable.DataMap: com.google.android.gms.wearable.Asset getAssetSource(java.lang.String,java.lang.String)>("secret_1", "/path_1");
+
+        $r11 = virtualinvoke $r10.<com.google.android.gms.wearable.Asset: byte[] getData()>();
+
+        $r9 = virtualinvoke $r11.<java.lang.Object: java.lang.String toString()>();
+
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Leak-1", $r9);
+
+        goto label1;
+
+     label2:
+        $r8 = interfaceinvoke $r5.<com.google.android.gms.wearable.DataItem: android.net.Uri getUri()>();
+
+        $r9 = virtualinvoke $r8.<android.net.Uri: java.lang.String getPath()>();
+
+        $r12 = "/path_2";
+
+        $z0 = virtualinvoke $r12.<java.lang.String: boolean equals(java.lang.Object)>($r9);
+
+        if $z0 == 0 goto label1;
+
+        $r6 = staticinvoke <com.google.android.gms.wearable.DataMapItem: com.google.android.gms.wearable.DataMapItem fromDataItem(com.google.android.gms.wearable.DataItem)>($r5);
+
+        $r7 = virtualinvoke $r6.<com.google.android.gms.wearable.DataMapItem: com.google.android.gms.wearable.DataMap getDataMap()>();
+
+        $r10 = virtualinvoke $r7.<com.google.android.gms.wearable.DataMap: com.google.android.gms.wearable.Asset getAssetSource(java.lang.String,java.lang.String)>("secret_2", "/path_2");
+
+        $r11 = virtualinvoke $r10.<com.google.android.gms.wearable.Asset: byte[] getData()>();
+
+        $r9 = virtualinvoke $r11.<java.lang.Object: java.lang.String toString()>();
+
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Leak-2", $r9);
+
+        goto label1;
+
+     label3:
+        return;
+    }
+
+    public android.os.IBinder onBind(android.content.Intent)
+    {
+        com.rhul.assets.MyService this;
+        android.content.Intent parameter0;
+
+        this := @this: com.rhul.assets.MyService;
+
+        parameter0 := @parameter0: android.content.Intent;
+
+        this.<com.rhul.assets.MyService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        this.<com.rhul.assets.MyService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        return parameter0;
+    }
+}

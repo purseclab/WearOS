@@ -1,0 +1,211 @@
+public class com.rhul.interdataitem.MainActivity extends android.app.Activity
+{
+    private static final java.lang.String KEY_ID;
+    private static final int REQUEST_READ_PHONE_STATE;
+    private com.google.android.gms.wearable.DataClient dataClient;
+    private com.google.android.gms.wearable.DataMap dataMap;
+    private java.lang.String deviceID;
+    public android.content.Intent ipcIntent;
+    public android.content.Intent ipcResultIntent;
+    static java.lang.String var7;
+
+    public void <init>()
+    {
+        com.rhul.interdataitem.MainActivity $r0;
+
+        $r0 := @this: com.rhul.interdataitem.MainActivity;
+
+        specialinvoke $r0.<android.app.Activity: void <init>()>();
+
+        return;
+    }
+
+    private java.lang.String getKey()
+    {
+        com.rhul.interdataitem.MainActivity $r0;
+
+        $r0 := @this: com.rhul.interdataitem.MainActivity;
+
+        return "secret_2";
+    }
+
+    private com.google.android.gms.wearable.PutDataMapRequest getRequest(java.lang.String)
+    {
+        com.rhul.interdataitem.MainActivity $r0;
+        java.lang.String $r1;
+        com.google.android.gms.wearable.PutDataMapRequest $r2;
+
+        $r0 := @this: com.rhul.interdataitem.MainActivity;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 = staticinvoke <com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataMapRequest create(java.lang.String)>("/path");
+
+        return $r2;
+    }
+
+    private java.lang.String source()
+    {
+        com.rhul.interdataitem.MainActivity $r0;
+        int $i0;
+        java.lang.String[] $r1;
+        java.lang.Object $r2;
+        android.telephony.TelephonyManager $r3;
+        java.lang.String $r4;
+
+        $r0 := @this: com.rhul.interdataitem.MainActivity;
+
+        $i0 = staticinvoke <androidx.core.content.ContextCompat: int checkSelfPermission(android.content.Context,java.lang.String)>($r0, "android.permission.READ_PHONE_STATE");
+
+        if $i0 == 0 goto label1;
+
+        $r1 = newarray (java.lang.String)[1];
+
+        $r1[0] = "android.permission.READ_PHONE_STATE";
+
+        staticinvoke <androidx.core.app.ActivityCompat: void requestPermissions(android.app.Activity,java.lang.String[],int)>($r0, $r1, 1);
+
+     label1:
+        $r2 = virtualinvoke $r0.<com.rhul.interdataitem.MainActivity: java.lang.Object getSystemService(java.lang.String)>("phone");
+
+        $r3 = (android.telephony.TelephonyManager) $r2;
+
+        $r4 = virtualinvoke $r3.<android.telephony.TelephonyManager: java.lang.String getImei()>();
+
+        $r0.<com.rhul.interdataitem.MainActivity: java.lang.String deviceID> = $r4;
+
+        return $r4;
+    }
+
+    private void synchronizedData(java.lang.String)
+    {
+        com.rhul.interdataitem.MainActivity $r0;
+        java.lang.String $r1, tmp8;
+        com.google.android.gms.wearable.PutDataMapRequest $r2;
+        com.google.android.gms.wearable.DataMap $r3, $r4;
+        com.google.android.gms.wearable.PutDataRequest $r5;
+        com.google.android.gms.wearable.DataClient $r6;
+
+        $r0 := @this: com.rhul.interdataitem.MainActivity;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 = specialinvoke $r0.<com.rhul.interdataitem.MainActivity: com.google.android.gms.wearable.PutDataMapRequest getRequest(java.lang.String)>($r1);
+
+        $r3 = virtualinvoke $r2.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap getDataMap()>();
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putString(java.lang.String,java.lang.String)>("secret_1", $r1);
+
+        $r3 = virtualinvoke $r2.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap getDataMap()>();
+
+        $r4 = $r0.<com.rhul.interdataitem.MainActivity: com.google.android.gms.wearable.DataMap dataMap>;
+
+        virtualinvoke $r3.<com.google.android.gms.wearable.DataMap: void putAll(com.google.android.gms.wearable.DataMap)>($r4);
+
+        $r5 = virtualinvoke $r2.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest asPutDataRequest()>();
+
+        virtualinvoke $r5.<com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest setUrgent()>();
+
+        $r6 = $r0.<com.rhul.interdataitem.MainActivity: com.google.android.gms.wearable.DataClient dataClient>;
+
+        tmp8 = <com.rhul.interdataitem.MainActivity: java.lang.String var7>;
+
+        virtualinvoke $r6.<com.google.android.gms.wearable.DataClient: com.google.android.gms.tasks.Task putDataItem(com.google.android.gms.wearable.PutDataRequest)>($r5);
+
+        virtualinvoke $r6.<com.google.android.gms.wearable.DataClient: void putStringSink(java.lang.String,java.lang.String,java.lang.String)>("/path", "secret_2", tmp8);
+
+        virtualinvoke $r6.<com.google.android.gms.wearable.DataClient: void putStringSink(java.lang.String,java.lang.String,java.lang.String)>("/path", "secret_1", $r1);
+
+        return;
+    }
+
+    protected void onCreate(android.os.Bundle)
+    {
+        com.rhul.interdataitem.MainActivity $r0;
+        android.os.Bundle $r1;
+        java.lang.String $r2, $r5;
+        com.google.android.gms.wearable.DataClient $r3;
+        com.google.android.gms.wearable.DataMap $r4;
+
+        $r0 := @this: com.rhul.interdataitem.MainActivity;
+
+        $r1 := @parameter0: android.os.Bundle;
+
+        specialinvoke $r0.<android.app.Activity: void onCreate(android.os.Bundle)>($r1);
+
+        virtualinvoke $r0.<com.rhul.interdataitem.MainActivity: void setContentView(int)>(2131296284);
+
+        $r3 = staticinvoke <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.DataClient getDataClient(android.app.Activity)>($r0);
+
+        $r0.<com.rhul.interdataitem.MainActivity: com.google.android.gms.wearable.DataClient dataClient> = $r3;
+
+        $r2 = specialinvoke $r0.<com.rhul.interdataitem.MainActivity: java.lang.String source()>();
+
+        $r0.<com.rhul.interdataitem.MainActivity: java.lang.String deviceID> = $r2;
+
+        $r4 = new com.google.android.gms.wearable.DataMap;
+
+        specialinvoke $r4.<com.google.android.gms.wearable.DataMap: void <init>()>();
+
+        $r0.<com.rhul.interdataitem.MainActivity: com.google.android.gms.wearable.DataMap dataMap> = $r4;
+
+        $r5 = specialinvoke $r0.<com.rhul.interdataitem.MainActivity: java.lang.String getKey()>();
+
+        $r4 = $r0.<com.rhul.interdataitem.MainActivity: com.google.android.gms.wearable.DataMap dataMap>;
+
+        $r2 = $r0.<com.rhul.interdataitem.MainActivity: java.lang.String deviceID>;
+
+        <com.rhul.interdataitem.MainActivity: java.lang.String var7> = $r2;
+
+        virtualinvoke $r4.<com.google.android.gms.wearable.DataMap: void putString(java.lang.String,java.lang.String)>($r5, $r2);
+
+        $r2 = $r0.<com.rhul.interdataitem.MainActivity: java.lang.String deviceID>;
+
+        specialinvoke $r0.<com.rhul.interdataitem.MainActivity: void synchronizedData(java.lang.String)>($r2);
+
+        return;
+    }
+
+    public android.content.Intent getIntent()
+    {
+        com.rhul.interdataitem.MainActivity this;
+        android.content.Intent $r0;
+
+        this := @this: com.rhul.interdataitem.MainActivity;
+
+        $r0 = this.<com.rhul.interdataitem.MainActivity: android.content.Intent ipcIntent>;
+
+        return $r0;
+    }
+
+    public void setIntent(android.content.Intent)
+    {
+        com.rhul.interdataitem.MainActivity this;
+        android.content.Intent parameter0;
+
+        this := @this: com.rhul.interdataitem.MainActivity;
+
+        parameter0 := @parameter0: android.content.Intent;
+
+        this.<com.rhul.interdataitem.MainActivity: android.content.Intent ipcIntent> = parameter0;
+
+        return;
+    }
+
+    public void setResult(int, android.content.Intent)
+    {
+        com.rhul.interdataitem.MainActivity this;
+        int parameter0;
+        android.content.Intent parameter1;
+
+        this := @this: com.rhul.interdataitem.MainActivity;
+
+        parameter0 := @parameter0: int;
+
+        parameter1 := @parameter1: android.content.Intent;
+
+        this.<com.rhul.interdataitem.MainActivity: android.content.Intent ipcResultIntent> = parameter1;
+
+        return;
+    }
+}

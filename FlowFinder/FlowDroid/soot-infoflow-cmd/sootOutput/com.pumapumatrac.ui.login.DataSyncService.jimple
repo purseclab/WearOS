@@ -1,0 +1,642 @@
+public final class com.pumapumatrac.ui.login.DataSyncService extends java.lang.Object implements com.google.android.gms.wearable.DataClient$OnDataChangedListener
+{
+    public android.content.Context context;
+    private io.reactivex.disposables.Disposable errorStatusDisposable;
+    public com.pumapumatrac.utils.LogoutControl logoutControl;
+    private io.reactivex.disposables.Disposable logoutStatusDisposable;
+    public com.loop.toolkit.kotlin.PersistentHelpers.SharedData sharedData;
+    public com.pumapumatrac.data.user.UserRepository userRepository;
+
+    public void <init>()
+    {
+        com.pumapumatrac.ui.login.DataSyncService $r0;
+
+        $r0 := @this: com.pumapumatrac.ui.login.DataSyncService;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static final void access$logout(com.pumapumatrac.ui.login.DataSyncService)
+    {
+        com.pumapumatrac.ui.login.DataSyncService $r0;
+
+        $r0 := @parameter0: com.pumapumatrac.ui.login.DataSyncService;
+
+        specialinvoke $r0.<com.pumapumatrac.ui.login.DataSyncService: void logout()>();
+
+        return;
+    }
+
+    private final void logout()
+    {
+        com.pumapumatrac.ui.login.DataSyncService $r0;
+        com.pumapumatrac.ui.login.DataSyncService$logout$2 $r1;
+        io.reactivex.disposables.Disposable $r2;
+        com.pumapumatrac.utils.LogoutControl $r3;
+        io.reactivex.Completable $r4;
+        io.reactivex.Scheduler $r5;
+        com.pumapumatrac.ui.login.DataSyncService$logout$1 $r6;
+
+        $r0 := @this: com.pumapumatrac.ui.login.DataSyncService;
+
+        $r2 = $r0.<com.pumapumatrac.ui.login.DataSyncService: io.reactivex.disposables.Disposable logoutStatusDisposable>;
+
+        if $r2 == null goto label1;
+
+        staticinvoke <com.pumapumatrac.utils.extensions.ObservableExtensionsKt: void safeDispose(io.reactivex.disposables.Disposable)>($r2);
+
+     label1:
+        $r3 = $r0.<com.pumapumatrac.ui.login.DataSyncService: com.pumapumatrac.utils.LogoutControl logoutControl>;
+
+        if $r3 != null goto label2;
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void throwUninitializedPropertyAccessException(java.lang.String)>("logoutControl");
+
+     label2:
+        $r4 = virtualinvoke $r3.<com.pumapumatrac.utils.LogoutControl: io.reactivex.Completable logout()>();
+
+        $r5 = staticinvoke <io.reactivex.schedulers.Schedulers: io.reactivex.Scheduler io()>();
+
+        $r4 = virtualinvoke $r4.<io.reactivex.Completable: io.reactivex.Completable subscribeOn(io.reactivex.Scheduler)>($r5);
+
+        $r5 = staticinvoke <io.reactivex.android.schedulers.AndroidSchedulers: io.reactivex.Scheduler mainThread()>();
+
+        $r4 = virtualinvoke $r4.<io.reactivex.Completable: io.reactivex.Completable observeOn(io.reactivex.Scheduler)>($r5);
+
+        $r6 = <com.pumapumatrac.ui.login.DataSyncService$logout$1: com.pumapumatrac.ui.login.DataSyncService$logout$1 INSTANCE>;
+
+        $r1 = <com.pumapumatrac.ui.login.DataSyncService$logout$2: com.pumapumatrac.ui.login.DataSyncService$logout$2 INSTANCE>;
+
+        $r2 = virtualinvoke $r4.<io.reactivex.Completable: io.reactivex.disposables.Disposable subscribe(io.reactivex.functions.Action,io.reactivex.functions.Consumer)>($r6, $r1);
+
+        $r0.<com.pumapumatrac.ui.login.DataSyncService: io.reactivex.disposables.Disposable logoutStatusDisposable> = $r2;
+
+        return;
+    }
+
+    private final void saveBoolean(java.lang.String, boolean)
+    {
+        com.pumapumatrac.ui.login.DataSyncService $r0;
+        java.lang.Object[] $r1;
+        java.lang.String $r2, $r5;
+        boolean $z0;
+        Logger $r3;
+        java.lang.StringBuilder $r4;
+        com.loop.toolkit.kotlin.PersistentHelpers.SharedData $r6;
+        kotlin.Pair[] $r7;
+        java.lang.Boolean $r8;
+        kotlin.Pair $r9;
+
+        $r0 := @this: com.pumapumatrac.ui.login.DataSyncService;
+
+        $r2 := @parameter0: java.lang.String;
+
+        $z0 := @parameter1: boolean;
+
+        $r3 = <Logger: Logger INSTANCE>;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>()>();
+
+        virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Save key: ");
+
+        virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" - value: ");
+
+        virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>($z0);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r1 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r3.<Logger: void v(java.lang.String,java.lang.Object[])>($r5, $r1);
+
+        $r6 = $r0.<com.pumapumatrac.ui.login.DataSyncService: com.loop.toolkit.kotlin.PersistentHelpers.SharedData sharedData>;
+
+        if $r6 != null goto label1;
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void throwUninitializedPropertyAccessException(java.lang.String)>("sharedData");
+
+     label1:
+        $r7 = newarray (kotlin.Pair)[1];
+
+        $r8 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z0);
+
+        $r9 = staticinvoke <kotlin.TuplesKt: kotlin.Pair 'to'(java.lang.Object,java.lang.Object)>($r2, $r8);
+
+        $r7[0] = $r9;
+
+        virtualinvoke $r6.<com.loop.toolkit.kotlin.PersistentHelpers.SharedData: boolean saveBoolean(kotlin.Pair[])>($r7);
+
+        return;
+    }
+
+    private final void saveCoachingVoice(java.lang.String)
+    {
+        com.pumapumatrac.ui.login.DataSyncService $r0;
+        java.lang.String $r1, $r4;
+        com.pumapumatrac.data.voice.VoiceConfiguration[] $r2;
+        int $i0, $i1;
+        com.pumapumatrac.data.voice.VoiceConfiguration $r3;
+        boolean $z0;
+        com.pumapumatrac.data.voice.VoiceConfiguration$Companion $r5;
+        com.pumapumatrac.data.voice.VoiceConfigurationLanguage $r6;
+        com.pumapumatrac.data.voice.VoiceConfigurationGender $r7;
+        Logger $r8;
+        java.lang.StringBuilder $r9;
+        java.lang.Object[] $r10;
+        com.loop.toolkit.kotlin.PersistentHelpers.SharedData $r11;
+        kotlin.Pair[] $r12;
+        kotlin.Pair $r13;
+
+        $r0 := @this: com.pumapumatrac.ui.login.DataSyncService;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 = staticinvoke <com.pumapumatrac.data.voice.VoiceConfiguration: com.pumapumatrac.data.voice.VoiceConfiguration[] values()>();
+
+        $i0 = lengthof $r2;
+
+        $i1 = 0;
+
+     label1:
+        if $i1 >= $i0 goto label3;
+
+        $r3 = $r2[$i1];
+
+        $r4 = virtualinvoke $r3.<java.lang.Enum: java.lang.String name()>();
+
+        $z0 = staticinvoke <kotlin.jvm.internal.Intrinsics: boolean areEqual(java.lang.Object,java.lang.Object)>($r4, $r1);
+
+        if $z0 == 0 goto label2;
+
+        goto label4;
+
+     label2:
+        $i1 = $i1 + 1;
+
+        goto label1;
+
+     label3:
+        $r3 = null;
+
+     label4:
+        if $r3 == null goto label5;
+
+        goto label6;
+
+     label5:
+        $r3 = <com.pumapumatrac.data.voice.VoiceConfiguration: com.pumapumatrac.data.voice.VoiceConfiguration ENGLISH_FEMALE>;
+
+     label6:
+        $r5 = <com.pumapumatrac.data.voice.VoiceConfiguration: com.pumapumatrac.data.voice.VoiceConfiguration$Companion Companion>;
+
+        $r6 = <com.pumapumatrac.data.voice.VoiceConfigurationLanguage: com.pumapumatrac.data.voice.VoiceConfigurationLanguage ENGLISH>;
+
+        $r7 = virtualinvoke $r3.<com.pumapumatrac.data.voice.VoiceConfiguration: com.pumapumatrac.data.voice.VoiceConfigurationGender getGender()>();
+
+        $r3 = virtualinvoke $r5.<com.pumapumatrac.data.voice.VoiceConfiguration$Companion: com.pumapumatrac.data.voice.VoiceConfiguration get(com.pumapumatrac.data.voice.VoiceConfigurationLanguage,com.pumapumatrac.data.voice.VoiceConfigurationGender)>($r6, $r7);
+
+        $r8 = <Logger: Logger INSTANCE>;
+
+        $r9 = new java.lang.StringBuilder;
+
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>()>();
+
+        virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Save coaching voice: ");
+
+        virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" - actual: ");
+
+        $r1 = virtualinvoke $r3.<java.lang.Enum: java.lang.String name()>();
+
+        virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1);
+
+        $r1 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r10 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r8.<Logger: void v(java.lang.String,java.lang.Object[])>($r1, $r10);
+
+        $r11 = $r0.<com.pumapumatrac.ui.login.DataSyncService: com.loop.toolkit.kotlin.PersistentHelpers.SharedData sharedData>;
+
+        if $r11 != null goto label7;
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void throwUninitializedPropertyAccessException(java.lang.String)>("sharedData");
+
+     label7:
+        $r12 = newarray (kotlin.Pair)[1];
+
+        $r13 = staticinvoke <kotlin.TuplesKt: kotlin.Pair 'to'(java.lang.Object,java.lang.Object)>("keySelectedVoice", $r3);
+
+        $r12[0] = $r13;
+
+        virtualinvoke $r11.<com.loop.toolkit.kotlin.PersistentHelpers.SharedData: boolean saveEnum(kotlin.Pair[])>($r12);
+
+        return;
+    }
+
+    private final void saveToken(java.lang.String)
+    {
+        com.pumapumatrac.ui.login.DataSyncService $r0;
+        java.lang.String $r1, $r4;
+        Logger $r2;
+        java.lang.StringBuilder $r3;
+        boolean $z0;
+        java.lang.Object[] $r5;
+        com.pumapumatrac.data.user.UserRepository $r6;
+        com.pumapumatrac.AppClassBase$Companion $r7;
+
+        $r0 := @this: com.pumapumatrac.ui.login.DataSyncService;
+
+        $r1 := @parameter0: java.lang.String;
+
+        $r2 = <Logger: Logger INSTANCE>;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Saving token: ");
+
+        $z0 = staticinvoke <com.loop.toolkit.kotlin.Utils.extensions.StringExtKt: boolean valid(java.lang.String)>($r1);
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>($z0);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r2.<Logger: void v(java.lang.String,java.lang.Object[])>($r4, $r5);
+
+        if $r1 != null goto label3;
+
+        $r6 = $r0.<com.pumapumatrac.ui.login.DataSyncService: com.pumapumatrac.data.user.UserRepository userRepository>;
+
+        if $r6 != null goto label1;
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void throwUninitializedPropertyAccessException(java.lang.String)>("userRepository");
+
+     label1:
+        $z0 = virtualinvoke $r6.<com.pumapumatrac.data.user.IUserRepository: boolean isLoggedIn()>();
+
+        if $z0 == 0 goto label3;
+
+        $r6 = $r0.<com.pumapumatrac.ui.login.DataSyncService: com.pumapumatrac.data.user.UserRepository userRepository>;
+
+        if $r6 != null goto label2;
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void throwUninitializedPropertyAccessException(java.lang.String)>("userRepository");
+
+     label2:
+        virtualinvoke $r6.<com.pumapumatrac.data.user.UserRepository: void saveToken(java.lang.String)>(null);
+
+        $r7 = <com.pumapumatrac.AppClassBase: com.pumapumatrac.AppClassBase$Companion Companion>;
+
+        virtualinvoke $r7.<com.pumapumatrac.AppClassBase$Companion: void postException(boolean)>(1);
+
+        return;
+
+     label3:
+        $r6 = $r0.<com.pumapumatrac.ui.login.DataSyncService: com.pumapumatrac.data.user.UserRepository userRepository>;
+
+        if $r6 != null goto label4;
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void throwUninitializedPropertyAccessException(java.lang.String)>("userRepository");
+
+     label4:
+        virtualinvoke $r6.<com.pumapumatrac.data.user.UserRepository: void saveToken(java.lang.String)>($r1);
+
+        return;
+    }
+
+    private final void saveUserWeight(java.lang.Double)
+    {
+        com.pumapumatrac.ui.login.DataSyncService $r0;
+        java.lang.Double $r1;
+        Logger $r2;
+        java.lang.StringBuilder $r3;
+        java.lang.String $r4;
+        java.lang.Object[] $r5;
+        com.loop.toolkit.kotlin.PersistentHelpers.SharedData $r6;
+        double $d0;
+
+        $r0 := @this: com.pumapumatrac.ui.login.DataSyncService;
+
+        $r1 := @parameter0: java.lang.Double;
+
+        $r2 = <Logger: Logger INSTANCE>;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Save user weight: ");
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r1);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r2.<Logger: void v(java.lang.String,java.lang.Object[])>($r4, $r5);
+
+        $r6 = $r0.<com.pumapumatrac.ui.login.DataSyncService: com.loop.toolkit.kotlin.PersistentHelpers.SharedData sharedData>;
+
+        if $r6 != null goto label1;
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void throwUninitializedPropertyAccessException(java.lang.String)>("sharedData");
+
+     label1:
+        if $r1 == null goto label2;
+
+        $d0 = virtualinvoke $r1.<java.lang.Double: double doubleValue()>();
+
+        goto label3;
+
+     label2:
+        $d0 = 70.0;
+
+     label3:
+        virtualinvoke $r6.<com.loop.toolkit.kotlin.PersistentHelpers.SharedData: boolean saveDouble(java.lang.String,double)>("keyWeight", $d0);
+
+        return;
+    }
+
+    public final void onCreate()
+    {
+        com.pumapumatrac.ui.login.DataSyncService $r0;
+        io.reactivex.disposables.Disposable $r1;
+        com.pumapumatrac.AppClassBase$Companion $r2;
+        io.reactivex.Observable $r3;
+        io.reactivex.Scheduler $r4;
+        com.pumapumatrac.ui.login.DataSyncService$onCreate$1 $r5;
+        com.pumapumatrac.ui.login.DataSyncService$onCreate$2 $r6;
+        Logger $r7;
+        java.lang.Object[] $r8;
+
+        $r0 := @this: com.pumapumatrac.ui.login.DataSyncService;
+
+        $r1 = $r0.<com.pumapumatrac.ui.login.DataSyncService: io.reactivex.disposables.Disposable errorStatusDisposable>;
+
+        if $r1 == null goto label1;
+
+        staticinvoke <com.pumapumatrac.utils.extensions.ObservableExtensionsKt: void safeDispose(io.reactivex.disposables.Disposable)>($r1);
+
+     label1:
+        $r2 = <com.pumapumatrac.AppClassBase: com.pumapumatrac.AppClassBase$Companion Companion>;
+
+        $r3 = virtualinvoke $r2.<com.pumapumatrac.AppClassBase$Companion: io.reactivex.Observable listenForException()>();
+
+        $r4 = staticinvoke <io.reactivex.schedulers.Schedulers: io.reactivex.Scheduler io()>();
+
+        $r3 = virtualinvoke $r3.<io.reactivex.Observable: io.reactivex.Observable subscribeOn(io.reactivex.Scheduler)>($r4);
+
+        $r4 = staticinvoke <io.reactivex.android.schedulers.AndroidSchedulers: io.reactivex.Scheduler mainThread()>();
+
+        $r3 = virtualinvoke $r3.<io.reactivex.Observable: io.reactivex.Observable observeOn(io.reactivex.Scheduler)>($r4);
+
+        $r5 = new com.pumapumatrac.ui.login.DataSyncService$onCreate$1;
+
+        specialinvoke $r5.<com.pumapumatrac.ui.login.DataSyncService$onCreate$1: void <init>(com.pumapumatrac.ui.login.DataSyncService)>($r0);
+
+        $r6 = <com.pumapumatrac.ui.login.DataSyncService$onCreate$2: com.pumapumatrac.ui.login.DataSyncService$onCreate$2 INSTANCE>;
+
+        $r1 = virtualinvoke $r3.<io.reactivex.Observable: io.reactivex.disposables.Disposable subscribe(io.reactivex.functions.Consumer,io.reactivex.functions.Consumer)>($r5, $r6);
+
+        $r0.<com.pumapumatrac.ui.login.DataSyncService: io.reactivex.disposables.Disposable errorStatusDisposable> = $r1;
+
+        $r7 = <Logger: Logger INSTANCE>;
+
+        $r8 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r7.<Logger: void v(java.lang.String,java.lang.Object[])>("Service started", $r8);
+
+        return;
+    }
+
+    public void onDataChanged(com.google.android.gms.wearable.DataEventBuffer)
+    {
+        com.pumapumatrac.ui.login.DataSyncService $r0;
+        com.google.android.gms.wearable.DataEventBuffer $r1;
+        Logger $r2;
+        java.lang.StringBuilder $r3;
+        java.lang.String $r4, $r12;
+        java.lang.Object[] $r5;
+        java.util.Iterator $r6;
+        boolean $z0;
+        java.lang.Object $r7;
+        com.google.android.gms.wearable.DataEvent $r8;
+        com.google.android.gms.wearable.DataItem $r9;
+        android.net.Uri $r10;
+        android.content.Context $r11;
+        int $i0;
+        com.google.android.gms.wearable.DataMapItem $r13;
+        com.google.android.gms.wearable.DataMap $r14;
+        double $d0;
+        java.lang.Double $r15;
+        com.pumapumatrac.data.settings.SettingIdentifier $r16;
+        com.pumapumatrac.data.voice.VoiceConfiguration $r17;
+
+        $r0 := @this: com.pumapumatrac.ui.login.DataSyncService;
+
+        $r1 := @parameter0: com.google.android.gms.wearable.DataEventBuffer;
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void checkParameterIsNotNull(java.lang.Object,java.lang.String)>($r1, "dataEvents");
+
+        $r2 = <Logger: Logger INSTANCE>;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>()>();
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Data changed: ");
+
+        virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r1);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r5 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r2.<Logger: void v(java.lang.String,java.lang.Object[])>($r4, $r5);
+
+        $r6 = interfaceinvoke $r1.<java.lang.Iterable: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r6.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label4;
+
+        $r7 = interfaceinvoke $r6.<java.util.Iterator: java.lang.Object next()>();
+
+        $r8 = (com.google.android.gms.wearable.DataEvent) $r7;
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void checkExpressionValueIsNotNull(java.lang.Object,java.lang.String)>($r8, "event");
+
+        $r9 = interfaceinvoke $r8.<com.google.android.gms.wearable.DataEvent: com.google.android.gms.wearable.DataItem getDataItem()>();
+
+        if $r9 == null goto label1;
+
+        $r10 = interfaceinvoke $r9.<com.google.android.gms.wearable.DataItem: android.net.Uri getUri()>();
+
+        if $r10 == null goto label1;
+
+        $r4 = virtualinvoke $r10.<android.net.Uri: java.lang.String getPath()>();
+
+        if $r4 == null goto label1;
+
+        $r11 = $r0.<com.pumapumatrac.ui.login.DataSyncService: android.content.Context context>;
+
+        if $r11 != null goto label2;
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void throwUninitializedPropertyAccessException(java.lang.String)>("context");
+
+     label2:
+        $r12 = virtualinvoke $r11.<android.content.Context: java.lang.String getString(int)>(2131952141);
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void checkExpressionValueIsNotNull(java.lang.Object,java.lang.String)>($r12, "context.getString(R.string.pumatrac_data_token)");
+
+        $i0 = virtualinvoke $r4.<java.lang.String: int compareTo(java.lang.String)>($r12);
+
+        if $i0 != 0 goto label1;
+
+        $i0 = interfaceinvoke $r8.<com.google.android.gms.wearable.DataEvent: int getType()>();
+
+        if $i0 != 1 goto label3;
+
+        $r13 = staticinvoke <com.google.android.gms.wearable.DataMapItem: com.google.android.gms.wearable.DataMapItem fromDataItem(com.google.android.gms.wearable.DataItem)>($r9);
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void checkExpressionValueIsNotNull(java.lang.Object,java.lang.String)>($r13, "DataMapItem.fromDataItem(item)");
+
+        $r14 = virtualinvoke $r13.<com.google.android.gms.wearable.DataMapItem: com.google.android.gms.wearable.DataMap getDataMap()>();
+
+        $d0 = virtualinvoke $r14.<com.google.android.gms.wearable.DataMap: double getDoubleSource(java.lang.String,java.lang.String)>("general_key", "general_path");
+
+        $r15 = staticinvoke <java.lang.Double: java.lang.Double valueOf(double)>($d0);
+
+        specialinvoke $r0.<com.pumapumatrac.ui.login.DataSyncService: void saveUserWeight(java.lang.Double)>($r15);
+
+        $r4 = virtualinvoke $r14.<com.google.android.gms.wearable.DataMap: java.lang.String getString(java.lang.String)>("keyToken");
+
+        specialinvoke $r0.<com.pumapumatrac.ui.login.DataSyncService: void saveToken(java.lang.String)>($r4);
+
+        $r16 = <com.pumapumatrac.data.settings.SettingIdentifier: com.pumapumatrac.data.settings.SettingIdentifier TRAIN_AUTO_PAUSE>;
+
+        $r4 = virtualinvoke $r16.<java.lang.Enum: java.lang.String name()>();
+
+        $r16 = <com.pumapumatrac.data.settings.SettingIdentifier: com.pumapumatrac.data.settings.SettingIdentifier TRAIN_AUTO_PAUSE>;
+
+        $r12 = virtualinvoke $r16.<java.lang.Enum: java.lang.String name()>();
+
+        $z0 = virtualinvoke $r14.<com.google.android.gms.wearable.DataMap: boolean getBoolean(java.lang.String,boolean)>($r12, 1);
+
+        specialinvoke $r0.<com.pumapumatrac.ui.login.DataSyncService: void saveBoolean(java.lang.String,boolean)>($r4, $z0);
+
+        $r16 = <com.pumapumatrac.data.settings.SettingIdentifier: com.pumapumatrac.data.settings.SettingIdentifier TRAIN_VOICE>;
+
+        $r4 = virtualinvoke $r16.<java.lang.Enum: java.lang.String name()>();
+
+        $r16 = <com.pumapumatrac.data.settings.SettingIdentifier: com.pumapumatrac.data.settings.SettingIdentifier TRAIN_VOICE>;
+
+        $r12 = virtualinvoke $r16.<java.lang.Enum: java.lang.String name()>();
+
+        $z0 = virtualinvoke $r14.<com.google.android.gms.wearable.DataMap: boolean getBoolean(java.lang.String,boolean)>($r12, 1);
+
+        specialinvoke $r0.<com.pumapumatrac.ui.login.DataSyncService: void saveBoolean(java.lang.String,boolean)>($r4, $z0);
+
+        $r16 = <com.pumapumatrac.data.settings.SettingIdentifier: com.pumapumatrac.data.settings.SettingIdentifier TRAIN_VOICE_PACE>;
+
+        $r4 = virtualinvoke $r16.<java.lang.Enum: java.lang.String name()>();
+
+        $r16 = <com.pumapumatrac.data.settings.SettingIdentifier: com.pumapumatrac.data.settings.SettingIdentifier TRAIN_VOICE_PACE>;
+
+        $r12 = virtualinvoke $r16.<java.lang.Enum: java.lang.String name()>();
+
+        $z0 = virtualinvoke $r14.<com.google.android.gms.wearable.DataMap: boolean getBoolean(java.lang.String,boolean)>($r12, 1);
+
+        specialinvoke $r0.<com.pumapumatrac.ui.login.DataSyncService: void saveBoolean(java.lang.String,boolean)>($r4, $z0);
+
+        $r16 = <com.pumapumatrac.data.settings.SettingIdentifier: com.pumapumatrac.data.settings.SettingIdentifier TRAIN_VOICE_DISTANCE>;
+
+        $r4 = virtualinvoke $r16.<java.lang.Enum: java.lang.String name()>();
+
+        $r16 = <com.pumapumatrac.data.settings.SettingIdentifier: com.pumapumatrac.data.settings.SettingIdentifier TRAIN_VOICE_DISTANCE>;
+
+        $r12 = virtualinvoke $r16.<java.lang.Enum: java.lang.String name()>();
+
+        $z0 = virtualinvoke $r14.<com.google.android.gms.wearable.DataMap: boolean getBoolean(java.lang.String,boolean)>($r12, 1);
+
+        specialinvoke $r0.<com.pumapumatrac.ui.login.DataSyncService: void saveBoolean(java.lang.String,boolean)>($r4, $z0);
+
+        $r16 = <com.pumapumatrac.data.settings.SettingIdentifier: com.pumapumatrac.data.settings.SettingIdentifier TRAIN_VOICE_TIME>;
+
+        $r4 = virtualinvoke $r16.<java.lang.Enum: java.lang.String name()>();
+
+        $r16 = <com.pumapumatrac.data.settings.SettingIdentifier: com.pumapumatrac.data.settings.SettingIdentifier TRAIN_VOICE_TIME>;
+
+        $r12 = virtualinvoke $r16.<java.lang.Enum: java.lang.String name()>();
+
+        $z0 = virtualinvoke $r14.<com.google.android.gms.wearable.DataMap: boolean getBoolean(java.lang.String,boolean)>($r12, 1);
+
+        specialinvoke $r0.<com.pumapumatrac.ui.login.DataSyncService: void saveBoolean(java.lang.String,boolean)>($r4, $z0);
+
+        $r17 = <com.pumapumatrac.data.voice.VoiceConfiguration: com.pumapumatrac.data.voice.VoiceConfiguration ENGLISH_FEMALE>;
+
+        $r4 = virtualinvoke $r17.<java.lang.Enum: java.lang.String name()>();
+
+        $r4 = virtualinvoke $r14.<com.google.android.gms.wearable.DataMap: java.lang.String getString(java.lang.String,java.lang.String)>("keySelectedVoice", $r4);
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void checkExpressionValueIsNotNull(java.lang.Object,java.lang.String)>($r4, "getString(Voice.keySelec\u2026tion.ENGLISH_FEMALE.name)");
+
+        specialinvoke $r0.<com.pumapumatrac.ui.login.DataSyncService: void saveCoachingVoice(java.lang.String)>($r4);
+
+        goto label1;
+
+     label3:
+        $i0 = interfaceinvoke $r8.<com.google.android.gms.wearable.DataEvent: int getType()>();
+
+        if $i0 != 2 goto label1;
+
+        $r2 = <Logger: Logger INSTANCE>;
+
+        $r5 = newarray (java.lang.Object)[0];
+
+        virtualinvoke $r2.<Logger: void v(java.lang.String,java.lang.Object[])>("Data deleted - token", $r5);
+
+        specialinvoke $r0.<com.pumapumatrac.ui.login.DataSyncService: void saveToken(java.lang.String)>(null);
+
+        goto label1;
+
+     label4:
+        return;
+    }
+
+    public final void onDestroy()
+    {
+        com.pumapumatrac.ui.login.DataSyncService $r0;
+        io.reactivex.disposables.Disposable $r1;
+
+        $r0 := @this: com.pumapumatrac.ui.login.DataSyncService;
+
+        $r1 = $r0.<com.pumapumatrac.ui.login.DataSyncService: io.reactivex.disposables.Disposable logoutStatusDisposable>;
+
+        if $r1 == null goto label1;
+
+        staticinvoke <com.pumapumatrac.utils.extensions.ObservableExtensionsKt: void safeDispose(io.reactivex.disposables.Disposable)>($r1);
+
+     label1:
+        $r1 = $r0.<com.pumapumatrac.ui.login.DataSyncService: io.reactivex.disposables.Disposable errorStatusDisposable>;
+
+        if $r1 == null goto label2;
+
+        staticinvoke <com.pumapumatrac.utils.extensions.ObservableExtensionsKt: void safeDispose(io.reactivex.disposables.Disposable)>($r1);
+
+     label2:
+        return;
+    }
+}

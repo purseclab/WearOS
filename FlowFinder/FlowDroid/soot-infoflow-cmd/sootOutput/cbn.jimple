@@ -1,0 +1,364 @@
+public abstract class cbn extends cay
+{
+    private final java.lang.String a;
+
+    public void <init>(android.content.Context, java.lang.String)
+    {
+        cbn $r0;
+        android.content.Context $r1;
+        java.lang.String $r2;
+
+        $r0 := @this: cbn;
+
+        $r1 := @parameter0: android.content.Context;
+
+        $r2 := @parameter1: java.lang.String;
+
+        specialinvoke $r0.<cbn: void <init>(android.content.Context,java.lang.String,byte)>($r1, $r2, 0);
+
+        return;
+    }
+
+    private void <init>(android.content.Context, java.lang.String, byte)
+    {
+        cbn $r0;
+        android.content.Context $r1;
+        java.lang.String $r2;
+        byte $b0;
+
+        $r0 := @this: cbn;
+
+        $r1 := @parameter0: android.content.Context;
+
+        $r2 := @parameter1: java.lang.String;
+
+        $b0 := @parameter2: byte;
+
+        specialinvoke $r0.<cay: void <init>(android.content.Context,byte)>($r1, 0);
+
+        $r0.<cbn: java.lang.String a> = $r2;
+
+        return;
+    }
+
+    private boolean a(com.google.android.gms.common.api.GoogleApiClient, byte[])
+    {
+        cbn $r0;
+        com.google.android.gms.common.api.GoogleApiClient $r1;
+        byte[] $r2;
+        com.google.android.gms.wearable.NodeApi $r3;
+        com.google.android.gms.common.api.PendingResult $r4;
+        com.google.android.gms.common.api.Result $r5;
+        com.google.android.gms.wearable.NodeApi$GetConnectedNodesResult $r6;
+        java.util.List $r7;
+        java.util.Iterator $r8;
+        int $i0, $i1;
+        boolean $z0, $z1;
+        java.lang.Object $r9;
+        com.google.android.gms.wearable.Node $r10;
+        com.google.android.gms.wearable.MessageApi $r11;
+        java.lang.String $r12, $r13;
+        com.google.android.gms.wearable.MessageApi$SendMessageResult $r14;
+        java.lang.Class $r15;
+        java.lang.StringBuilder $r16;
+
+        $r0 := @this: cbn;
+
+        $r1 := @parameter0: com.google.android.gms.common.api.GoogleApiClient;
+
+        $r2 := @parameter1: byte[];
+
+        if $r1 == null goto label6;
+
+        if $r2 != null goto label1;
+
+        return 0;
+
+     label1:
+        $r3 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.NodeApi d>;
+
+        $r4 = interfaceinvoke $r3.<com.google.android.gms.wearable.NodeApi: com.google.android.gms.common.api.PendingResult a(com.google.android.gms.common.api.GoogleApiClient)>($r1);
+
+        $r5 = virtualinvoke $r4.<com.google.android.gms.common.api.PendingResult: com.google.android.gms.common.api.Result b()>();
+
+        $r6 = (com.google.android.gms.wearable.NodeApi$GetConnectedNodesResult) $r5;
+
+        $r7 = interfaceinvoke $r6.<com.google.android.gms.wearable.NodeApi$GetConnectedNodesResult: java.util.List b()>();
+
+        $r8 = interfaceinvoke $r7.<java.util.List: java.util.Iterator iterator()>();
+
+        $i0 = 0;
+
+        $z0 = 1;
+
+     label2:
+        $z1 = interfaceinvoke $r8.<java.util.Iterator: boolean hasNext()>();
+
+        if $z1 == 0 goto label5;
+
+        $r9 = interfaceinvoke $r8.<java.util.Iterator: java.lang.Object next()>();
+
+        $r10 = (com.google.android.gms.wearable.Node) $r9;
+
+        $i0 = $i0 + 1;
+
+        $r11 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.MessageApi c>;
+
+        $r12 = interfaceinvoke $r10.<com.google.android.gms.wearable.Node: java.lang.String a()>();
+
+        $r13 = $r0.<cbn: java.lang.String a>;
+
+        $r4 = interfaceinvoke $r11.<com.google.android.gms.wearable.MessageApi: com.google.android.gms.common.api.PendingResult sendMessage(com.google.android.gms.common.api.GoogleApiClient,java.lang.String,java.lang.String,byte[])>($r1, $r12, "general_path", $r2);
+
+        $r5 = virtualinvoke $r4.<com.google.android.gms.common.api.PendingResult: com.google.android.gms.common.api.Result b()>();
+
+        $r14 = (com.google.android.gms.wearable.MessageApi$SendMessageResult) $r5;
+
+        $i1 = interfaceinvoke $r14.<com.google.android.gms.wearable.MessageApi$SendMessageResult: int b()>();
+
+        if $i1 == -1 goto label4;
+
+        $z1 = 1;
+
+     label3:
+        $r15 = virtualinvoke $r0.<java.lang.Object: java.lang.Class getClass()>();
+
+        virtualinvoke $r15.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>("Sent payload to [");
+
+        $r16 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("] nodes.");
+
+        $r16 = new java.lang.StringBuilder;
+
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>("WearAPI Message sent: ");
+
+        $r12 = $r0.<cbn: java.lang.String a>;
+
+        $r16 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+
+        $r12 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <android.util.Log: int w(java.lang.String,java.lang.String)>("FacerBatteryUsageTracker", $r12);
+
+        $z0 = $z1 & $z0;
+
+        goto label2;
+
+     label4:
+        $z1 = 0;
+
+        goto label3;
+
+     label5:
+        if $i0 <= 0 goto label6;
+
+        if $z0 == 0 goto label6;
+
+        return 1;
+
+     label6:
+        return 0;
+    }
+
+    private java.lang.Boolean c(java.lang.Object)
+    {
+        cbn $r0;
+        java.lang.Object $r1;
+        java.lang.Class $r2;
+        android.content.Context $r3;
+        java.lang.String $r4, $r5;
+        boolean $z0;
+        java.lang.StringBuilder $r6;
+        java.lang.Boolean $r7;
+        com.google.android.gms.common.api.GoogleApiClient$Builder $r8;
+        com.google.android.gms.common.api.Api $r9;
+        com.google.android.gms.common.api.GoogleApiClient $r10;
+        com.google.android.gms.common.ConnectionResult $r11;
+        byte[] $r12;
+        java.lang.Throwable $r13;
+
+        $r0 := @this: cbn;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = class "Lcbn;";
+
+        virtualinvoke $r2.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $r3 = $r0.<cay: android.content.Context b>;
+
+        $r4 = $r0.<cbn: java.lang.String a>;
+
+        if $r4 == null goto label01;
+
+        $r4 = "";
+
+        $r5 = $r0.<cbn: java.lang.String a>;
+
+        $r5 = virtualinvoke $r5.<java.lang.String: java.lang.String trim()>();
+
+        $z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>($r5);
+
+        if $z0 != 0 goto label01;
+
+        if $r3 != null goto label06;
+
+     label01:
+        $r2 = class "Lcbn;";
+
+        virtualinvoke $r2.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("Failed to run SendMessageOperation with path [");
+
+        $r4 = $r0.<cbn: java.lang.String a>;
+
+        if $r4 == null goto label04;
+
+        $r4 = $r0.<cbn: java.lang.String a>;
+
+     label02:
+        $r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        $r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("] and context [");
+
+        if $r3 == null goto label05;
+
+        $r4 = virtualinvoke $r3.<java.lang.Object: java.lang.String toString()>();
+
+     label03:
+        $r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("]; aborting.");
+
+        $r7 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(0);
+
+        return $r7;
+
+     label04:
+        $r4 = "null";
+
+        goto label02;
+
+     label05:
+        $r4 = "null";
+
+        goto label03;
+
+     label06:
+        if $r1 != null goto label07;
+
+        $r2 = class "Lcbn;";
+
+        virtualinvoke $r2.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $r7 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(0);
+
+        return $r7;
+
+     label07:
+        $r2 = class "Lcbn;";
+
+        virtualinvoke $r2.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $r8 = new com.google.android.gms.common.api.GoogleApiClient$Builder;
+
+        specialinvoke $r8.<com.google.android.gms.common.api.GoogleApiClient$Builder: void <init>(android.content.Context)>($r3);
+
+        $r9 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.common.api.Api f>;
+
+        $r8 = virtualinvoke $r8.<com.google.android.gms.common.api.GoogleApiClient$Builder: com.google.android.gms.common.api.GoogleApiClient$Builder a(com.google.android.gms.common.api.Api)>($r9);
+
+        $r10 = virtualinvoke $r8.<com.google.android.gms.common.api.GoogleApiClient$Builder: com.google.android.gms.common.api.GoogleApiClient c()>();
+
+        $r11 = virtualinvoke $r10.<com.google.android.gms.common.api.GoogleApiClient: com.google.android.gms.common.ConnectionResult f()>();
+
+        $z0 = virtualinvoke $r11.<com.google.android.gms.common.ConnectionResult: boolean b()>();
+
+        if $z0 != 0 goto label08;
+
+        $r2 = class "Lcbn;";
+
+        virtualinvoke $r2.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $r7 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(0);
+
+        return $r7;
+
+     label08:
+        $r2 = class "Lcbn;";
+
+        virtualinvoke $r2.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>(">>>>>>>>>> Successfully started SendMessageOperation for path [");
+
+        $r4 = $r0.<cbn: java.lang.String a>;
+
+        $r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("]");
+
+        $r2 = class "Lcbn;";
+
+        virtualinvoke $r2.<java.lang.Class: java.lang.String getSimpleName()>();
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>(">>>>>>>>>> Message sent is: ");
+
+        virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r1);
+
+     label09:
+        $r12 = virtualinvoke $r0.<cbn: byte[] b(java.lang.Object)>($r1);
+
+        $z0 = specialinvoke $r0.<cbn: boolean a(com.google.android.gms.common.api.GoogleApiClient,byte[])>($r10, $r12);
+
+     label10:
+        $r2 = class "Lcbn;";
+
+     label11:
+        virtualinvoke $r2.<java.lang.Class: java.lang.String getSimpleName()>();
+
+     label12:
+        virtualinvoke $r10.<com.google.android.gms.common.api.GoogleApiClient: void g()>();
+
+        $r7 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z0);
+
+        return $r7;
+
+     label13:
+        $r13 := @caughtexception;
+
+        virtualinvoke $r10.<com.google.android.gms.common.api.GoogleApiClient: void g()>();
+
+        throw $r13;
+
+        catch java.lang.Throwable from label09 to label10 with label13;
+        catch java.lang.Throwable from label11 to label12 with label13;
+    }
+
+    protected final java.lang.Object a(java.lang.Object)
+    {
+        cbn $r0;
+        java.lang.Object $r1;
+        java.lang.Boolean $r2;
+
+        $r0 := @this: cbn;
+
+        $r1 := @parameter0: java.lang.Object;
+
+        $r2 = specialinvoke $r0.<cbn: java.lang.Boolean c(java.lang.Object)>($r1);
+
+        return $r2;
+    }
+
+    protected abstract byte[] b(java.lang.Object);
+}

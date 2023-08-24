@@ -1,0 +1,25 @@
+loopUnraveledTime=1
+# wearable library
+<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataMapRequest create(java.lang.String)>@1
+<com.google.android.gms.wearable.DataMap: void putString(java.lang.String,java.lang.String)>@1
+<com.google.android.gms.wearable.DataMap: java.lang.String getString(java.lang.String)>@1
+<com.google.android.gms.wearable.DataMap: void putInt(java.lang.String,int)>@1
+<com.google.android.gms.wearable.DataMap: int getInt(java.lang.String)>@1
+<com.google.android.gms.wearable.MessageClient: com.google.android.gms.tasks.Task sendMessage(java.lang.String,java.lang.String,byte[])>@2
+<com.google.android.gms.wearable.MessageApi: com.google.android.gms.common.api.PendingResult sendMessage(com.google.android.gms.common.api.GoogleApiClient,java.lang.String,java.lang.String,byte[])>@2
+<com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest putAsset(java.lang.String,com.google.android.gms.wearable.Asset)>@1
+<com.google.android.gms.wearable.DataMap: void putAsset(java.lang.String,com.google.android.gms.wearable.Asset)>@1
+<com.google.android.gms.wearable.DataMap: com.google.android.gms.wearable.Asset getAsset(java.lang.String)>@1
+<com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest create(java.lang.String)>@1
+<com.google.android.gms.wearable.ChannelClient: com.google.android.gms.tasks.Task openChannel(java.lang.String,java.lang.String)>@2
+
+# to get the path 
+<java.lang.String: boolean equals(java.lang.Object)>@1
+<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>@1
+<java.lang.String: int compareTo(java.lang.String)>@1
+<java.lang.String: int compareToIgnoreCase(java.lang.String)>@1
+<java.lang.String: boolean matches(java.lang.String)>@1
+END
+<com.google.android.gms.wearable.DataMap: com.google.android.gms.wearable.Asset getAsset(java.lang.String)>
+
+

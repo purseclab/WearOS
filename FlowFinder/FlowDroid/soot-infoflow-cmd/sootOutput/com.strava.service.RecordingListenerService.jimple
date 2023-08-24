@@ -1,0 +1,1219 @@
+public class com.strava.service.RecordingListenerService extends android.app.Service implements android.content.SharedPreferences$OnSharedPreferenceChangeListener, com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks, com.google.android.gms.common.api.GoogleApiClient$OnConnectionFailedListener, com.google.android.gms.wearable.DataApi$DataListener, com.google.android.gms.wearable.NodeApi$NodeListener, com.strava.service.RecordingService
+{
+    private static final java.lang.String c;
+    android.content.SharedPreferences a;
+    com.google.gson.Gson b;
+    private com.strava.NotificationManager d;
+    private com.google.android.gms.common.api.GoogleApiClient e;
+    private boolean f;
+    private boolean g;
+    private java.lang.Boolean h;
+    private com.strava.service.RecordingService$RecordingState i;
+    private com.strava.data.SecondScreenProtocol j;
+    private com.strava.data.Split[] k;
+    private com.strava.data.Split[] l;
+    private com.strava.data.LiveMatch m;
+    private final android.os.IBinder n;
+    private android.widget.Toast o;
+    public android.content.Intent ipcIntent;
+    public android.os.IBinder ipcBinder_0;
+
+    static void <clinit>()
+    {
+        java.lang.String $r0;
+        java.lang.Class $r1;
+
+        $r1 = class "Lcom/strava/service/RecordingListenerService;";
+
+        $r0 = virtualinvoke $r1.<java.lang.Class: java.lang.String getCanonicalName()>();
+
+        <com.strava.service.RecordingListenerService: java.lang.String c> = $r0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.strava.service.RecordingService$RecordingState $r1;
+        com.strava.service.RecordingListenerService$LocalBinder $r2;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        specialinvoke $r0.<android.app.Service: void <init>()>();
+
+        $r0.<com.strava.service.RecordingListenerService: boolean f> = 0;
+
+        $r0.<com.strava.service.RecordingListenerService: boolean g> = 0;
+
+        $r0.<com.strava.service.RecordingListenerService: java.lang.Boolean h> = null;
+
+        $r1 = <com.strava.service.RecordingService$RecordingState: com.strava.service.RecordingService$RecordingState a>;
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i> = $r1;
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.data.SecondScreenProtocol j> = null;
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.data.Split[] k> = null;
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.data.Split[] l> = null;
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.data.LiveMatch m> = null;
+
+        $r2 = new com.strava.service.RecordingListenerService$LocalBinder;
+
+        specialinvoke $r2.<com.strava.service.RecordingListenerService$LocalBinder: void <init>(com.strava.service.RecordingListenerService)>($r0);
+
+        $r0.<com.strava.service.RecordingListenerService: android.os.IBinder n> = $r2;
+
+        return;
+    }
+
+    static com.google.android.gms.common.api.GoogleApiClient a(com.strava.service.RecordingListenerService)
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.google.android.gms.common.api.GoogleApiClient r1;
+
+        $r0 := @parameter0: com.strava.service.RecordingListenerService;
+
+        r1 = $r0.<com.strava.service.RecordingListenerService: com.google.android.gms.common.api.GoogleApiClient e>;
+
+        return r1;
+    }
+
+    private void a(com.google.android.gms.wearable.DataItem)
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.google.android.gms.wearable.DataItem $r1;
+        boolean $z0, $z1;
+        android.net.Uri $r2;
+        java.lang.String $r3, $r6;
+        com.google.android.gms.wearable.DataMapItem $r4;
+        com.google.android.gms.wearable.DataMap $r5;
+        com.google.gson.Gson $r7;
+        java.lang.Object $r8;
+        com.strava.data.SecondScreenProtocol $r9;
+        com.strava.service.RecordingService$RecordingState $r10;
+        java.lang.Boolean $r11;
+        com.strava.data.ActivityType $r12;
+        java.lang.Throwable $r13;
+        com.google.gson.JsonSyntaxException $r14;
+        java.lang.StringBuilder $r15;
+        android.content.Intent $r16;
+        com.strava.NotificationManager $r17;
+        com.strava.data.Split[] $r18;
+        com.strava.data.LiveMatch $r19;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $r1 := @parameter0: com.google.android.gms.wearable.DataItem;
+
+        $z0 = 0;
+
+        entermonitor $r0;
+
+     label01:
+        $r2 = interfaceinvoke $r1.<com.google.android.gms.wearable.DataItem: android.net.Uri getUri()>();
+
+        $r3 = virtualinvoke $r2.<android.net.Uri: java.lang.String getEncodedPath()>();
+
+        $r4 = staticinvoke <com.google.android.gms.wearable.DataMapItem: com.google.android.gms.wearable.DataMapItem fromDataItem(com.google.android.gms.wearable.DataItem)>($r1);
+
+        $r5 = $r4.<com.google.android.gms.wearable.DataMapItem: com.google.android.gms.wearable.DataMap a>;
+
+        $r6 = virtualinvoke $r5.<com.google.android.gms.wearable.DataMap: java.lang.String getString(java.lang.String)>("data");
+
+        $z1 = staticinvoke <android.text.TextUtils: boolean isEmpty(java.lang.CharSequence)>($r6);
+
+     label02:
+        if $z1 == 0 goto label04;
+
+     label03:
+        exitmonitor $r0;
+
+        return;
+
+     label04:
+        $r3 = virtualinvoke $r3.<java.lang.String: java.lang.String substring(int)>(1);
+
+     label05:
+        $r7 = $r0.<com.strava.service.RecordingListenerService: com.google.gson.Gson b>;
+
+     label06:
+        $r8 = virtualinvoke $r7.<com.google.gson.Gson: java.lang.Object a(java.lang.String,java.lang.Class)>($r6, class "Lcom/strava/data/SecondScreenProtocol;");
+
+     label07:
+        $r9 = (com.strava.data.SecondScreenProtocol) $r8;
+
+     label08:
+        $r6 = "com/strava/recording/update";
+
+        $z1 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z1 == 0 goto label16;
+
+        $r10 = <com.strava.service.RecordingService$RecordingState: com.strava.service.RecordingService$RecordingState d>;
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i> = $r10;
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.data.SecondScreenProtocol j> = $r9;
+
+        $r11 = $r0.<com.strava.service.RecordingListenerService: java.lang.Boolean h>;
+
+        if $r11 == null goto label09;
+
+        $r11 = $r0.<com.strava.service.RecordingListenerService: java.lang.Boolean h>;
+
+        $z0 = virtualinvoke $r11.<java.lang.Boolean: boolean booleanValue()>();
+
+        $z1 = virtualinvoke $r9.<com.strava.data.SecondScreenProtocol: boolean isPaceBased()>();
+
+        if $z0 == $z1 goto label03;
+
+     label09:
+        $z0 = virtualinvoke $r9.<com.strava.data.SecondScreenProtocol: boolean isPaceBased()>();
+
+        $r11 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z0);
+
+        $r0.<com.strava.service.RecordingListenerService: java.lang.Boolean h> = $r11;
+
+        $z0 = virtualinvoke $r9.<com.strava.data.SecondScreenProtocol: boolean isPaceBased()>();
+
+        if $z0 == 0 goto label15;
+
+        $r12 = <com.strava.data.ActivityType: com.strava.data.ActivityType RUN>;
+
+     label10:
+        staticinvoke <com.strava.util.PreferenceUtils: void a(com.strava.data.ActivityType)>($r12);
+
+        $z0 = $r0.<com.strava.service.RecordingListenerService: boolean g>;
+
+        if $z0 == 0 goto label03;
+
+        virtualinvoke $r0.<com.strava.service.RecordingListenerService: void b(boolean)>(0);
+
+     label11:
+        goto label03;
+
+     label12:
+        $r13 := @caughtexception;
+
+        exitmonitor $r0;
+
+        throw $r13;
+
+     label13:
+        $r14 := @caughtexception;
+
+     label14:
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>("Exception parsing JSON: ");
+
+        $r3 = virtualinvoke $r14.<com.google.gson.JsonSyntaxException: java.lang.String toString()>();
+
+        virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3);
+
+        goto label03;
+
+     label15:
+        $r12 = <com.strava.data.ActivityType: com.strava.data.ActivityType RIDE>;
+
+        goto label10;
+
+     label16:
+        $r6 = "com/strava/recording/end";
+
+        $z1 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z1 != 0 goto label17;
+
+        $r6 = "com/strava/recording/discard";
+
+        $z1 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z1 == 0 goto label19;
+
+     label17:
+        $r16 = new android.content.Intent;
+
+        specialinvoke $r16.<android.content.Intent: void <init>(java.lang.String)>("com/strava/recording/end");
+
+        virtualinvoke $r0.<com.strava.service.RecordingListenerService: void sendBroadcast(android.content.Intent)>($r16);
+
+        specialinvoke $r0.<com.strava.service.RecordingListenerService: void p()>();
+
+        $r6 = "com/strava/recording/end";
+
+        $z0 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z0 == 0 goto label18;
+
+        $r17 = $r0.<com.strava.service.RecordingListenerService: com.strava.NotificationManager d>;
+
+        virtualinvoke $r17.<com.strava.NotificationManager: void a(com.strava.data.SecondScreenProtocol)>($r9);
+
+     label18:
+        virtualinvoke $r0.<com.strava.service.RecordingListenerService: void stopSelf()>();
+
+        $r10 = <com.strava.service.RecordingService$RecordingState: com.strava.service.RecordingService$RecordingState a>;
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i> = $r10;
+
+        goto label03;
+
+     label19:
+        $r6 = "com/strava/recording/pause";
+
+        $z1 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z1 != 0 goto label20;
+
+        $r6 = "com/strava/recording/auto_pause";
+
+        $z1 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z1 == 0 goto label21;
+
+     label20:
+        $z0 = 1;
+
+     label21:
+        if $z0 != 0 goto label22;
+
+        $r6 = "com/strava/recording/resume";
+
+        $z0 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z0 == 0 goto label27;
+
+     label22:
+        $r6 = "com/strava/recording/pause";
+
+        $z0 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z0 == 0 goto label25;
+
+        $r10 = <com.strava.service.RecordingService$RecordingState: com.strava.service.RecordingService$RecordingState b>;
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i> = $r10;
+
+     label23:
+        $z0 = $r0.<com.strava.service.RecordingListenerService: boolean g>;
+
+        if $z0 == 0 goto label24;
+
+        $r17 = $r0.<com.strava.service.RecordingListenerService: com.strava.NotificationManager d>;
+
+        $r10 = $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i>;
+
+        $r9 = $r0.<com.strava.service.RecordingListenerService: com.strava.data.SecondScreenProtocol j>;
+
+        virtualinvoke $r17.<com.strava.NotificationManager: void a(com.strava.service.RecordingService$RecordingState,com.strava.data.SecondScreenProtocol)>($r10, $r9);
+
+     label24:
+        virtualinvoke $r0.<com.strava.service.RecordingListenerService: void b(boolean)>(1);
+
+        goto label03;
+
+     label25:
+        $r6 = "com/strava/recording/auto_pause";
+
+        $z0 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z0 == 0 goto label26;
+
+        $r10 = <com.strava.service.RecordingService$RecordingState: com.strava.service.RecordingService$RecordingState c>;
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i> = $r10;
+
+        goto label23;
+
+     label26:
+        $r10 = <com.strava.service.RecordingService$RecordingState: com.strava.service.RecordingService$RecordingState d>;
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i> = $r10;
+
+        goto label23;
+
+     label27:
+        $r6 = "com/strava/recording/splits";
+
+        $z0 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z0 == 0 goto label28;
+
+        $r18 = virtualinvoke $r9.<com.strava.data.SecondScreenProtocol: com.strava.data.Split[] getSplits()>();
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.data.Split[] k> = $r18;
+
+        goto label03;
+
+     label28:
+        $r6 = "com/strava/recording/rts";
+
+        $z0 = virtualinvoke $r6.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+
+        if $z0 == 0 goto label03;
+
+        $r19 = virtualinvoke $r9.<com.strava.data.SecondScreenProtocol: com.strava.data.LiveMatch getMatch()>();
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.data.LiveMatch m> = $r19;
+
+     label29:
+        goto label03;
+
+        catch java.lang.Throwable from label01 to label02 with label12;
+        catch java.lang.Throwable from label04 to label05 with label12;
+        catch com.google.gson.JsonSyntaxException from label06 to label07 with label13;
+        catch java.lang.Throwable from label05 to label08 with label12;
+        catch java.lang.Throwable from label08 to label11 with label12;
+        catch java.lang.Throwable from label14 to label29 with label12;
+    }
+
+    static android.widget.Toast b(com.strava.service.RecordingListenerService)
+    {
+        com.strava.service.RecordingListenerService $r0;
+        android.widget.Toast r1;
+
+        $r0 := @parameter0: com.strava.service.RecordingListenerService;
+
+        r1 = $r0.<com.strava.service.RecordingListenerService: android.widget.Toast o>;
+
+        return r1;
+    }
+
+    static java.lang.String o()
+    {
+        java.lang.String r0;
+
+        r0 = <com.strava.service.RecordingListenerService: java.lang.String c>;
+
+        return r0;
+    }
+
+    private void p()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.strava.NotificationManager $r1;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $r1 = $r0.<com.strava.service.RecordingListenerService: com.strava.NotificationManager d>;
+
+        virtualinvoke $r1.<com.strava.NotificationManager: void b()>();
+
+        $r0.<com.strava.service.RecordingListenerService: boolean g> = 0;
+
+        return;
+    }
+
+    public final void a(com.google.android.gms.wearable.DataEventBuffer)
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.google.android.gms.wearable.DataEventBuffer $r1;
+        java.util.ArrayList $r2;
+        java.util.Iterator $r3;
+        boolean $z0;
+        java.lang.Object $r4;
+        com.google.android.gms.wearable.DataEvent $r5;
+        int $i0;
+        com.google.android.gms.wearable.DataItem $r6;
+        java.lang.String $r7, $r9;
+        java.lang.StringBuilder $r8;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $r1 := @parameter0: com.google.android.gms.wearable.DataEventBuffer;
+
+        $r2 = staticinvoke <com.google.android.gms.common.data.FreezableUtils: java.util.ArrayList freezeIterable(java.lang.Iterable)>($r1);
+
+        $r3 = interfaceinvoke $r2.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r3.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r4 = interfaceinvoke $r3.<java.util.Iterator: java.lang.Object next()>();
+
+        $r5 = (com.google.android.gms.wearable.DataEvent) $r4;
+
+        $i0 = interfaceinvoke $r5.<com.google.android.gms.wearable.DataEvent: int b()>();
+
+        if $i0 != 1 goto label2;
+
+        $r6 = interfaceinvoke $r5.<com.google.android.gms.wearable.DataEvent: com.google.android.gms.wearable.DataItem getDataItem()>();
+
+        specialinvoke $r0.<com.strava.service.RecordingListenerService: void a(com.google.android.gms.wearable.DataItem)>($r6);
+
+        goto label1;
+
+     label2:
+        $r7 = <com.strava.service.RecordingListenerService: java.lang.String c>;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>("Unexpected data event type");
+
+        $i0 = interfaceinvoke $r5.<com.google.android.gms.wearable.DataEvent: int b()>();
+
+        $r8 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <android.util.Log: int w(java.lang.String,java.lang.String)>($r7, $r9);
+
+        goto label1;
+
+     label3:
+        return;
+    }
+
+    public final void a(boolean)
+    {
+        com.strava.service.RecordingListenerService $r0;
+        boolean $z0;
+        com.strava.service.RecordingListenerService$SendWearableAMessageTask $r1;
+        java.lang.String[] $r2;
+        java.lang.StringBuilder $r3;
+        java.lang.String $r4;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $z0 := @parameter0: boolean;
+
+        $r1 = new com.strava.service.RecordingListenerService$SendWearableAMessageTask;
+
+        specialinvoke $r1.<com.strava.service.RecordingListenerService$SendWearableAMessageTask: void <init>(com.strava.service.RecordingListenerService,com.strava.service.RecordingService$MessageSenderCallback)>($r0, null);
+
+        $r2 = newarray (java.lang.String)[1];
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("com/strava/recording/end,");
+
+        if $z0 == 0 goto label2;
+
+        $r4 = "Run";
+
+     label1:
+        $r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r2[0] = $r4;
+
+        virtualinvoke $r1.<com.strava.service.RecordingListenerService$SendWearableAMessageTask: android.os.AsyncTask execute(java.lang.Object[])>($r2);
+
+        return;
+
+     label2:
+        $r4 = "Ride";
+
+        goto label1;
+    }
+
+    public final void a(boolean, com.strava.service.RecordingService$MessageSenderCallback)
+    {
+        com.strava.service.RecordingListenerService $r0;
+        boolean $z0;
+        com.strava.service.RecordingService$MessageSenderCallback $r1;
+        com.strava.service.RecordingListenerService$SendWearableAMessageTask $r2;
+        java.lang.String[] $r3;
+        java.lang.StringBuilder $r4;
+        java.lang.String $r5;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $z0 := @parameter0: boolean;
+
+        $r1 := @parameter1: com.strava.service.RecordingService$MessageSenderCallback;
+
+        $r2 = new com.strava.service.RecordingListenerService$SendWearableAMessageTask;
+
+        specialinvoke $r2.<com.strava.service.RecordingListenerService$SendWearableAMessageTask: void <init>(com.strava.service.RecordingListenerService,com.strava.service.RecordingService$MessageSenderCallback)>($r0, $r1);
+
+        $r3 = newarray (java.lang.String)[1];
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("com/strava/recording/start,");
+
+        if $z0 == 0 goto label2;
+
+        $r5 = "Run";
+
+     label1:
+        $r4 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r3[0] = $r5;
+
+        virtualinvoke $r2.<com.strava.service.RecordingListenerService$SendWearableAMessageTask: android.os.AsyncTask execute(java.lang.Object[])>($r3);
+
+        return;
+
+     label2:
+        $r5 = "Ride";
+
+        goto label1;
+    }
+
+    public final void a_()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.strava.service.RecordingListenerService$SendWearableAMessageTask $r1;
+        java.lang.String[] $r2;
+        com.strava.service.RecordingService$RecordingState $r3, $r4;
+        java.lang.String $r5;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $r1 = new com.strava.service.RecordingListenerService$SendWearableAMessageTask;
+
+        specialinvoke $r1.<com.strava.service.RecordingListenerService$SendWearableAMessageTask: void <init>(com.strava.service.RecordingListenerService,com.strava.service.RecordingService$MessageSenderCallback)>($r0, null);
+
+        $r2 = newarray (java.lang.String)[1];
+
+        $r3 = $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i>;
+
+        $r4 = <com.strava.service.RecordingService$RecordingState: com.strava.service.RecordingService$RecordingState a>;
+
+        if $r3 == $r4 goto label1;
+
+        $r3 = $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i>;
+
+        $r4 = <com.strava.service.RecordingService$RecordingState: com.strava.service.RecordingService$RecordingState b>;
+
+        if $r3 != $r4 goto label3;
+
+     label1:
+        $r5 = "com/strava/recording/resume";
+
+     label2:
+        $r2[0] = $r5;
+
+        virtualinvoke $r1.<com.strava.service.RecordingListenerService$SendWearableAMessageTask: android.os.AsyncTask execute(java.lang.Object[])>($r2);
+
+        return;
+
+     label3:
+        $r5 = "com/strava/recording/pause";
+
+        goto label2;
+    }
+
+    public final void b(boolean)
+    {
+        com.strava.service.RecordingListenerService $r0;
+        boolean $z0, $z1;
+        com.strava.service.RecordingService$RecordingState $r1;
+        java.lang.StringBuilder $r2;
+        com.strava.data.SecondScreenProtocol $r3;
+        com.strava.NotificationManager $r4;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $z0 := @parameter0: boolean;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("showNotification:");
+
+        $r1 = $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i>;
+
+        $r2 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r1);
+
+        $r2 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":");
+
+        virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>($z0);
+
+        $z1 = virtualinvoke $r0.<com.strava.service.RecordingListenerService: boolean f()>();
+
+        if $z1 != 0 goto label1;
+
+        if $z0 == 0 goto label3;
+
+     label1:
+        $r3 = $r0.<com.strava.service.RecordingListenerService: com.strava.data.SecondScreenProtocol j>;
+
+        if $r3 != null goto label2;
+
+        $r3 = new com.strava.data.SecondScreenProtocol;
+
+        specialinvoke $r3.<com.strava.data.SecondScreenProtocol: void <init>()>();
+
+     label2:
+        $r4 = $r0.<com.strava.service.RecordingListenerService: com.strava.NotificationManager d>;
+
+        $r1 = $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i>;
+
+        virtualinvoke $r4.<com.strava.NotificationManager: void a(com.strava.service.RecordingService$RecordingState,com.strava.data.SecondScreenProtocol)>($r1, $r3);
+
+        $r0.<com.strava.service.RecordingListenerService: boolean g> = 1;
+
+     label3:
+        return;
+    }
+
+    public final void b_()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.strava.NotificationManager $r1;
+        com.strava.service.RecordingListenerService$SendWearableAMessageTask $r2;
+        java.lang.String[] $r3;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $r1 = $r0.<com.strava.service.RecordingListenerService: com.strava.NotificationManager d>;
+
+        virtualinvoke $r1.<com.strava.NotificationManager: void b()>();
+
+        $r2 = new com.strava.service.RecordingListenerService$SendWearableAMessageTask;
+
+        specialinvoke $r2.<com.strava.service.RecordingListenerService$SendWearableAMessageTask: void <init>(com.strava.service.RecordingListenerService,com.strava.service.RecordingService$MessageSenderCallback)>($r0, null);
+
+        $r3 = newarray (java.lang.String)[1];
+
+        $r3[0] = "com/strava/recording/end";
+
+        virtualinvoke $r2.<com.strava.service.RecordingListenerService$SendWearableAMessageTask: android.os.AsyncTask execute(java.lang.Object[])>($r3);
+
+        return;
+    }
+
+    public final com.strava.data.ActiveSplit c()
+    {
+        com.strava.service.RecordingListenerService $r0;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        return null;
+    }
+
+    public final boolean c_()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.strava.service.RecordingService$RecordingState $r1;
+        boolean z0;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $r1 = $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i>;
+
+        z0 = $r1.<com.strava.service.RecordingService$RecordingState: boolean e>;
+
+        return z0;
+    }
+
+    public final com.strava.service.RecordingService$RecordingState d()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.strava.service.RecordingService$RecordingState r1;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        r1 = $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i>;
+
+        return r1;
+    }
+
+    public final com.strava.data.SecondScreenProtocol d_()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.strava.data.SecondScreenProtocol r1;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        r1 = $r0.<com.strava.service.RecordingListenerService: com.strava.data.SecondScreenProtocol j>;
+
+        return r1;
+    }
+
+    public final boolean f()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.strava.service.RecordingService$RecordingState $r1, $r2;
+        boolean $z0;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $r2 = $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i>;
+
+        $r1 = <com.strava.service.RecordingService$RecordingState: com.strava.service.RecordingService$RecordingState d>;
+
+        if $r2 == $r1 goto label1;
+
+        $r1 = $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i>;
+
+        $z0 = $r1.<com.strava.service.RecordingService$RecordingState: boolean e>;
+
+        if $z0 == 0 goto label2;
+
+     label1:
+        return 1;
+
+     label2:
+        return 0;
+    }
+
+    public final boolean g()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.strava.service.RecordingService$RecordingState $r1, $r2;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $r2 = $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i>;
+
+        $r1 = <com.strava.service.RecordingService$RecordingState: com.strava.service.RecordingService$RecordingState c>;
+
+        if $r2 != $r1 goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+
+    public final com.strava.data.Split[] i()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.strava.data.Split[] r1;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        r1 = $r0.<com.strava.service.RecordingListenerService: com.strava.data.Split[] l>;
+
+        return r1;
+    }
+
+    public final com.strava.data.Split[] j()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.strava.data.Split[] r1;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        r1 = $r0.<com.strava.service.RecordingListenerService: com.strava.data.Split[] k>;
+
+        return r1;
+    }
+
+    public final com.strava.data.LiveMatch k()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.strava.data.LiveMatch r1;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        r1 = $r0.<com.strava.service.RecordingListenerService: com.strava.data.LiveMatch m>;
+
+        return r1;
+    }
+
+    public final com.strava.service.RecordingService$GpsState l()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.strava.service.RecordingService$GpsState r1;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        r1 = <com.strava.service.RecordingService$GpsState: com.strava.service.RecordingService$GpsState a>;
+
+        return r1;
+    }
+
+    public final void m()
+    {
+        com.strava.service.RecordingListenerService $r0;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        return;
+    }
+
+    public final boolean n()
+    {
+        com.strava.service.RecordingListenerService $r0;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        return 0;
+    }
+
+    public android.os.IBinder onBind(android.content.Intent)
+    {
+        com.strava.service.RecordingListenerService this;
+        android.content.Intent parameter0;
+
+        this := @this: com.strava.service.RecordingListenerService;
+
+        parameter0 := @parameter0: android.content.Intent;
+
+        this.<com.strava.service.RecordingListenerService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        this.<com.strava.service.RecordingListenerService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        this.<com.strava.service.RecordingListenerService: android.os.IBinder ipcBinder_0> = parameter0;
+
+        return parameter0;
+    }
+
+    public void onConnected(android.os.Bundle)
+    {
+        com.strava.service.RecordingListenerService $r0;
+        android.os.Bundle $r1;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $r1 := @parameter0: android.os.Bundle;
+
+        $r0.<com.strava.service.RecordingListenerService: boolean f> = 0;
+
+        return;
+    }
+
+    public void onConnectionFailed(com.google.android.gms.common.ConnectionResult)
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.google.android.gms.common.ConnectionResult $r1;
+        boolean $z0;
+        java.lang.StringBuilder $r2;
+        java.lang.Exception $r3;
+        com.google.android.gms.common.api.GoogleApiClient $r4;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $r1 := @parameter0: com.google.android.gms.common.ConnectionResult;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("onConnectionFailed ");
+
+        virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r1);
+
+        $z0 = $r0.<com.strava.service.RecordingListenerService: boolean f>;
+
+        if $z0 == 0 goto label1;
+
+        return;
+
+     label1:
+        $z0 = virtualinvoke $r1.<com.google.android.gms.common.ConnectionResult: boolean hasResolution()>();
+
+        if $z0 == 0 goto label5;
+
+     label2:
+        $r0.<com.strava.service.RecordingListenerService: boolean f> = 1;
+
+     label3:
+        return;
+
+     label4:
+        $r3 := @caughtexception;
+
+        $r4 = $r0.<com.strava.service.RecordingListenerService: com.google.android.gms.common.api.GoogleApiClient e>;
+
+        virtualinvoke $r4.<com.google.android.gms.common.api.GoogleApiClient: void connect()>();
+
+        return;
+
+     label5:
+        $r0.<com.strava.service.RecordingListenerService: boolean f> = 0;
+
+        return;
+
+        catch java.lang.Exception from label2 to label3 with label4;
+    }
+
+    public void onConnectionSuspended(int)
+    {
+        com.strava.service.RecordingListenerService $r0;
+        int $i0;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $i0 := @parameter0: int;
+
+        return;
+    }
+
+    public void onCreate()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        com.strava.StravaWearApplication $r1;
+        com.google.android.gms.common.api.GoogleApiClient$Builder $r2;
+        com.google.android.gms.common.api.Api $r3;
+        com.google.android.gms.common.api.GoogleApiClient $r4;
+        com.strava.NotificationManager $r5;
+        android.content.Context $r6;
+        android.widget.Toast $r7;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        specialinvoke $r0.<android.app.Service: void onCreate()>();
+
+        $r1 = staticinvoke <com.strava.StravaWearApplication: com.strava.StravaWearApplication a()>();
+
+        virtualinvoke $r1.<com.strava.StravaWearApplication: void a(java.lang.Object)>($r0);
+
+        $r2 = new com.google.android.gms.common.api.GoogleApiClient$Builder;
+
+        specialinvoke $r2.<com.google.android.gms.common.api.GoogleApiClient$Builder: void <init>(android.content.Context)>($r0);
+
+        $r3 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.common.api.Api l>;
+
+        $r2 = virtualinvoke $r2.<com.google.android.gms.common.api.GoogleApiClient$Builder: com.google.android.gms.common.api.GoogleApiClient$Builder addApi(com.google.android.gms.common.api.Api)>($r3);
+
+        $r2 = virtualinvoke $r2.<com.google.android.gms.common.api.GoogleApiClient$Builder: com.google.android.gms.common.api.GoogleApiClient$Builder addConnectionCallbacks(com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks)>($r0);
+
+        $r2 = virtualinvoke $r2.<com.google.android.gms.common.api.GoogleApiClient$Builder: com.google.android.gms.common.api.GoogleApiClient$Builder addOnConnectionFailedListener(com.google.android.gms.common.api.GoogleApiClient$OnConnectionFailedListener)>($r0);
+
+        $r4 = virtualinvoke $r2.<com.google.android.gms.common.api.GoogleApiClient$Builder: com.google.android.gms.common.api.GoogleApiClient build()>();
+
+        $r0.<com.strava.service.RecordingListenerService: com.google.android.gms.common.api.GoogleApiClient e> = $r4;
+
+        $r5 = new com.strava.NotificationManager;
+
+        specialinvoke $r5.<com.strava.NotificationManager: void <init>(android.content.Context)>($r0);
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.NotificationManager d> = $r5;
+
+        $r6 = virtualinvoke $r0.<com.strava.service.RecordingListenerService: android.content.Context getApplicationContext()>();
+
+        $r7 = staticinvoke <android.widget.Toast: android.widget.Toast makeText(android.content.Context,int,int)>($r6, 2131361969, 0);
+
+        $r0.<com.strava.service.RecordingListenerService: android.widget.Toast o> = $r7;
+
+        return;
+    }
+
+    public void onDestroy()
+    {
+        com.strava.service.RecordingListenerService $r0;
+        boolean $z0;
+        com.google.android.gms.wearable.NodeApi $r1;
+        com.google.android.gms.common.api.GoogleApiClient $r2;
+        com.google.android.gms.wearable.DataApi $r3;
+        android.content.SharedPreferences $r4;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $z0 = $r0.<com.strava.service.RecordingListenerService: boolean f>;
+
+        if $z0 != 0 goto label1;
+
+        $r1 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.NodeApi d>;
+
+        $r2 = $r0.<com.strava.service.RecordingListenerService: com.google.android.gms.common.api.GoogleApiClient e>;
+
+        interfaceinvoke $r1.<com.google.android.gms.wearable.NodeApi: com.google.android.gms.common.api.PendingResult b(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.wearable.NodeApi$NodeListener)>($r2, $r0);
+
+        $r3 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.DataApi a>;
+
+        $r2 = $r0.<com.strava.service.RecordingListenerService: com.google.android.gms.common.api.GoogleApiClient e>;
+
+        interfaceinvoke $r3.<com.google.android.gms.wearable.DataApi: com.google.android.gms.common.api.PendingResult b(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.wearable.DataApi$DataListener)>($r2, $r0);
+
+        $r2 = $r0.<com.strava.service.RecordingListenerService: com.google.android.gms.common.api.GoogleApiClient e>;
+
+        virtualinvoke $r2.<com.google.android.gms.common.api.GoogleApiClient: void disconnect()>();
+
+     label1:
+        specialinvoke $r0.<com.strava.service.RecordingListenerService: void p()>();
+
+        $r4 = $r0.<com.strava.service.RecordingListenerService: android.content.SharedPreferences a>;
+
+        interfaceinvoke $r4.<android.content.SharedPreferences: void unregisterOnSharedPreferenceChangeListener(android.content.SharedPreferences$OnSharedPreferenceChangeListener)>($r0);
+
+        return;
+    }
+
+    public void onSharedPreferenceChanged(android.content.SharedPreferences, java.lang.String)
+    {
+        com.strava.service.RecordingListenerService $r0;
+        android.content.SharedPreferences $r1;
+        java.lang.String $r2, $r5;
+        com.strava.service.RecordingListenerService$SendWearableAMessageTask $r3;
+        java.lang.StringBuilder $r4;
+        boolean $z0;
+        com.strava.data.ActivityType $r6;
+        java.lang.String[] $r7;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $r1 := @parameter0: android.content.SharedPreferences;
+
+        $r2 := @parameter1: java.lang.String;
+
+        $r5 = "pref.use_native_gps";
+
+        $z0 = virtualinvoke $r5.<java.lang.String: boolean equals(java.lang.Object)>($r2);
+
+        if $z0 == 0 goto label1;
+
+        $z0 = staticinvoke <com.strava.util.PreferenceUtils: boolean a()>();
+
+        if $z0 == 0 goto label1;
+
+        specialinvoke $r0.<com.strava.service.RecordingListenerService: void p()>();
+
+        virtualinvoke $r0.<com.strava.service.RecordingListenerService: void stopSelf()>();
+
+        return;
+
+     label1:
+        $z0 = staticinvoke <com.strava.util.PreferenceUtils: boolean a(java.lang.String)>($r2);
+
+        if $z0 == 0 goto label2;
+
+        $r6 = staticinvoke <com.strava.util.PreferenceUtils: com.strava.data.ActivityType g()>();
+
+        $r3 = new com.strava.service.RecordingListenerService$SendWearableAMessageTask;
+
+        specialinvoke $r3.<com.strava.service.RecordingListenerService$SendWearableAMessageTask: void <init>(com.strava.service.RecordingListenerService,com.strava.service.RecordingService$MessageSenderCallback)>($r0, null);
+
+        $r7 = newarray (java.lang.String)[1];
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("com/strava/change_activity_type,");
+
+        $r2 = virtualinvoke $r6.<com.strava.data.ActivityType: java.lang.String getKey()>();
+
+        $r4 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r2 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        $r7[0] = $r2;
+
+        virtualinvoke $r3.<com.strava.service.RecordingListenerService$SendWearableAMessageTask: android.os.AsyncTask execute(java.lang.Object[])>($r7);
+
+     label2:
+        return;
+    }
+
+    public int onStartCommand(android.content.Intent, int, int)
+    {
+        com.strava.service.RecordingListenerService $r0;
+        android.content.Intent $r1;
+        int $i0, $i1;
+        boolean $z0;
+        com.google.android.gms.common.api.GoogleApiClient $r2;
+        com.google.android.gms.wearable.DataApi $r3;
+        com.google.android.gms.wearable.NodeApi $r4;
+        com.strava.service.RecordingListenerService$SendWearableAMessageTask $r5;
+        java.lang.String[] $r6;
+        android.content.SharedPreferences $r7;
+        com.strava.service.RecordingService$RecordingState $r8;
+
+        $r0 := @this: com.strava.service.RecordingListenerService;
+
+        $r1 := @parameter0: android.content.Intent;
+
+        $i0 := @parameter1: int;
+
+        $i1 := @parameter2: int;
+
+        $z0 = $r0.<com.strava.service.RecordingListenerService: boolean f>;
+
+        if $z0 != 0 goto label1;
+
+        $r2 = $r0.<com.strava.service.RecordingListenerService: com.google.android.gms.common.api.GoogleApiClient e>;
+
+        $z0 = virtualinvoke $r2.<com.google.android.gms.common.api.GoogleApiClient: boolean isConnected()>();
+
+        if $z0 != 0 goto label1;
+
+        $r2 = $r0.<com.strava.service.RecordingListenerService: com.google.android.gms.common.api.GoogleApiClient e>;
+
+        virtualinvoke $r2.<com.google.android.gms.common.api.GoogleApiClient: void connect()>();
+
+        $r3 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.DataApi a>;
+
+        $r2 = $r0.<com.strava.service.RecordingListenerService: com.google.android.gms.common.api.GoogleApiClient e>;
+
+        interfaceinvoke $r3.<com.google.android.gms.wearable.DataApi: com.google.android.gms.common.api.PendingResult a(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.wearable.DataApi$DataListener)>($r2, $r0);
+
+        $r4 = <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.NodeApi d>;
+
+        $r2 = $r0.<com.strava.service.RecordingListenerService: com.google.android.gms.common.api.GoogleApiClient e>;
+
+        interfaceinvoke $r4.<com.google.android.gms.wearable.NodeApi: com.google.android.gms.common.api.PendingResult a(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.wearable.NodeApi$NodeListener)>($r2, $r0);
+
+     label1:
+        if $r1 == null goto label2;
+
+        $i0 = virtualinvoke $r1.<android.content.Intent: int getIntExtra(java.lang.String,int)>("extra", -1);
+
+        if 101 != $i0 goto label3;
+
+        $r5 = new com.strava.service.RecordingListenerService$SendWearableAMessageTask;
+
+        specialinvoke $r5.<com.strava.service.RecordingListenerService$SendWearableAMessageTask: void <init>(com.strava.service.RecordingListenerService,com.strava.service.RecordingService$MessageSenderCallback)>($r0, null);
+
+        $r6 = newarray (java.lang.String)[1];
+
+        $r6[0] = "com/strava/recording/start";
+
+        virtualinvoke $r5.<com.strava.service.RecordingListenerService$SendWearableAMessageTask: android.os.AsyncTask execute(java.lang.Object[])>($r6);
+
+     label2:
+        $r7 = $r0.<com.strava.service.RecordingListenerService: android.content.SharedPreferences a>;
+
+        interfaceinvoke $r7.<android.content.SharedPreferences: void registerOnSharedPreferenceChangeListener(android.content.SharedPreferences$OnSharedPreferenceChangeListener)>($r0);
+
+        return 1;
+
+     label3:
+        if 314 != $i0 goto label4;
+
+        virtualinvoke $r0.<com.strava.service.RecordingListenerService: void b_()>();
+
+        goto label2;
+
+     label4:
+        if 999 != $i0 goto label5;
+
+        virtualinvoke $r0.<com.strava.service.RecordingListenerService: void a_()>();
+
+        goto label2;
+
+     label5:
+        if 1999 != $i0 goto label6;
+
+        $r8 = <com.strava.service.RecordingService$RecordingState: com.strava.service.RecordingService$RecordingState d>;
+
+        $r0.<com.strava.service.RecordingListenerService: com.strava.service.RecordingService$RecordingState i> = $r8;
+
+        $r1 = new android.content.Intent;
+
+        specialinvoke $r1.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r0, class "Lcom/strava/WearActivity;");
+
+        virtualinvoke $r1.<android.content.Intent: android.content.Intent setFlags(int)>(268435456);
+
+        virtualinvoke $r0.<com.strava.service.RecordingListenerService: void startActivity(android.content.Intent)>($r1);
+
+        virtualinvoke $r0.<com.strava.service.RecordingListenerService: void b(boolean)>(1);
+
+        goto label2;
+
+     label6:
+        if 2009 != $i0 goto label2;
+
+        $r5 = new com.strava.service.RecordingListenerService$SendWearableAMessageTask;
+
+        specialinvoke $r5.<com.strava.service.RecordingListenerService$SendWearableAMessageTask: void <init>(com.strava.service.RecordingListenerService,com.strava.service.RecordingService$MessageSenderCallback)>($r0, null);
+
+        $r6 = newarray (java.lang.String)[1];
+
+        $r6[0] = "com/strava/open_feed";
+
+        virtualinvoke $r5.<com.strava.service.RecordingListenerService$SendWearableAMessageTask: android.os.AsyncTask execute(java.lang.Object[])>($r6);
+
+        goto label2;
+    }
+}

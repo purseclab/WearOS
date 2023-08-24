@@ -1,0 +1,11 @@
+<project default="copy-resources">
+  <target name="init"/>
+  <target name="copy-resources" depends="init">
+    <copy todir="build/classes/summariesManual" filtering="false">
+      <fileset dir="summariesManual" includes="**/*" excludes="**/*.java"/>
+    </copy>
+    <copy todir="build/classes/schema" filtering="false">
+      <fileset dir="schema" includes="" excludes="**/*.java"/>
+    </copy>
+  </target>
+</project>

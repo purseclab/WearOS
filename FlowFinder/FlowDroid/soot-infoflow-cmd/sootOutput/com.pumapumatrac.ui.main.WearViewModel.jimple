@@ -1,0 +1,283 @@
+public final class com.pumapumatrac.ui.main.WearViewModel extends java.lang.Object
+{
+    static final kotlin.reflect.KProperty[] $$delegatedProperties;
+    private final kotlin.Lazy CAPABILITY_WEAR_APP$delegate;
+    private final android.content.Context context;
+
+    static void <clinit>()
+    {
+        kotlin.reflect.KProperty[] $r0;
+        kotlin.jvm.internal.PropertyReference1Impl $r1;
+        kotlin.reflect.KClass $r2;
+        kotlin.reflect.KProperty1 $r3;
+
+        $r0 = newarray (kotlin.reflect.KProperty)[1];
+
+        $r1 = new kotlin.jvm.internal.PropertyReference1Impl;
+
+        $r2 = staticinvoke <kotlin.jvm.internal.Reflection: kotlin.reflect.KClass getOrCreateKotlinClass(java.lang.Class)>(class "Lcom/pumapumatrac/ui/main/WearViewModel;");
+
+        specialinvoke $r1.<kotlin.jvm.internal.PropertyReference1Impl: void <init>(kotlin.reflect.KDeclarationContainer,java.lang.String,java.lang.String)>($r2, "CAPABILITY_WEAR_APP", "getCAPABILITY_WEAR_APP()Ljava/lang/String;");
+
+        $r3 = staticinvoke <kotlin.jvm.internal.Reflection: kotlin.reflect.KProperty1 property1(kotlin.jvm.internal.PropertyReference1)>($r1);
+
+        $r0[0] = $r3;
+
+        <com.pumapumatrac.ui.main.WearViewModel: kotlin.reflect.KProperty[] $$delegatedProperties> = $r0;
+
+        return;
+    }
+
+    public void <init>(com.loop.toolkit.kotlin.PersistentHelpers.SharedData, android.content.Context, com.pumapumatrac.data.settings.train.IRunSettingsRepository)
+    {
+        com.pumapumatrac.ui.main.WearViewModel $r0;
+        android.content.Context $r1;
+        com.pumapumatrac.data.settings.train.IRunSettingsRepository $r2;
+        kotlin.Lazy $r3;
+        com.loop.toolkit.kotlin.PersistentHelpers.SharedData $r4;
+        com.pumapumatrac.ui.main.WearViewModel$CAPABILITY_WEAR_APP$2 $r5;
+
+        $r0 := @this: com.pumapumatrac.ui.main.WearViewModel;
+
+        $r4 := @parameter0: com.loop.toolkit.kotlin.PersistentHelpers.SharedData;
+
+        $r1 := @parameter1: android.content.Context;
+
+        $r2 := @parameter2: com.pumapumatrac.data.settings.train.IRunSettingsRepository;
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void checkParameterIsNotNull(java.lang.Object,java.lang.String)>($r4, "sharedData");
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void checkParameterIsNotNull(java.lang.Object,java.lang.String)>($r1, "context");
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void checkParameterIsNotNull(java.lang.Object,java.lang.String)>($r2, "runSettingsRepository");
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<com.pumapumatrac.ui.main.WearViewModel: android.content.Context context> = $r1;
+
+        $r5 = new com.pumapumatrac.ui.main.WearViewModel$CAPABILITY_WEAR_APP$2;
+
+        specialinvoke $r5.<com.pumapumatrac.ui.main.WearViewModel$CAPABILITY_WEAR_APP$2: void <init>(com.pumapumatrac.ui.main.WearViewModel)>($r0);
+
+        $r3 = staticinvoke <kotlin.LazyKt: kotlin.Lazy lazy(kotlin.jvm.functions.Function0)>($r5);
+
+        $r0.<com.pumapumatrac.ui.main.WearViewModel: kotlin.Lazy CAPABILITY_WEAR_APP$delegate> = $r3;
+
+        return;
+    }
+
+    public static final void access$doLogout(com.pumapumatrac.ui.main.WearViewModel)
+    {
+        com.pumapumatrac.ui.main.WearViewModel $r0;
+
+        $r0 := @parameter0: com.pumapumatrac.ui.main.WearViewModel;
+
+        specialinvoke $r0.<com.pumapumatrac.ui.main.WearViewModel: void doLogout()>();
+
+        return;
+    }
+
+    public static final android.content.Context access$getContext$p(com.pumapumatrac.ui.main.WearViewModel)
+    {
+        com.pumapumatrac.ui.main.WearViewModel $r0;
+        android.content.Context r1;
+
+        $r0 := @parameter0: com.pumapumatrac.ui.main.WearViewModel;
+
+        r1 = $r0.<com.pumapumatrac.ui.main.WearViewModel: android.content.Context context>;
+
+        return r1;
+    }
+
+    public static final com.google.android.gms.wearable.Node access$pickBestNodeId(com.pumapumatrac.ui.main.WearViewModel, java.util.Set)
+    {
+        java.util.Set $r0;
+        com.google.android.gms.wearable.Node $r1;
+        com.pumapumatrac.ui.main.WearViewModel $r2;
+
+        $r2 := @parameter0: com.pumapumatrac.ui.main.WearViewModel;
+
+        $r0 := @parameter1: java.util.Set;
+
+        $r1 = specialinvoke $r2.<com.pumapumatrac.ui.main.WearViewModel: com.google.android.gms.wearable.Node pickBestNodeId(java.util.Set)>($r0);
+
+        return $r1;
+    }
+
+    private final void checkIfWearAppAvailable(kotlin.jvm.functions.Function1)
+    {
+        com.pumapumatrac.ui.main.WearViewModel $r0;
+        kotlin.jvm.functions.Function1 $r1;
+        android.content.Context $r2;
+        com.google.android.gms.wearable.CapabilityClient $r3;
+        java.lang.String $r4;
+        com.google.android.gms.tasks.Task $r5;
+        com.pumapumatrac.ui.main.WearViewModel$checkIfWearAppAvailable$1 $r6;
+
+        $r0 := @this: com.pumapumatrac.ui.main.WearViewModel;
+
+        $r1 := @parameter0: kotlin.jvm.functions.Function1;
+
+        $r2 = $r0.<com.pumapumatrac.ui.main.WearViewModel: android.content.Context context>;
+
+        $r3 = staticinvoke <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.CapabilityClient getCapabilityClient(android.content.Context)>($r2);
+
+        $r4 = specialinvoke $r0.<com.pumapumatrac.ui.main.WearViewModel: java.lang.String getCAPABILITY_WEAR_APP()>();
+
+        $r5 = virtualinvoke $r3.<com.google.android.gms.wearable.CapabilityClient: com.google.android.gms.tasks.Task getCapability(java.lang.String,int)>($r4, 0);
+
+        $r6 = new com.pumapumatrac.ui.main.WearViewModel$checkIfWearAppAvailable$1;
+
+        specialinvoke $r6.<com.pumapumatrac.ui.main.WearViewModel$checkIfWearAppAvailable$1: void <init>(com.pumapumatrac.ui.main.WearViewModel,kotlin.jvm.functions.Function1)>($r0, $r1);
+
+        virtualinvoke $r5.<com.google.android.gms.tasks.Task: com.google.android.gms.tasks.Task addOnCompleteListener(com.google.android.gms.tasks.OnCompleteListener)>($r6);
+
+        return;
+    }
+
+    private final void doLogout()
+    {
+        com.pumapumatrac.ui.main.WearViewModel $r0;
+        android.content.Context $r1;
+        int $i0;
+        java.lang.String $r2;
+        com.google.android.gms.wearable.PutDataMapRequest $r3;
+        com.google.android.gms.wearable.DataMap $r4;
+        long $l1;
+        com.google.android.gms.wearable.PutDataRequest $r5;
+        com.google.android.gms.wearable.DataClient $r6;
+        com.google.android.gms.tasks.Task $r7;
+        com.pumapumatrac.ui.main.WearViewModel$doLogout$1 $r8;
+        com.pumapumatrac.ui.main.WearViewModel$doLogout$2 $r9;
+
+        $r0 := @this: com.pumapumatrac.ui.main.WearViewModel;
+
+        $r1 = $r0.<com.pumapumatrac.ui.main.WearViewModel: android.content.Context context>;
+
+        $i0 = <com.pumapumatrac.shared.R$string: int pumatrac_data_token>;
+
+        $r2 = virtualinvoke $r1.<android.content.Context: java.lang.String getString(int)>($i0);
+
+        $r3 = staticinvoke <com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataMapRequest create(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap getDataMap()>();
+
+        virtualinvoke $r4.<com.google.android.gms.wearable.DataMap: java.lang.Object remove(java.lang.String)>("keyToken");
+
+        $r4 = virtualinvoke $r3.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap getDataMap()>();
+
+        virtualinvoke $r4.<com.google.android.gms.wearable.DataMap: java.lang.Object remove(java.lang.String)>("keyWeight");
+
+        $r4 = virtualinvoke $r3.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.DataMap getDataMap()>();
+
+        $l1 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+
+        virtualinvoke $r4.<com.google.android.gms.wearable.DataMap: void putLong(java.lang.String,long)>("Time", $l1);
+
+        $r5 = virtualinvoke $r3.<com.google.android.gms.wearable.PutDataMapRequest: com.google.android.gms.wearable.PutDataRequest asPutDataRequest()>();
+
+        $r5 = virtualinvoke $r5.<com.google.android.gms.wearable.PutDataRequest: com.google.android.gms.wearable.PutDataRequest setUrgent()>();
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void checkExpressionValueIsNotNull(java.lang.Object,java.lang.String)>($r5, "asPutDataRequest().setUrgent()");
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void checkExpressionValueIsNotNull(java.lang.Object,java.lang.String)>($r5, "PutDataMapRequest.create\u2026t().setUrgent()\n        }");
+
+        $r1 = $r0.<com.pumapumatrac.ui.main.WearViewModel: android.content.Context context>;
+
+        $r6 = staticinvoke <com.google.android.gms.wearable.Wearable: com.google.android.gms.wearable.DataClient getDataClient(android.content.Context)>($r1);
+
+        $r7 = virtualinvoke $r6.<com.google.android.gms.wearable.DataClient: com.google.android.gms.tasks.Task putDataItem(com.google.android.gms.wearable.PutDataRequest)>($r5);
+
+        $r8 = <com.pumapumatrac.ui.main.WearViewModel$doLogout$1: com.pumapumatrac.ui.main.WearViewModel$doLogout$1 INSTANCE>;
+
+        $r7 = virtualinvoke $r7.<com.google.android.gms.tasks.Task: com.google.android.gms.tasks.Task addOnSuccessListener(com.google.android.gms.tasks.OnSuccessListener)>($r8);
+
+        $r9 = <com.pumapumatrac.ui.main.WearViewModel$doLogout$2: com.pumapumatrac.ui.main.WearViewModel$doLogout$2 INSTANCE>;
+
+        virtualinvoke $r7.<com.google.android.gms.tasks.Task: com.google.android.gms.tasks.Task addOnFailureListener(com.google.android.gms.tasks.OnFailureListener)>($r9);
+
+        return;
+    }
+
+    private final java.lang.String getCAPABILITY_WEAR_APP()
+    {
+        com.pumapumatrac.ui.main.WearViewModel $r0;
+        java.lang.Object $r1;
+        kotlin.Lazy $r2;
+        kotlin.reflect.KProperty[] $r3;
+        kotlin.reflect.KProperty $r4;
+        java.lang.String $r5;
+
+        $r0 := @this: com.pumapumatrac.ui.main.WearViewModel;
+
+        $r2 = $r0.<com.pumapumatrac.ui.main.WearViewModel: kotlin.Lazy CAPABILITY_WEAR_APP$delegate>;
+
+        $r3 = <com.pumapumatrac.ui.main.WearViewModel: kotlin.reflect.KProperty[] $$delegatedProperties>;
+
+        $r4 = $r3[0];
+
+        $r1 = interfaceinvoke $r2.<kotlin.Lazy: java.lang.Object getValue()>();
+
+        $r5 = (java.lang.String) $r1;
+
+        return $r5;
+    }
+
+    private final com.google.android.gms.wearable.Node pickBestNodeId(java.util.Set)
+    {
+        com.pumapumatrac.ui.main.WearViewModel $r0;
+        java.util.Set $r1;
+        com.google.android.gms.wearable.Node $r2;
+        java.util.Iterator $r3;
+        boolean $z0;
+        java.lang.Object $r4;
+
+        $r0 := @this: com.pumapumatrac.ui.main.WearViewModel;
+
+        $r1 := @parameter0: java.util.Set;
+
+        $r2 = null;
+
+        if $r1 == null goto label2;
+
+        $r3 = interfaceinvoke $r1.<java.util.Set: java.util.Iterator iterator()>();
+
+     label1:
+        $z0 = interfaceinvoke $r3.<java.util.Iterator: boolean hasNext()>();
+
+        if $z0 == 0 goto label3;
+
+        $r4 = interfaceinvoke $r3.<java.util.Iterator: java.lang.Object next()>();
+
+        $r2 = (com.google.android.gms.wearable.Node) $r4;
+
+        goto label1;
+
+     label2:
+        return null;
+
+     label3:
+        return $r2;
+    }
+
+    public final io.reactivex.Completable logout()
+    {
+        com.pumapumatrac.ui.main.WearViewModel $r0;
+        io.reactivex.Completable $r1;
+        com.pumapumatrac.ui.main.WearViewModel$logout$1 $r2;
+
+        $r0 := @this: com.pumapumatrac.ui.main.WearViewModel;
+
+        $r2 = new com.pumapumatrac.ui.main.WearViewModel$logout$1;
+
+        specialinvoke $r2.<com.pumapumatrac.ui.main.WearViewModel$logout$1: void <init>(com.pumapumatrac.ui.main.WearViewModel)>($r0);
+
+        specialinvoke $r0.<com.pumapumatrac.ui.main.WearViewModel: void checkIfWearAppAvailable(kotlin.jvm.functions.Function1)>($r2);
+
+        $r1 = staticinvoke <io.reactivex.Completable: io.reactivex.Completable complete()>();
+
+        staticinvoke <kotlin.jvm.internal.Intrinsics: void checkExpressionValueIsNotNull(java.lang.Object,java.lang.String)>($r1, "Completable.complete()");
+
+        return $r1;
+    }
+}
